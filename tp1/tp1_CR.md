@@ -11,7 +11,7 @@
 	* DRUC : verificateur de regles de dessin integre a GRAAL.
 	* Largeur : Largeur du canal horizontale.
 	* ALU1 : premiere couche de metale invisible (pour la connectique)
-	* CALU1 : connecteur ALU 1, premiere couche de metale visible du routeur
+	* CALU1 : connecteur ALU 1, premiere couche de metale visible du routeur => VDD/VSS
 	* CALUX : connecteur ALU X (=CALU1, CALU2, CALU3..) forment
 	 l'interface de la cellule et jouent le role de connecteurs. 
 
@@ -64,6 +64,9 @@ VDD/VSS :
 #### VHDL simlifie:
 .al:Yagle:.vbe
 ##### command : 
+
+#### Preuve
+.vbe +.vbe:Proof
 
 #### VHDL
 .vhdl:VASY/BOOM/BOOG:.vbe
