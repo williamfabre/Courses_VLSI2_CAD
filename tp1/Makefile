@@ -9,8 +9,8 @@ export MBK_IN_LO=al
 export MBK_IN_PH=ap
 export MBK_OUT_LO=al
 
-## iii) proof_test
 all : $(OBJ)
+## iii) proof_test
 	proof $(FILE) $(FILE)ref
 
 $(FILEref) : $(FILE).vhdl
@@ -24,8 +24,8 @@ $(FILEtest) : $(FILE).al
 
 $(FILE).al : $(FILE).ap
 ## i) cougarNETLIST(.al) >from-> graalDRAW(.ap)
-	#export MBK_IN_PH=ap;
-	#export MBK_OUT_LO=al;
+	#export MBK_IN_PH=ap
+	#export MBK_OUT_LO=al
 	cougar -t $(FILE) $(FILE)
 
 clean:
