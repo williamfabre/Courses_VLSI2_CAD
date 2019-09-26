@@ -1,5 +1,6 @@
 
 # CR1 MOCCA  20/09/19
+https://www-soc.lip6.fr/trac/sesi-tools/wiki/MOCCA-TP1-2019
 
 ## Commandes pour alliance :
 ```bash
@@ -7,35 +8,33 @@
 ```
 
 ## Definitions :
-	* GRAAL: editeur de layout symbolique.
-	* DRUC : verificateur de regles de dessin integre a GRAAL.
-	* Largeur : Largeur du canal horizontale.
-	* ALU1 : premiere couche de metale invisible (pour la connectique)
-	* CALU1 : connecteur ALU 1, premiere couche de metale visible du routeur => VDD/VSS
-	* CALUX : connecteur ALU X (=CALU1, CALU2, CALU3..) forment
-	 l'interface de la cellule et jouent le role de connecteurs. 
+	* GRAAL: éditeur de layout symbolique.
+	* DRUC : vérificateur de règles de dessin integré à GRAAL.
+	* Largeur : Largeur du canal (horizontale) plus grande que la longueur du canal.
+	* ALU1 : première couche de metale invisible (pour la connectique)
+	* CALU1 : connecteur ALU 1, premiere couche de metale visible du routeur
+	* CALUX : connecteur ALU X (=CALU1, CALU2, CALU3..) forment l'interface de la cellule et jouent le role de connecteurs. 
 
 ## Objectif :
-Dessiner une cellule en tenant compte des regles de dessin grace a
+* Dessiner une cellule de NAND2 en tenant compte des [!règles de dessin](https://www-soc.lip6.fr/trac/sesi-tools/attachment/wiki/MOCCA-TP1-2019/symb_rules00-1.pdf) grâce à
 l'environnement Alliance.
 
 ## Outils
-### Graal :
+### Types d'objets dans Graal :
 * instances.
 * boites d'aboutenment.
 * segments (DIFFN, DIFFP, POLY, ALU1, ALU2).
-* CALUX ?
+* CALUX
 * Big VIAs.
 * T*or NMOS, PMOS.
 
 ### Cougar :
-Extraction de netlist d'un circuit format .vst ou .al a partir d'une desc*
-format ap.
+* Extraction de netlist d'un circuit format .vst ou .al a partir d'une description
+au format ap.
 
 ### Yaggle et Proof :
-Yaggle : extraire la desc VHDL comportementale from netlist .al -> .vbe.
-Proof : prouver l'eq entre deux descriptions comportementales de type
-dataflow. deux fichiers .vbe.
+* Yaggle : extraire la descpt VHDL comportementale from netlist .al -> .vbe.
+* Proof : prouver l'eq entre deux descriptions comportementales de type dataflow. deux fichiers .vbe.
 
 ## Description Cellule par parametres :
 hauteur : 50 Lda
@@ -54,7 +53,7 @@ VDD/VSS :
 ### from_extension:tool:to_extension
 
 #### layout:
-:GRAAL:ap
+GRAAL:ap
 ##### command : 
 
 #### netlist:
@@ -66,7 +65,7 @@ VDD/VSS :
 ##### command : 
 
 #### Preuve
-.vbe +.vbe:Proof
+.vbe + .vbe:Proof
 
 #### VHDL
 .vhdl:VASY/BOOM/BOOG:.vbe
@@ -76,18 +75,3 @@ VDD/VSS :
 	* -V verbose	
 	* -o overwrite existing files
 	* -a alliance output
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

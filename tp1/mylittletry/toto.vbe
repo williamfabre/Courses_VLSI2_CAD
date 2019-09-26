@@ -1,0 +1,25 @@
+-- VHDL data flow description generated from `toto`
+--		date : Wed Sep 25 14:08:48 2019
+
+
+-- Entity Declaration
+
+ENTITY toto IS
+  PORT (
+  i0 : in BIT;	-- i0
+  i1 : in BIT;	-- i1
+  nq : out BIT;	-- nq
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END toto;
+
+
+-- Architecture Declaration
+
+ARCHITECTURE behaviour_data_flow OF toto IS
+
+BEGIN
+
+nq <= (not (i0) or not (i1));
+END;
