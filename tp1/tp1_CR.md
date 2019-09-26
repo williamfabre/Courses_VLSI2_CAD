@@ -75,3 +75,20 @@ GRAAL:ap
 	* -V verbose	
 	* -o overwrite existing files
 	* -a alliance output
+
+
+### Protocole de realisation d'une cellule nand sous Graal
+	* Preparer la grille (view -> x=5, y=5, set ON).
+	* Poser le Nwell au dessus duquel sera la partie P de notre circuit.
+	* Poser VDD et VSS en CALU1 qui font 6 de largeur. VSS sera colle au
+	    bas de la boite d'aboutement et VDD sera a 1 lda du haut
+	* Deposer les transistors (ce sont des entites a part entiere dans
+	    graal.
+	* Deposer des Cont Pdif(resp Ndif) pour creer des contact avec les transistors.
+	    Ne pas faire d'enorme contact sinon le logiciel croit que tout est
+	    connecte.
+	    (TODO pourquoi doit-on faire contact avec vdd et vss?)
+	* Utiliser le ALU1 pour connecter les transistors entre eux.
+
+### Utilisation du tp
+Pour utiliser le tp il suffit de faire make dans le dossier racine.
