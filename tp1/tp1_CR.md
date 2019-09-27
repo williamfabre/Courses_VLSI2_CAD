@@ -52,18 +52,25 @@ VDD/VSS :
 
 #### layout:
 GRAAL:ap
-##### command : 
+##### command : graal 
+###### graal: outil de dessin pour layout symbolique
 
 #### netlist:
 .ap:Cougar:.al/.vst
-##### command : 
+##### command : cougar -t name name_uut
+###### cougar :
+	* flattens the layout to transistor level before extracting
 
 #### VHDL simlifie:
 .al:Yagle:.vbe
-##### command : 
+##### command : ~encadr/yagle -s name_uut name
+###### yagle :
+	* -s only one vdd and vss in file description
 
 #### Preuve
 .vbe + .vbe:Proof
+##### command : proof name name_uut
+###### proof : Preuve formelle entre deux description comportementales
 
 #### VHDL
 .vhdl:VASY/BOOM/BOOG:.vbe

@@ -1,6 +1,9 @@
 logic=
+ifndef logic
+$(error logic must be set)
+endif
 
-OBJ = $(logic).vbe \
+OBJ = $(logic).vbe\
 	$(logic)_uut.vbe
 
 export MBK_IN_LO=al
@@ -8,20 +11,16 @@ export MBK_IN_PH=ap
 export MBK_OUT_LO=al
 
 all : $(OBJ)
-## iii) proof_test
-	proof $(logic).vbe $(logic)_uut.vbe
+	proof $(logic) $(logic)_uut
 
 $(logic).vbe : $(logic).vhdl
-## o) vasyREF(.vbe) >from-> BEHAVIOUR(.vhdl)
 	vasy -I vhdl -V -o -a $(logic).vhdl $(logic)
 
-$(logic)_uut.vbe : $(logic).al
-## ii) yagleBEHAVIOUR(.vbe) >from-> cougarNETLIST(.al)
-	~encadr/yagle -s $(logic) $(logic)
+$(logic)_uut.vbe : $(logic)_uut.al
+	~encadr/yagle -s $(logic)_uut $(logic)
 
-$(logic).al : $(logic).ap
-## i) cougarNETLIST(.al) >from-> graalDRAW(.ap)
-	cougar -t $(logic) $(logic)
+$(logic)_uut.al : $(logic).ap
+	cougar -t $(logic) $(logic)_uut
 
 clean:
 	rm -f *.al *.vbe *.vst *.rep *.o core *~
