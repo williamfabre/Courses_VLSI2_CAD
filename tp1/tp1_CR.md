@@ -13,19 +13,19 @@ https://www-soc.lip6.fr/trac/sesi-tools/wiki/MOCCA-TP1-2019
 	* Largeur : Largeur du canal (horizontale) plus grande que la longueur du canal.
 	* ALU1 : première couche de metale invisible (pour la connectique)
 	* CALU1 : connecteur ALU 1, premiere couche de metale visible du routeur
-	* CALUX : connecteur ALU X (=CALU1, CALU2, CALU3..) forment l'interface de la cellule et jouent le role de connecteurs. 
+	* CALUX : connecteur ALU X (=CALU1, CALU2, CALU3..) forment l'interface de la cellule et jouent le role de connecteurs.Doivent suivre les lignes H/Vde la grille(ie:leurs contacts se situe sur les croisements sans depasser inutilement).
 
 ## Objectif :
 * Dessiner une cellule de NAND2 en tenant compte des [!règles de dessin](https://www-soc.lip6.fr/trac/sesi-tools/attachment/wiki/MOCCA-TP1-2019/symb_rules00-1.pdf) grâce à l'environnement Alliance.
 
 ## Outils
 ### Types d'objets dans Graal :
-* instances.
-* boites d'aboutenment.
-* segments (DIFFN, DIFFP, POLY, ALU1, ALU2).
-* CALUX
-* Big VIAs.
-* Transistor NMOS, PMOS.
+	* instances.
+	* boites d'aboutenment.
+	* segments (DIFFN, DIFFP, POLY, ALU1, ALU2).
+	* CALUX
+	* Big VIAs.
+	* Transistor NMOS, PMOS.
 
 ### Cougar :
 * Extraction de netlist d'un circuit format .vst ou .al a partir d'un layout au format ap.
@@ -38,6 +38,7 @@ https://www-soc.lip6.fr/trac/sesi-tools/wiki/MOCCA-TP1-2019
 hauteur : 50 Lda
 largeur : %5Lda=0
 VDD/VSS :
+
 	* CALUX place sur une grille de 5*5 Lda n'importe ou dans la cellule.
 	* en CALU1 (centre 3-47 Lda en Y), largeur_min_du_segment= 2Lda + 1 Lda pour
 	    l'extension
@@ -94,15 +95,17 @@ Après avoir dessiné le stick-diagram, on peut estimer la largeur nécéssaire 
 	* Deposer des Cont Pdif(resp Ndif) pour creer des contact avec les transistors.
 	    Ne pas faire d'enorme contact sinon le logiciel croit que tout est
 	    connecte.
-	    (TODO pourquoi doit-on faire contact avec vdd et vss?)
 	* Tirer des Poly pour relier les grilles communes. Puis déposer des contact Poly.
 	* Utiliser le ALU1 pour connecter les transistors entre eux par les points de contact.
 
 **!Warnings:**
-* Les grilles doivent être espaces de 1 bord-à-bord de tout autres objet.
-* Les ALUx/CALUx ne peuvent pas se croiser et doivent respecter les distance prévue entre eux.
-* Les contacts doivent être placer aux noeuds de la grille.
-* Les ALU/CALU doivent suivre les lignes de la grille de 5 à l'horizontal comme à la vertical.
+
+	* Les grilles doivent être espaces de 1 bord-à-bord de tout autres objet.
+	* Les ALUx/CALUx ne peuvent pas se croiser et doivent respecter les distance prévue entre eux.
+	* Les CALU doivent suivre les lignes de la grille de 5 à l'horizontal comme à la vertical.
+	* Les diffusion peuvent être superposer sans limites
+	* Les extensions de VDD/VSS sont de 2 minimum
+	* Pas le longueur(horizontal) pour les transistors
 
 ### Utilisation du tp
 Pour utiliser le tp il suffit de faire make dans le dossier racine.
