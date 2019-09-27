@@ -1,9 +1,7 @@
-FILE = nand2
-FILEref = $(FILE)ref.vbe
-FILEtest = $(FILE).vbe
+logic=
 
-OBJ = $(FILEref) \
-	$(FILEtest)
+OBJ = $(logic).vbe \
+	$(logic)_uut.vbe
 
 export MBK_IN_LO=al
 export MBK_IN_PH=ap
@@ -11,22 +9,19 @@ export MBK_OUT_LO=al
 
 all : $(OBJ)
 ## iii) proof_test
-	proof $(FILE) $(FILE)ref
+	proof $(logic).vbe $(logic)_uut.vbe
 
-$(FILEref) : $(FILE).vhdl
+$(logic).vbe : $(logic).vhdl
 ## o) vasyREF(.vbe) >from-> BEHAVIOUR(.vhdl)
-	vasy -I vhdl -V -o -a $(FILE).vhdl $(FILE)ref
+	vasy -I vhdl -V -o -a $(logic).vhdl $(logic)
 
-$(FILEtest) : $(FILE).al
+$(logic)_uut.vbe : $(logic).al
 ## ii) yagleBEHAVIOUR(.vbe) >from-> cougarNETLIST(.al)
-	#export MBK_IN_LO=al
-	~encadr/yagle -s $(FILE) $(FILE)
+	~encadr/yagle -s $(logic) $(logic)
 
-$(FILE).al : $(FILE).ap
+$(logic).al : $(logic).ap
 ## i) cougarNETLIST(.al) >from-> graalDRAW(.ap)
-	#export MBK_IN_PH=ap
-	#export MBK_OUT_LO=al
-	cougar -t $(FILE) $(FILE)
+	cougar -t $(logic) $(logic)
 
 clean:
 	rm -f *.al *.vbe *.vst *.rep *.o core *~
