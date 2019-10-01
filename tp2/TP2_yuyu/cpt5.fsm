@@ -1,5 +1,5 @@
 entity circuit is
-  port ( vdd, vss, ck, reset, i : in bit;
+  port ( reset, vdd, vss, ck, i : in bit;
          o : out bit
        );
 end circuit;
