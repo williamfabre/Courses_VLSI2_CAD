@@ -1,37 +1,13 @@
-## Welcome to GitHub Pages
+## TP MOCCA M2 SESI
+==
 
-You can use the [editor on GitHub](https://github.com/williamfabre/MOCCA/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/williamfabre/MOCCA/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+- Compte rendu
+  - [1. TP1 : Dessin de cellule ](tp1/tp1_CR.md)
+  - [2. TP2 : Synthèse d'automate avec Alliance ](tp2/tp2_CR.md)
+  - [3. TP3](tp3/tp3_CR.md)
+  - [4. TP4](tp4/tp4_CR.md)
+  - [5. TP5](tp5/tp5_CR.md)
+  - [6. TP6](tp6/tp6_CR.md)
+  - [7. TP7](tp7/tp7_CR.md)
+  - [8. TP8](tp8/tp8_CR.md)
+  - [9. TP9](tp9/tp9_CR.md)
