@@ -219,7 +219,7 @@ begin
             r_ny <= r_y(14 downto 7);
         end if;
         
-    when others => report "unreachable" severity failure;
+    when others => report "unreachable state" severity failure;
 	
     end case;
 end process;
@@ -244,7 +244,7 @@ begin
             buf_nx <= buf_nx;
             buf_ny <= buf_ny;
         
-    when others => report "unreachable" severity failure;
+    when others => report "unreachable state" severity failure;
     end case;
 end process;
 
