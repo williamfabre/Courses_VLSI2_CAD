@@ -1,3 +1,11 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+--use IEEE.std_logic_arith.all;
+use IEEE.numeric_bit.all;
+use IEEE.numeric_std.all;
+--use IEEE.std_logic_signed.all;
+--use IEEE.std_logic_unsigned.all;
+
 entity CODRIC is
 	port(
         reset   : in std_logic;
@@ -39,7 +47,7 @@ begin
 r_pi     <= X"0192";
 r_pihalf <= X"00C9";
 
-process(reset,clk)
+process(reset,ck)
 begin
     if ( reset = '1' ) then
         EP <= IDLE;
@@ -48,11 +56,10 @@ begin
     end if;
 end process;
 
-process(clk,wr)
+process(ck,wr)
 begin
-    switch case EP
+    case EP is
     when IDLE =>
-        r_i <= X"00";
         r_q <= X"00";
         r_a <= A;
         if(wr='1')then
@@ -63,8 +70,8 @@ begin
     
     when LOAD =>
         r_a <= A;
-        r_x <= X(7) && X && "0000000";
-        r_y <= Y(7) && Y && "0000000";
+        r_x <= X(7) & X & "0000000";
+        r_y <= Y(7) & Y & "0000000";
         EF <= NORM;
     
     when NORM =>
@@ -73,7 +80,7 @@ begin
             r_q <= (r_q + 1) AND X"03";
             EF <= NORM;
         else
-            EF <= ROT;
+            EF <= ROT0;
         end if;
     
     when ROT0  =>
@@ -91,8 +98,8 @@ begin
         end if;
     
     when ROT1  =>
-        r_dx <= r_x(15) && r_x(15 downto 1);
-        r_dy <= r_y(15) && r_y(15 downto 1);
+        r_dx <= r_x(15) & r_x(15 downto 1);
+        r_dy <= r_y(15) & r_y(15 downto 1);
         EF <= ROT2;
         if(r_a >= X"0000")then
             r_x <= r_x - r_dy;
@@ -105,8 +112,8 @@ begin
         end if;
     
     when ROT2  =>
-        r_dx <= r_x(15) && r_x(15) && r_x(15 downto 2);
-        r_dy <= r_y(15) && r_y(15) && r_y(15 downto 2);
+        r_dx <= r_x(15) & r_x(15) & r_x(15 downto 2);
+        r_dy <= r_y(15) & r_y(15) & r_y(15 downto 2);
         EF <= ROT3;
         if(r_a >= X"0000")then
             r_x <= r_x - r_dy;
@@ -119,8 +126,8 @@ begin
         end if;
     
     when ROT3  =>
-        r_dx <= r_x(15) && r_x(15) && r_x(15) && r_x(15 downto 3);
-        r_dy <= r_y(15) && r_y(15) && r_y(15) && r_y(15 downto 3);
+        r_dx <= r_x(15) & r_x(15) & r_x(15) & r_x(15 downto 3);
+        r_dy <= r_y(15) & r_y(15) & r_y(15) & r_y(15 downto 3);
         EF <= ROT4;
         if(r_a >= X"0000")then
             r_x <= r_x - r_dy;
@@ -133,8 +140,8 @@ begin
         end if;
         
     when ROT4  =>
-        r_dx <= r_x(15) && r_x(15) && r_x(15) && r_x(15) && r_x(15 downto 4);
-        r_dy <= r_y(15) && r_y(15) && r_y(15) && r_y(15) && r_y(15 downto 4);
+        r_dx <= r_x(15) & r_x(15) & r_x(15) & r_x(15) & r_x(15 downto 4);
+        r_dy <= r_y(15) & r_y(15) & r_y(15) & r_y(15) & r_y(15 downto 4);
         EF <= ROT5;
         if(r_a >= X"0000")then
             r_x <= r_x - r_dy;
@@ -147,8 +154,8 @@ begin
         end if;
     
     when ROT5  =>
-        r_dx <= r_x(15) && r_x(15) && r_x(15) && r_x(15) && r_x(15) && r_x(15 downto 5);
-        r_dy <= r_y(15) && r_y(15) && r_y(15) && r_y(15) && r_y(15) && r_y(15 downto 5);
+        r_dx <= r_x(15) & r_x(15) & r_x(15) & r_x(15) & r_x(15) & r_x(15 downto 5);
+        r_dy <= r_y(15) & r_y(15) & r_y(15) & r_y(15) & r_y(15) & r_y(15 downto 5);
         EF <= ROT6;
         if(r_a >= X"0000")then
             r_x <= r_x - r_dy;
@@ -161,8 +168,8 @@ begin
         end if;
     
     when ROT6  =>
-        r_dx <= r_x(15) && r_x(15) && r_x(15) && r_x(15) && r_x(15) && r_x(15) && r_x(15 downto 6);
-        r_dy <= r_y(15) && r_y(15) && r_y(15) && r_y(15) && r_y(15) && r_y(15) && r_y(15 downto 6);
+        r_dx <= r_x(15) & r_x(15) & r_x(15) & r_x(15) & r_x(15) & r_x(15) & r_x(15 downto 6);
+        r_dy <= r_y(15) & r_y(15) & r_y(15) & r_y(15) & r_y(15) & r_y(15) & r_y(15 downto 6);
         EF <= ROT7;
         if(r_a >= X"0000")then
             r_x <= r_x - r_dy;
@@ -175,8 +182,8 @@ begin
         end if;
         
     when ROT7  =>
-        r_dx <= r_x(15) && r_x(15) && r_x(15) && r_x(15) && r_x(15) && r_x(15) && r_x(15) && r_x(15 downto 7);
-        r_dy <= r_y(15) && r_y(15) && r_y(15) && r_y(15) && r_y(15) && r_y(15) && r_y(15) && r_y(15 downto 7);
+        r_dx <= r_x(15) & r_x(15) & r_x(15) & r_x(15) & r_x(15) & r_x(15) & r_x(15) & r_x(15 downto 7);
+        r_dy <= r_y(15) & r_y(15) & r_y(15) & r_y(15) & r_y(15) & r_y(15) & r_y(15) & r_y(15 downto 7);
         EF <= PROD;
         if(r_a >= X"0000")then
             r_x <= r_x - r_dy;
@@ -189,40 +196,41 @@ begin
         end if;
 
     when PROD =>
-        r_x <=  ( r_x(15)&&r_(15)&&r_x(15)&&r_x(15)&&r_x(15)&&r_x(15)&&r_x(15 downto 6) ) +
-                ( r_x(15)&&r_(15)&&r_x(15)&&r_x(15)&&r_x(15)&&r_x(15 downto 5) ) +
-                ( r_x(15)&&r_(15)&&r_x(15)&&r_x(15)&&r_x(15 downto 4) ) +
-                ( r_x(15)&&r_x(15 downto 1) );
-        r_y <=  ( r_y(15)&&r_(15)&&r_y(15)&&r_y(15)&&r_y(15)&&r_y(15)&&r_y(15 downto 6) ) +
-                ( r_y(15)&&r_(15)&&r_y(15)&&r_y(15)&&r_y(15)&&r_y(15 downto 5) ) +
-                ( r_y(15)&&r_(15)&&r_y(15)&&r_y(15)&&r_y(15 downto 4) ) +
-                ( r_y(15)&&r_y(15 downto 1) );
+        r_x <=  ( r_x(15)&r_x(15)&r_x(15)&r_x(15)&r_x(15)&r_x(15)&r_x(15 downto 6) ) +
+                ( r_x(15)&r_x(15)&r_x(15)&r_x(15)&r_x(15)&r_x(15 downto 5) ) +
+                ( r_x(15)&r_x(15)&r_x(15)&r_x(15)&r_x(15 downto 4) ) +
+                ( r_x(15)&r_x(15 downto 1) );
+        r_y <=  ( r_y(15)&r_y(15)&r_y(15)&r_y(15)&r_y(15)&r_y(15)&r_y(15 downto 6) ) +
+                ( r_y(15)&r_y(15)&r_y(15)&r_y(15)&r_y(15)&r_y(15 downto 5) ) +
+                ( r_y(15)&r_y(15)&r_y(15)&r_y(15)&r_y(15 downto 4) ) +
+                ( r_y(15)&r_y(15 downto 1) );
         EF <= RES;
         
     when RES =>
-        with r_q select r_nx <=
-            r_x(14 downto 7)    when "00",
-        -   r_y(14 downto 7)    when "01",
-        -   r_x(14 downto 7)    when "10",
-            r_y(14 downto 7)    when "11";
-            
-        with r_q select r_ny <=
-            r_y(14 downto 7)    when "00",
-            r_x(14 downto 7)    when "01",
-        -   r_y(14 downto 7)    when "10",
-        -   r_x(14 downto 7)    when "11";
+        if(r_q(1) xor r_q(0))then
+            r_nx <= - r_x(14 downto 7);
+        else
+            r_nx <= r_x(14 downto 7);
+        end if;
         
-    when others =>
-
+        if(r_q(1) = '1') then
+            r_ny <= - r_y(14 downto 7);
+        else
+            r_ny <= r_y(14 downto 7);
+        end if;
+        
+    when others => report "unreachable" severity failure;
+	
+    end case;
 end process;
 
-process(clk,EP)
+process(ck,EP)
 begin
-    switch case
+    case EP is
     when (IDLE or LOAD) => -- nX et nY sortie de type Mealy sinon faire un etat de lecture
         rok <= '1';
         wok <= '0';
-        if(rd = '1')
+        if(rd = '1') then
             buf_nx <= r_nx;
             buf_ny <= r_ny;
         else
@@ -236,8 +244,8 @@ begin
             buf_nx <= buf_nx;
             buf_ny <= buf_ny;
         
-    when others =>
-    
+    when others => report "unreachable" severity failure;
+    end case;
 end process;
 
 nX <= buf_nx;
