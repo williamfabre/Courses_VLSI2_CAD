@@ -27,3 +27,10 @@
 ## Chaîne longue
 
 ## Objectif :
+
+## notes avant oublie
+	commande/outil pour visualiser le chronograme à la suite d'asimut
+	le pat_result d'asimut ne met pas les temps dans les labels
+	...
+	mettre B* dans le pat de test pour ignorer les sorties durant le reset, impossible de mettre u avec genpat_AFFECT
+ 	?
