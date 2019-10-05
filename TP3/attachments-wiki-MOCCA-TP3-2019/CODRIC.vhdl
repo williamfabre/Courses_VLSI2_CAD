@@ -8,17 +8,17 @@ use IEEE.numeric_std.all;
 
 entity CODRIC is
 	port(
-        reset   : in std_logic;
-        ck      : in std_logic;
+		reset   : in std_logic;
+		ck      : in std_logic;
 		A       : in std_logic_vector(8 downto 0);
 		X       : in std_logic_vector(7 downto 0);
 		Y       : in std_logic_vector(7 downto 0);
-        wr      : in std_logic;
-        rd      : in std_logic;
-        wok     : out std_logic;
-        rok     : out std_logic;
-        nX      : out std_logic_vector(7 downto 0);
-        nY      : out std_logic_vector(7 downto 0);
+		wr      : in std_logic;
+		rd      : in std_logic;
+		wok     : out std_logic;
+		rok     : out std_logic;
+		nX      : out std_logic_vector(7 downto 0);
+		nY      : out std_logic_vector(7 downto 0);
 		vdd     : in std_logic;
 		vss     : in std_logic
 	);
@@ -26,7 +26,7 @@ end CODRIC;
 
 architecture BEHAV of CODRIC is
 
-signal r_pi     : std_logic_vector(15 downto 0);
+signal r_pi     : std_logic_vector(15 downto 0);--inutile: non utilisé
 signal r_pihalf : std_logic_vector(15 downto 0);
 signal r_a      : std_logic_vector(8 downto 0);
 signal r_x      : std_logic_vector(15 downto 0);
