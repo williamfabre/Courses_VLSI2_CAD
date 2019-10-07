@@ -1,8 +1,0 @@
-CMD = syf -CEV -a digicode.fsm; genpat genpat_digicode;asimut -b digicodea digicode digicode_result;
-
-
-all:
-	$(CMD)
-
-clean:
-	rm -f *.al *.vbe *.vst *.rep *.o *.enc *.pat core *~
