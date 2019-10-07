@@ -108,10 +108,12 @@
         cur_vect++;
         AFFECT (inttostr(2*pas*7), "porte", "0b1");
         AFFECT (inttostr(2*pas*7), "timer5_en", "0b1");
+        AFFECT (inttostr(2*pas*7), "press_kbd", "0b0");
         AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
         AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
         cur_vect++;
         AFFECT (inttostr(2*pas*8), "timer5_tm", "0b1");
+        AFFECT (inttostr(2*pas*8), "timer5_en", "0b0");
         AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
         AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
 
@@ -129,32 +131,82 @@
         AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
 
         cur_vect++;
+        AFFECT (inttostr(2*pas*12), "i", "0X5");
+        AFFECT (inttostr(2*pas*7), "press_kbd", "0b1");
         AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
         AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
-        /*
-        for(nb=0; nb<N; nb++){
-            for (c=0; c<nb; c++){
-                
-                AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
-                AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
 
-                if(c==0){
-                    i=0;
-                    o=0;
-                    cpt=0;
-                }
-                else{
-                    i=1;
-                    cpt++;
-                    if(cpt>=5)  o=1;
-                    else        o=0;
-                }
-                AFFECT (inttostr(cur_vect*2*pas +   pas), "i", inttostr(i) );
-                AFFECT (inttostr(cur_vect*2*pas + 2*pas), "o", inttostr(o) );
-                cur_vect++;
-            }
-        }
-        */
+        cur_vect++;
+        AFFECT (inttostr(2*pas*13), "i", "0X1");
+        AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
+        AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
 
+        cur_vect++;
+        AFFECT (inttostr(2*pas*14), "i", "0XE");
+        AFFECT (inttostr(2*pas*14), "alarm", "0b1");
+        AFFECT (inttostr(2*pas*14), "timer120_en", "0b1");
+        AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
+        AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
+
+        cur_vect++;
+        AFFECT (inttostr(2*pas*15), "i", "0X5");
+        AFFECT (inttostr(2*pas*15), "press_kbd", "0b0");
+        AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
+        AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
+
+        cur_vect++;
+        AFFECT (inttostr(2*pas*16), "timer120_tm", "0b1");
+        AFFECT (inttostr(2*pas*16), "timer120_en", "0b0");
+        AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
+        AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
+        
+        cur_vect++;
+        AFFECT (inttostr(2*pas*17), "timer120_tm", "0b0");
+        AFFECT (inttostr(2*pas*17), "alarm", "0b1");
+        AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
+        AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
+
+        cur_vect++;
+        AFFECT (inttostr(2*pas*18), "jour", "0B1");
+        AFFECT (inttostr(2*pas*18), "i", "0X6");
+        AFFECT (inttostr(2*pas*18), "press_kbd", "0b1");
+        AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
+        AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
+
+        cur_vect++;
+        AFFECT (inttostr(2*pas*19), "O", "0b1");
+        AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
+        AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
+
+        cur_vect++;
+        AFFECT (inttostr(2*pas*19), "O", "0b1");
+        AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
+        AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
+
+        cur_vect++;
+        AFFECT (inttostr(2*pas*20), "porte", "0b1");
+        AFFECT (inttostr(2*pas*20), "timer5_en", "0b1");
+        AFFECT (inttostr(2*pas*20), "press_kbd", "0b0");
+        AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
+        AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
+        cur_vect++;
+        AFFECT (inttostr(2*pas*21), "timer5_tm", "0b1");
+        AFFECT (inttostr(2*pas*21), "timer5_en", "0b0");
+        AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
+        AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
+
+        cur_vect++;
+        AFFECT (inttostr(2*pas*22), "porte", "0b0");
+        AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
+        AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
+
+        cur_vect++;
+        AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
+        AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
+
+        cur_vect++;
+        AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
+        AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
+        
         SAV_GENPAT ();
         }
