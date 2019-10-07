@@ -1,0 +1,10 @@
+# Encoding figure "circuit"
+-circuit a 3
+door_open	6
+dring	0
+correct1	5
+correcta	1
+correct3	3
+correct5	2
+night_press	7
+idle	4
