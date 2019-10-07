@@ -28,8 +28,9 @@ de plusieurs manieres.
 ### Genpat
 L'outil Genpat permet de generer un fichier pat (pattern description format) a
 partir d'un fichier ecrit en C qui va assigner chaque signal pour chaque temps.
-Un fichier pat est un fichier de simulation.
-Un oublie etant fatale pour la simulation.
+Un fichier pat est un fichier de simulation. Un oublie etant fatale pour la simulation.
+Le reset permet l'initialisation de certains signaux, ils seront notes u (non
+determine) si le reset n'est pas positionne au debut de la simulation.
 
 
 ## LOON(problème de sortance)
@@ -48,4 +49,15 @@ Un oublie etant fatale pour la simulation.
 	mettre B* dans le pat de test pour ignorer les sorties durant le reset, impossible de mettre u avec genpat_AFFECT
  	?
 
-#
+## DIGICODE
+Le fichier pat a donc ete ecrit grave a genpat ecrit en C. Nous avons fait une
+boucle pour assigner dans un if a chaque cycle une valeur a nos signaux,
+l'increment de boucle etant le cycle actuel.
+
+il faut utiliser la commande : make -k uut=XXXX
+l'option -k ignorera les erreurs qui proviennent de genpat que nous n'avons pas
+reussi a regler. uut= doit est adjoint du non du fichier vbe prive de son
+extension.
+
+
+

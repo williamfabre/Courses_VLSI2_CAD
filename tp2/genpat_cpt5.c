@@ -43,28 +43,28 @@ main ()
 	AFFECT (inttostr(0), "o", "0B*");
 	AFFECT ("0", "i", "0b0");
 
-	for(nb=0; nb<N; nb++){
-		for (c=0; c<nb; c++){
+	/*for(nb=0; nb<N; nb++){*/
+		/*for (c=0; c<nb; c++){*/
 
-			AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));
-			AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));
+			/*AFFECT (inttostr( (cur_vect+0)*2*pas + pas), "ck", inttostr(0));*/
+			/*AFFECT (inttostr( (cur_vect+1)*2*pas +  0 ), "ck", inttostr(1));*/
 
-			if(c==0){
-				i=0;
-				o=0;
-				cpt=0;
-			}
-			else{
-				i=1;
-				cpt++;
-				if(cpt>=5)  o=1;
-				else        o=0;
-			}
-			AFFECT (inttostr(cur_vect*2*pas +   pas), "i", inttostr(i) );
-			AFFECT (inttostr(cur_vect*2*pas + 2*pas), "o", inttostr(o) );
-			cur_vect++;
-		}
-	}
+			/*if(c==0){*/
+				/*i=0;*/
+				/*o=0;*/
+				/*cpt=0;*/
+			/*}*/
+			/*else{*/
+				/*i=1;*/
+				/*cpt++;*/
+				/*if(cpt>=5)  o=1;*/
+				/*else        o=0;*/
+			/*}*/
+			/*AFFECT (inttostr(cur_vect*2*pas +   pas), "i", inttostr(i) );*/
+			/*AFFECT (inttostr(cur_vect*2*pas + 2*pas), "o", inttostr(o) );*/
+			/*cur_vect++;*/
+		/*}*/
+	/*}*/
 
 	SAV_GENPAT ();
 }
