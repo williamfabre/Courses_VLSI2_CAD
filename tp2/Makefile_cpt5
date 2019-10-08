@@ -1,7 +1,0 @@
-CMD = syf -CEV -a cpt5.fsm; genpat genpat_cpt5;asimut -b cpt5a cpt5 result;
-
-all:
-	$(CMD)
-
-clean:
-	rm -f *.al *.vbe *.vst *.rep *.o *.enc *.pat *.xsc core *~

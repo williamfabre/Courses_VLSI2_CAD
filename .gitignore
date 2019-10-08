@@ -1,4 +1,10 @@
 #production file from makefile
 *.al
 *.vbe
+*.vst
 *.rep
+*.o
+*.enc
+*.pat
+*.xsc
+*.xst

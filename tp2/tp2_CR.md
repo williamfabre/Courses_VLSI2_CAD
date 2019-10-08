@@ -8,6 +8,8 @@
 	* xsch : L'éditeur graphique de netlist.
 	* flatbeh, proof : Les outils pour la preuve formelle.
 	* asimut : Le simulateur.
+
+	POUR MAKE IL FAUT UTILIER make -f uut=digicode
 	
 ## SYF
 * SYF : prend une description proche du VHDL(fsm) pour produire un RTL au format .vbe
@@ -59,5 +61,37 @@ l'option -k ignorera les erreurs qui proviennent de genpat que nous n'avons pas
 reussi a regler. uut= doit est adjoint du non du fichier vbe prive de son
 extension.
 
+Concertnant le nombre de litteraux, il reste le meme, 157 quelque soit l'option
+utilisee. Le nombre de registre ne peut etre compter de nombre automatique mais
+on peut voir que la description des signaux est exactement la meme grace a la
+commane diff entre deux fichiers. Donc ils ont au moins le bon gout d'avoir le
+meme nombre de registres.
 
+Pour boom avec l'option -l 3 pour un maximum d'opti et -A pour les opti locales:
+INITIAL:
+		|	digicoder	|	digicodesm	|	digicodej	|	digicodem	|	digicodeo	|
+Surface	|	122750		|	201500		|   201500		|   201500		|	181250		|
+depth	|	14			|	14			|   14          |   14			|   11			|
+Literals|	151			|	151			|   151			|   151			|   130			|
+                                                                                          
+POST utilisation de boom (synth)                                                          
+		|	digicoder	|	digicodem	|	digicodej	|	digicodem	|	digicodem	|
+Surface	|	122750		|	100250	    |   99250       |   103250		|	120750		|
+depth	|	14			|	13          |   13			|	13			|	10			|
+Literals|	124			|	104         |   104			|	108			|	108			|
 
+Boog sert a faire le lien entre la logique et les cellules de la librairie
+SXLIB.
+Il faut enlever l'option -b pour asimut car nous ne sommes plus en
+comportementale.
+
+Le travail a ete valide apres l'utilisation de boog.
+
+On peut voir dans Xsch que les circuits sont tres differents.
+
+Nous allon utiliser loon pour effectuer des optimisation de fanout. Elle n'est
+au final pas possible cat l'option T{1000} ne fonctionne pas. Il faut faire
+l'option de T{valeur <1000}
+L'option de capacitance de sortie fonctionne
+
+Apres utilisation de flatbeh et proof, tous les circuits sont bons.
