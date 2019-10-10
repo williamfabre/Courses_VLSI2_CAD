@@ -37,6 +37,8 @@ determine) si le reset n'est pas positionne au debut de la simulation. C'est pou
 
 **Remarque :** Le pat_result généré par ASIMUT ne comporte pas les temps dans les labels, contrairement au pat généré par GENPAT.
 
+Tout les temps d'affectations (ie: "rising_edge" et "falling_edge") sont allignés sur des multiples de la variable "pas"; de telle que "2*pas" correspond à la période de l'horloge.
+
 ### Chronogramme des .pat avec Xpat
 On peut visualiser les chronogramme des pattern généré avec la commande :
 	
