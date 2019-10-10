@@ -27,12 +27,19 @@ Il possede plusieurs options :
 Les differents codates (opt -a, -j, -m, -o, -r) permmettent d'encoder les etats
 de plusieurs manieres.
 
-### Genpat
+### Genpat (/Asimut)
 L'outil Genpat permet de generer un fichier pat (pattern description format) a
 partir d'un fichier ecrit en C qui va assigner chaque signal pour chaque temps.
 Un fichier pat est un fichier de simulation. Un oublie etant fatale pour la simulation.
 Le reset permet l'initialisation de certains signaux, ils seront notes u (non
-determine) si le reset n'est pas positionne au debut de la simulation.
+determine) si le reset n'est pas positionne au debut de la simulation. C'est pour cela qu'il faut faire un AFFECT avec la valeur "0b*" sur les sorties qui seront à l'état 'undefine' au moment du reset. En effet il n'est pas possible d'utiliser AFFECT pour affecter '0bu' aux signaux.
+"0b*" indique à ASIMUT de ne pas considérer cette valeur pour la comparaison et donc de ne pas déclencher REPPORT.
+
+*Remarque :* Le pat_result généré par ASIMUT ne comporte pas les temps dans les labels, contrairement au pat généré par GENPAT.
+
+### Chronogramme des .pat avec Xpat
+On peut visualiser les chronogramme des pattern généré avec la commande :
+	xpat -l file_name
 
 
 ## LOON(problème de sortance)
@@ -43,13 +50,6 @@ determine) si le reset n'est pas positionne au debut de la simulation.
 ## Chaîne longue
 
 ## Objectif :
-
-## notes avant oublie
-	commande/outil pour visualiser le chronograme à la suite d'asimut
-	le pat_result d'asimut ne met pas les temps dans les labels
-	...
-	mettre B* dans le pat de test pour ignorer les sorties durant le reset, impossible de mettre u avec genpat_AFFECT
- 	?
 
 ## DIGICODE
 Le fichier pat a donc ete ecrit grave a genpat ecrit en C. Nous avons fait une
