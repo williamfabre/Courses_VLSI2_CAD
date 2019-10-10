@@ -35,10 +35,11 @@ Le reset permet l'initialisation de certains signaux, ils seront notes u (non
 determine) si le reset n'est pas positionne au debut de la simulation. C'est pour cela qu'il faut faire un AFFECT avec la valeur "0b*" sur les sorties qui seront à l'état 'undefine' au moment du reset. En effet il n'est pas possible d'utiliser AFFECT pour affecter '0bu' aux signaux.
 "0b*" indique à ASIMUT de ne pas considérer cette valeur pour la comparaison et donc de ne pas déclencher REPPORT.
 
-*Remarque :* Le pat_result généré par ASIMUT ne comporte pas les temps dans les labels, contrairement au pat généré par GENPAT.
+**Remarque :** Le pat_result généré par ASIMUT ne comporte pas les temps dans les labels, contrairement au pat généré par GENPAT.
 
 ### Chronogramme des .pat avec Xpat
 On peut visualiser les chronogramme des pattern généré avec la commande :
+	
 	xpat -l file_name
 
 
