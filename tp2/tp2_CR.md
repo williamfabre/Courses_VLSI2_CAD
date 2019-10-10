@@ -84,8 +84,8 @@ POST utilisation de boom (synth)
 |		|digicoder	|digicodem	|digicodej	|digicodem	|digicodem	|
 |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
 |Surface	|122750		|100250	    	|99250       	|103250		|120750		|
-|depth		|14		|13          	|13		|13		|10			|
-|Literals|	124			|	104         |   104			|	108			||	108			|
+|depth		|14		|13          	|13		|13		|10		|
+|Literals	|124		|104         	|104		|108		|108		|
 
 Boog sert a faire le lien entre la logique et les cellules de la librairie
 SXLIB.
