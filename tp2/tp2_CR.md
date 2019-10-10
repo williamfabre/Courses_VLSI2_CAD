@@ -72,7 +72,8 @@ meme nombre de registres.
 
 Pour boom avec l'option -l 3 pour un maximum d'opti et -A pour les opti locales:
 INITIAL:
-		|	digicoder	|	digicodesm	|	digicodej	|	digicodem	|	digicodeo	|
+||digicoder	|	digicodesm	|	digicodej	|	digicodem	|	digicodeo|
+| :--------------- :|:---------------:|: -----:|: -----:|: -----:|: -----:|
 Surface		|	122750		|	201500		|   	201500		|   	201500		|	181250		|
 depth		|	14		|	14		|   	14          	|   	14		|	11		|
 Literals	|	151		|	151		|   	151		|   	151		|	130		|
