@@ -1,5 +1,13 @@
 # [TP2 : Synthèse d'automate avec Alliance](https://www-soc.lip6.fr/trac/sesi-tools/wiki/MOCCA-TP2-2019)
 
+## Objectif
+
+Le but de ce TP est de découvrir et prendre en main la chaine d'outils ALLIANCE.
+La chaine permet à partir d'une description HDL de generer une NETLIST dimensionnée electriquement.
+En l'occurence, le HDL sera celle d'une FSM respectant une syntaxe propre à un ".fsm" qui nourrit l'outil SYF.
+
+Pour atteindre l'objectif, nous nous placons dans un contexte relativement simple quand à la complexité de la MAE.
+
 ## Outils de la chaîne Alliance
 
 ![](https://www-soc.lip6.fr/trac/sesi-tools/raw-attachment/wiki/MOCCA-TP2-2019/synthese_alliance.jpg)
@@ -8,6 +16,8 @@
 	* xsch : L'éditeur graphique de netlist.
 	* flatbeh, proof : Les outils pour la preuve formelle.
 	* asimut : Le simulateur.
+
+"Chaque"(?pas tous ! les quels ?) outils de la chaine offrent des options d'optimisations. Chaque optimisation de l'outil suivant s'applique à chaque optimisation de l'outil précedant. Ce qui donne un grand nombre de possibilité.
 
 	POUR MAKE IL FAUT UTILIER make -f uut=digicode
 	
