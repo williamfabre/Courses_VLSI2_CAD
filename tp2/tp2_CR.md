@@ -6,7 +6,7 @@ Le but de ce TP est de découvrir et prendre en main la chaine d'outils ALLIANCE
 La chaine permet à partir d'une description HDL de generer une NETLIST dimensionnée electriquement.
 En l'occurence, le HDL sera celle d'une FSM respectant une syntaxe propre à un ".fsm" qui nourrit l'outil SYF.
 
-Pour atteindre l'objectif, nous nous placons dans un contexte relativement simple quand à la complexité de la MAE.
+Pour atteindre l'objectif, nous nous placons dans un contexte relativement simple quand à la complexité de la MAE.Il s'agit d'un digicode.
 
 ## Outils de la chaîne Alliance
 
@@ -17,7 +17,17 @@ Pour atteindre l'objectif, nous nous placons dans un contexte relativement simpl
 	* flatbeh, proof : Les outils pour la preuve formelle.
 	* asimut : Le simulateur.
 
-"Chaque"(?pas tous ! les quels ?) outils de la chaine offrent des options d'optimisations. Chaque optimisation de l'outil suivant s'applique à chaque optimisation de l'outil précedant. Ce qui donne un grand nombre de possibilité.
+"Chaque" outils de la chaine offrent des options d'encodage ou d'optimisations. Chaque optimisation de l'outil suivant s'applique à la production de l'outil précedant. Ce qui donne un grand nombre de possibilité qui s'apparente à un arbre.
+
+SYF propose de selectionner 1 option ou aucunne parmi 5 algorithme d'encodage des etats (a j m o r).=> 6 résultats
+BOOM propose de selectionner jusqu'à 3 options parmi 3 option d'optimisation : A=0/1 , l -> 0,1,2,3 , d -> 0:100% => 45 résultats
+BOOG et LOON proposent de selectionner 1 option ou aucune parmi 1 option d'optimisation : m -> 0,1,2,3,4 => 6 résultats chacuns
+
+Nous avons donc 6*45*45*6
+SOIT 5500 possibilités de résulatats(.vst).
+Et ce, sans considerer les l'options d'algoritme personalisé et en ne considérant que deux valeursde pourcentage (BOOM -d) que sont 0 et 100%.
+
+
 
 	POUR MAKE IL FAUT UTILIER make -f uut=digicode
 	
@@ -53,7 +63,6 @@ Tout les temps d'affectations (ie: "rising_edge" et "falling_edge") sont allign�
 On peut visualiser les chronogramme des pattern généré avec la commande :
 	
 	xpat -l file_name
-
 
 ## LOON(problème de sortance)
 
@@ -106,7 +115,7 @@ Le travail a ete valide apres l'utilisation de boog.
 
 On peut voir dans Xsch que les circuits sont tres differents.
 
-Nous allon utiliser loon pour effectuer des optimisation de fanout. Elle n'est
+Nous allons utiliser loon pour effectuer des optimisation de fanout. Elle n'est
 au final pas possible cat l'option T{1000} ne fonctionne pas. Il faut faire
 l'option de T{valeur <1000}
 L'option de capacitance de sortie fonctionne
