@@ -19,13 +19,16 @@ Pour atteindre l'objectif, nous nous placons dans un contexte relativement simpl
 
 "Chaque" outils de la chaine offrent des options d'encodage ou d'optimisations. Chaque optimisation de l'outil suivant s'applique à la production de l'outil précedant. Ce qui donne un grand nombre de possibilité qui s'apparente à un arbre.
 
-SYF propose de selectionner 1 option ou aucunne parmi 5 algorithme d'encodage des etats (a j m o r).=> 6 résultats
-BOOM propose de selectionner jusqu'à 3 options parmi 3 option d'optimisation : A=0/1 , l -> 0,1,2,3 , d -> 0:100% => 45 résultats
-BOOG et LOON proposent de selectionner 1 option ou aucune parmi 1 option d'optimisation : m -> 0,1,2,3,4 => 6 résultats chacuns
+SYF propose de selectionner 1 option ou aucunne parmi 5 algorithme d'encodage des etats : 
+	(a j m o r).=> 6 résultats
+BOOM propose de selectionner jusqu'à 3 options parmi 3 option d'optimisation : 
+	A=0/1 , l -> 0,1,2,3 , d -> 0:100% => 45 résultats
+BOOG et LOON proposent de selectionner 1 option ou aucune parmi 1 option d'optimisation : 
+	m -> 0,1,2,3,4 => 6 résultats chacuns
 
-Nous avons donc 6*45*45*6
-SOIT 5500 possibilités de résulatats(.vst).
-Et ce, sans considerer les l'options d'algoritme personalisé et en ne considérant que deux valeursde pourcentage (BOOM -d) que sont 0 et 100%.
+Nous avons donc 6x45x6x6
+SOIT 9720 possibles résulatats(.vst).
+Et ce, sans considerer les l'options d'algoritmes personalisés et en ne considérant que deux valeurs de pourcentage (BOOM -d) que sont 0 et 100%.
 
 
 
