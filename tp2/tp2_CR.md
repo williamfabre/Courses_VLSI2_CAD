@@ -5,6 +5,7 @@
 Le but de ce TP est de découvrir et prendre en main la chaine d'outils ALLIANCE.
 La chaine permet à partir d'une description HDL de generer une NETLIST dimensionnée electriquement.
 En l'occurence, le HDL sera celle d'une FSM respectant une syntaxe propre à un ".fsm" qui nourrit l'outil SYF.
+Nous verons ainsi les étapes menant d'une description de haut niveau à une description de netlist en passant par l'etape de verification comportemental.
 
 Pour atteindre l'objectif, nous nous placons dans un contexte relativement simple quand à la complexité de la MAE.Il s'agit d'un digicode.
 
