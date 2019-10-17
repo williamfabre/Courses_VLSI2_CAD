@@ -19,9 +19,9 @@ Pour atteindre l'objectif, nous nous placons dans un contexte relativement simpl
 
 "Chaque" outils de la chaine offrent des options d'encodage ou d'optimisations. Chaque optimisation de l'outil suivant s'applique à la production de l'outil précedant. Ce qui donne un grand nombre de possibilité qui s'apparente à un arbre.
 
-SYF propose de selectionner 1 option ou aucunne parmi 5 algorithme d'encodage des etats : 
+SYF propose de selectionner 1 option ou aucunne parmi 5 algorithmes d'encodage des etats : 
 	(a j m o r).=> 6 résultats
-BOOM propose de selectionner jusqu'à 3 options parmi 3 option d'optimisation : 
+BOOM propose de selectionner jusqu'à 3 options parmi 3 options d'optimisation : 
 	A=0/1 , l -> 0,1,2,3 , d -> 0:100% => 45 résultats
 BOOG et LOON proposent de selectionner 1 option ou aucune parmi 1 option d'optimisation : 
 	m -> 0,1,2,3,4 => 6 résultats chacuns
@@ -77,19 +77,19 @@ On peut visualiser les chronogramme des pattern généré avec la commande :
 ## Objectif :
 
 ## DIGICODE
-Le fichier pat a donc ete ecrit grave a genpat ecrit en C. Nous avons fait une
+Le fichier pat a donc ete ecrit grace a genpat lui-même ecrit en C. Nous avons fait une
 boucle pour assigner dans un if a chaque cycle une valeur a nos signaux,
 l'increment de boucle etant le cycle actuel.
 
 il faut utiliser la commande : make -k uut=XXXX
 l'option -k ignorera les erreurs qui proviennent de genpat que nous n'avons pas
-reussi a regler. uut= doit est adjoint du non du fichier vbe prive de son
+reussi a regler. "uut=" doit etre adjoint du non du fichier vbe prive de son
 extension.
 
-Concertnant le nombre de litteraux, il reste le meme, 157 quelque soit l'option
-utilisee. Le nombre de registre ne peut etre compter de nombre automatique mais
+Concernant le nombre de litteraux, il reste le meme, 157 quelque soit l'option
+utilisee. Le nombre de registre ne peut etre compter de automatiquement mais
 on peut voir que la description des signaux est exactement la meme grace a la
-commane diff entre deux fichiers. Donc ils ont au moins le bon gout d'avoir le
+commande diff entre deux fichiers. Donc ils ont au moins le bon gout d'avoir le
 meme nombre de registres.
 
 Pour boom avec l'option -l 3 pour un maximum d'opti et -A pour les opti locales:
