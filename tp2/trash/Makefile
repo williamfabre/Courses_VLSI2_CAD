@@ -1,11 +1,11 @@
 uut=
 genpat_uut=genpat_$(uut)
 
-uut_o = $(uut)o
-uut_a = $(uut)a
-uut_j = $(uut)j
-uut_m = $(uut)m
-uut_r = $(uut)r
+#uut_o = $(uut)o
+#uut_a = $(uut)a
+#uut_j = $(uut)j
+#uut_m = $(uut)m
+#uut_r = $(uut)r
 
 SYF_OPT=-CEV
 ASIMUT_OPT=-b
@@ -64,18 +64,17 @@ all:$(uut)o.vbe \
 
 
 
-
 # utilisation de tous les formats de SYF avec les differents algos
 $(uut)o.vbe:
-	syf $(SYF_OPT) -o $(uut).fsm
+	syf  -o $(uut).fsm
 $(uut)a.vbe:
-	syf $(SYF_OPT) -a $(uut).fsm
+	syf  -a $(uut).fsm
 $(uut)j.vbe:
-	syf $(SYF_OPT) -j $(uut).fsm
+	syf  -j $(uut).fsm
 $(uut)m.vbe:
-	syf $(SYF_OPT) -m $(uut).fsm
+	syf  -m $(uut).fsm
 $(uut)r.vbe:
-	syf $(SYF_OPT) -r $(uut).fsm
+	syf  -r $(uut).fsm
 
 # Ca c'est pour genpat
 uut_pat: 
@@ -94,6 +93,7 @@ $(uut)_result_m.pat :
 $(uut)_result_r.pat :
 	asimut -b $(ASIMUT_OPT) $(uut)r $(uut) $(uut)_result_r
 
+#syfopt_= o a j m r
 
 # ca c'est pour optimiser le circuit avec boom
 $(uut)o_o.vbe:
