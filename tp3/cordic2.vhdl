@@ -1,12 +1,12 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
---use IEEE.std_logic_arith.all;
 use IEEE.numeric_bit.all;
 use IEEE.numeric_std.all;
+--use IEEE.std_logic_arith.all;
 --use IEEE.std_logic_signed.all;
 --use IEEE.std_logic_unsigned.all;
 
-entity CODRIC is
+entity cordic is
 	port(
 			reset   : in std_logic;
 			ck      : in std_logic;
@@ -22,9 +22,9 @@ entity CODRIC is
 			vdd     : in std_logic;
 			vss     : in std_logic
 		);
-end CODRIC;
+end cordic ;
 
-architecture BEHAV of CODRIC is
+architecture behav of cordic is
 
 	signal r_pihalf : std_logic_vector(15 downto 0);
 
@@ -42,7 +42,7 @@ architecture BEHAV of CODRIC is
 	signal r_x      : std_logic_vector(15 downto 0);
 	signal r_y      : std_logic_vector(15 downto 0);
 
-	signal r_dx   : std_logic_vector(15 downto 0);
+	signal r_dx     : std_logic_vector(15 downto 0);
 	signal r_dx_0   : std_logic_vector(15 downto 0);
 	signal r_dx_1   : std_logic_vector(15 downto 0);
 	signal r_dx_2   : std_logic_vector(15 downto 0);
@@ -52,7 +52,7 @@ architecture BEHAV of CODRIC is
 	signal r_dx_6   : std_logic_vector(15 downto 0);
 	signal r_dx_7   : std_logic_vector(15 downto 0);
 
-	signal r_dy   : std_logic_vector(15 downto 0);
+	signal r_dy     : std_logic_vector(15 downto 0);
 	signal r_dy_0   : std_logic_vector(15 downto 0);
 	signal r_dy_1   : std_logic_vector(15 downto 0);
 	signal r_dy_2   : std_logic_vector(15 downto 0);
@@ -114,7 +114,6 @@ begin
 			  r_x(15) & r_x(15 downto 7);
 	r_dx_7 <= r_x(15) & r_x(15) & r_x(15) & r_x(15) & r_x(15) & r_x(15) &
 			  r_x(15) & r_x(15)& r_x(15 downto 8);
-	-- RESULTAT POUR X
 
 	-- DECALAGES POUR Y
 	r_dy_0 <= r_y(15) & r_y(15 downto 1);
@@ -128,7 +127,6 @@ begin
 			  r_y(15) & r_y(15 downto 7);
 	r_dy_7 <= r_y(15) & r_y(15) & r_y(15) & r_y(15) & r_y(15) & r_y(15) &
 			  r_y(15) & r_y(15)& r_y(15 downto 8);
-	-- RESULTAT POUR Y
 
 	-- CONDITION DE CHANGEMENT D'ETAT MUTUELLEMENT EXCLUSIF
 	r_condition <= r_wr & r_quadrant0 & r_i_calc & r_i_mkc & r_placeme & r_rd_nxy_p;
@@ -234,10 +232,10 @@ begin
 				-- produit du résultat par les cosinus des angles : K=0x4D=1001101
 				case r_i is
 					when '0' =>
-						r_dx		<= r_dx_6 + r_dx_5 + r_dx_4 + r_dx_1;
+						r_x			<= r_dx_6 + r_dx_5 + r_dx_4 + r_dx_1;
 						r_i			<= '1';
 					when '1' =>
-						r_dy		<= r_dy_6 + r_dy_5 + r_dy_4 + r_dy_1;
+						r_y			<= r_dy_6 + r_dy_5 + r_dy_4 + r_dy_1;
 						r_i			<= '0';
 						r_mkc		<= '0';
 						r_placeme	<= '1';						-- DEMANDE CHANGEMENT ETAT
@@ -245,19 +243,25 @@ begin
 			when PLACE =>
 				-- PLACEMENT DANS LE BON CADRANT
 				-- todo verifier?
-				if (r_q(1) xor r_q(0))then
-					r_nx			<= - r_x(14 downto 7);
-				else
-					r_nx			<= r_x(14 downto 7);
-				end if;
-				if (r_q(1) = '1') then
-					r_ny			<= - r_y(14 downto 7);
-				else
-					r_ny			<= r_y(14 downto 7);
-				end if;
-				r_placeme			<= '0';
-				r_put				<= '1';						-- DEMANDE CHANGEMENT ETAT
+				case r_q is
+					when X"01" =>
+						dx			<= r_x;
+						dy			<= r_y;
+					when X"02" =>
+						dx			<= -r_y;
+						dy			<= r_x;
+					when X"03" =>
+						dx			<= -r_x;
+						dy			<= -r_y;
+					when X"04" =>
+						dx			<= r_y;
+						dy			<= r_x;
+				end case;
+					r_placeme		<= '0';
+					r_put			<= '1';						-- DEMANDE CHANGEMENT ETAT
 			when PUT =>
+				nX					<= dx;
+				nY					<= dx;
 				r_put				<= '0';
 				r_wr				<= '1';						-- DEMANDE CHANGEMENT ETAT
 				when others => assert ('1') report "etat illegal";
