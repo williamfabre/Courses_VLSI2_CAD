@@ -6,9 +6,11 @@ use IEEE.numeric_std.all;
 --use IEEE.std_logic_signed.all;
 --use IEEE.std_logic_unsigned.all;
 
-entity CODRIC is
+entity CORDIC is
 	port(
-		reset   : in std_logic;
+		vdd     : in std_logic;
+		vss     : in std_logic;	
+		reset   : in std_logic;	
 		ck      : in std_logic;
 		A       : in std_logic_vector(8 downto 0);
 		X       : in std_logic_vector(7 downto 0);
@@ -18,13 +20,11 @@ entity CODRIC is
 		wok     : out std_logic;
 		rok     : out std_logic;
 		nX      : out std_logic_vector(7 downto 0);
-		nY      : out std_logic_vector(7 downto 0);
-		vdd     : in std_logic;
-		vss     : in std_logic
+		nY      : out std_logic_vector(7 downto 0)
 	);
-end CODRIC;
+end CORDIC;
 
-architecture BEHAV of CODRIC is
+architecture BEHAV of CORDIC is
 
 signal r_pi     : std_logic_vector(15 downto 0);--inutile: non utilisé
 signal r_pihalf : std_logic_vector(15 downto 0);
@@ -38,6 +38,7 @@ signal r_nx     : std_logic_vector(7 downto 0);
 signal r_ny     : std_logic_vector(7 downto 0);
 signal buf_nx   : std_logic_vector(7 downto 0);
 signal buf_ny   : std_logic_vector(7 downto 0);
+signal secure	: std_logic;
 
 type ETAT_TYPE is (IDLE,LOAD,NORM,ROT0,ROT1,ROT2,ROT3,ROT4,ROT5,ROT6,ROT7,PROD,RES);
 signal EP,EF : ETAT_TYPE;
@@ -51,6 +52,9 @@ process(reset,ck)
 begin
     if ( reset = '1' ) then
         EP <= IDLE;
+		buf_nx <= X"00";
+		buf_ny <= X"00";
+		secure <= '0';
     elsif (ck='1' and not ck'stable) then  
         EP <= EF;
     end if;
@@ -196,11 +200,11 @@ begin
         end if;
 
     when PROD =>
-        r_x <=  ( r_x(15)&r_x(15)&r_x(15)&r_x(15)&r_x(15)&r_x(15)&r_x(15 downto 6) ) +
+        r_x <=  ( r_x(15)&r_x(15)&r_x(15)&r_x(15)&r_x(15)&r_x(15)&r_x(15)&r_x(15 downto 7) ) +
                 ( r_x(15)&r_x(15)&r_x(15)&r_x(15)&r_x(15)&r_x(15 downto 5) ) +
                 ( r_x(15)&r_x(15)&r_x(15)&r_x(15)&r_x(15 downto 4) ) +
                 ( r_x(15)&r_x(15 downto 1) );
-        r_y <=  ( r_y(15)&r_y(15)&r_y(15)&r_y(15)&r_y(15)&r_y(15)&r_y(15 downto 6) ) +
+        r_y <=  ( r_y(15)&r_y(15)&r_y(15)&r_y(15)&r_y(15)&r_y(15)&r_y(15)&r_y(15 downto 7) ) +
                 ( r_y(15)&r_y(15)&r_y(15)&r_y(15)&r_y(15)&r_y(15 downto 5) ) +
                 ( r_y(15)&r_y(15)&r_y(15)&r_y(15)&r_y(15 downto 4) ) +
                 ( r_y(15)&r_y(15 downto 1) );
@@ -218,6 +222,12 @@ begin
         else
             r_ny <= r_y(14 downto 7);
         end if;
+		
+		if(rd = '1') then
+			EF <= IDLE;
+		else
+			EF <= RES;
+		end if;
         
     when others => report "unreachable state" severity failure;
 	
@@ -228,21 +238,34 @@ process(ck,EP)
 begin
     case EP is
     when (IDLE or LOAD) => -- nX et nY sortie de type Mealy sinon faire un etat de lecture
-        rok <= '1';
-        wok <= '0';
-        if(rd = '1') then
+		if(secure = '0') then
+			rok <= '0';
+		else
+			rok <= '1';
+		end if;
+		wok <= '0';
+		secure <= secure;
+			buf_nx <= buf_nx;
+            buf_ny <= buf_ny;
+        
+    when (NORM or ROT0 or ROT1 or ROT2 or ROT3 or ROT4 or ROT5 or ROT6 or ROT7 or PROD) =>
+        rok <= '0';
+        wok <= '1';
+		secure <= secure;
+            buf_nx <= buf_nx;
+            buf_ny <= buf_ny;
+	when RES =>
+		rok <= '0';
+		wok <= '1';
+		secure <= '1'
+		if(rd = '1') then
             buf_nx <= r_nx;
             buf_ny <= r_ny;
         else
             buf_nx <= buf_nx;
             buf_ny <= buf_ny;
         end if;
-        
-    when (NORM or ROT0 or ROT1 or ROT2 or ROT3 or ROT4 or ROT5 or ROT6 or ROT7 or PROD or RES) =>
-        rok <= '0';
-        wok <= '1';
-            buf_nx <= buf_nx;
-            buf_ny <= buf_ny;
+
         
     when others => report "unreachable state" severity failure;
     end case;

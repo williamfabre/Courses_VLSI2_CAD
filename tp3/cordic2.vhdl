@@ -98,6 +98,7 @@ architecture behav of cordic is
 
 begin
 	r_pihalf   <= X"00C9";
+
 	r_atan_2_0 <= X"64"; -- ATAN(2^-0)
 	r_atan_2_1 <= X"3B"; -- ATAN(2^-1)
 	r_atan_2_2 <= X"1F"; -- ATAN(2^-2)
@@ -106,8 +107,6 @@ begin
 	r_atan_2_5 <= X"04"; -- ATAN(2^-5)
 	r_atan_2_6 <= X"02"; -- ATAN(2^-6)
 	r_atan_2_7 <= X"01"; -- ATAN(2^-7)
-
-
 
 	-- DECALAGES POUR X
 	r_dx_0 <= r_x(15) & r_x(15 downto 1);
@@ -136,7 +135,6 @@ begin
 			  r_y(15) & r_y(15)& r_y(15 downto 8);
 
 	-- CONDITION DE CHANGEMENT D'ETAT MUTUELLEMENT EXCLUSIF
-	r_condition <= r_wr_axy_p & r_quadrant0 & r_i_calc & r_i_mkc & r_placeme & r_rd_nxy_p;
 
 
 	with r_i_boucle select r_y_boucle <= 
@@ -179,100 +177,108 @@ begin
 	---------------------------------
 	process(ck, wr)
 	begin
-		if (reset = '1') then
-			-- INITIALISATION
-			--resultat
-			r_q						<= X"00";
-			-- angle en radian
-			r_a						<= A(7) & A & "0000000";
-			-- state
-			r_wr_axy_p				<= wr;
-			r_quadrant0				<= '0';
-			r_i_calc				<= '0';
-			r_i_mkc					<= '0';
-			r_placeme				<= '0';
-			r_rd_nxy_p				<= '0';
-			-- boucle
-			r_i						<= b"000";
-			r_i_boucle				<= b"000";
-		else 
-			case EP is
-				when GET =>
-					--CONVERSION EN VIRGULE FIXE
-					--9 bit entier 7 bit virgule fixe donc extension de signe
-					r_x					<= X(7) & X & "0000000";
-					r_y					<= X(7) &  Y & "0000000";
-					r_wr_axy_p			<= '0';
-					r_quadrant0			<= '1';							-- DEMANDE CHANGEMENT ETAT
-				when NORM =>
-					-- NORMALISATION DANS LE CADRAN 0
-					if (signed(r_a) >= signed(r_pihalf)) then		-- signed pour >=
-						r_a				<= r_a - r_pihalf;
-						r_q				<= (r_q + 1) AND X"03";
-					else
-						r_quadrant0		<= '0';
-						r_i_calc		<= '1';							-- DEMANDE CHANGEMENT ETAT
-					end if;
-				when CALC =>
-					-- ROTATION, RECHERCHE DICHOTOMIQUE D'ANGLE
-					--calcule effectif  des rotations
-					if (r_i_boucle < b"111") then
-						r_dx			<= r_x_boucle;
-						r_dy			<= r_y_boucle;
-						r_atan			<= r_atan_boucle;
-						r_i_boucle		<= r_i_boucle + 1;
-					else
-						r_i_calc		<= '0';
-						r_i_mkc			<= '1';
-					end if;
+		--if (reset = '1') then
+			---- INITIALISATION
+			----resultat
+			--r_q						<= X"00";
+			---- angle en radian
+			--r_a						<= A(7) & A & "0000000";
+			---- state
+			--r_wr_axy_p				<= wr;
+			--r_quadrant0				<= '0';
+			--r_i_calc				<= '0';
+			--r_i_mkc					<= '0';
+			--r_placeme				<= '0';
+			--r_rd_nxy_p				<= '0';
+			---- boucle
+			--r_i						<= b"000";
+			--r_i_boucle				<= b"000";
+		--elsif (ck='1' and not ck'stable) then  
+			--r_condition <= r_wr_axy_p & r_quadrant0 & r_i_calc & r_i_mkc & r_placeme & r_rd_nxy_p;
+			--case EP is
+				--when GET =>
+					------CONVERSION EN VIRGULE FIXE
+					----9 bit entier 7 bit virgule fixe donc extension de signe
+					--r_x					<= X(7) & X & "0000000";
+					--r_y					<= Y(7) & Y & "0000000";
+					------ TODO BOUCLE
+					--r_wr_axy_p			<= '0';
+					--r_quadrant0			<= '1';							-- DEMANDE CHANGEMENT ETAT
+				--when NORM =>
+					------ NORMALISATION DANS LE CADRAN 0
+					--if (signed(r_a) >= signed(r_pihalf)) then		-- signed pour >=
+						--r_a				<= std_logic_vector(signed(r_a) - signed(r_pihalf));
+						--r_q				<= std_logic_vector((signed(r_q) + signed(1))) AND X"03";
+						--r_quadrant0		<= '1';
+						--r_i_calc		<= '0';							-- DEMANDE CHANGEMENT ETAT
+					--else
+						--r_quadrant0		<= '0';
+						--r_i_calc		<= '1';							-- DEMANDE CHANGEMENT ETAT
+					--end if;
+				--when CALC =>
+					------ ROTATION, RECHERCHE DICHOTOMIQUE D'ANGLE
+					------calcule effectif  des rotations
+					--if (r_i_boucle < b"111") then
+						--r_dx			<= r_x_boucle;
+						--r_dy			<= r_y_boucle;
+						--r_atan			<= r_atan_boucle;
+						--r_i_boucle		<= r_i_boucle + b"001";
+						--r_i_calc		<= '1';
+						--r_i_mkc			<= '0';
+					--else
+						--r_i_calc		<= '0';
+						--r_i_mkc			<= '1';
+					--end if;
 
-					if (signed(r_a) >= signed(X"0000")) then
-						r_x				<= r_x - r_dy;
-						r_y				<= r_y + r_dx;
-						r_a				<= A - r_atan;
-					else
-						r_x				<= r_x + r_dy;
-						r_y				<= r_y - r_dx;
-						r_a				<= A + r_atan;
-					end if;
-				when MKC =>
-					--MULTIPLICATION PAR K
-					--produit du résultat par les cosinus des angles : K=0x4D=1001101
-					if (r_i = b"000") then
-						r_x				<= r_dx_7 + r_dx_5 + r_dx_4 + r_dx_1;
-						r_i				<= b"001";
-					else
-						r_y				<= r_dy_7 + r_dy_5 + r_dy_4 + r_dy_1;
-						r_i				<= b"000";
-						r_i_mkc			<= '0';
-						r_placeme		<= '1';						-- DEMANDE CHANGEMENT ETAT
-					end if;
-				when PLACE =>
-					-- PLACEMENT DANS LE BON CADRANT
-					-- todo verifier?
-					if(r_q(1) xor r_q(0))then
-						r_dx <= - r_x(14 downto 7);
-					else
-						r_dx <= r_x(14 downto 7);
-					end if;
+					--if (signed(r_a) >= signed(X"0000")) then
+						--r_x				<= std_logic_vector(signed(r_x) - signed(r_dy));
+						--r_y				<= std_logic_vector(signed(r_y) + sgned(r_dx));
+						--r_a				<= std_logic_vector(signed(A) - signed(r_atan));
+					--else
+						--r_x				<= std_logic_vector(signed(r_x) + signed(r_dy));
+						--r_y				<= std_logic_vector(signed(r_y) - signed(r_dx));
+						--r_a				<= std_logic_vector(signed(A) + signed(r_atan));
+					--end if;
+				--when MKC =>
+					------MULTIPLICATION PAR K
+					------produit du résultat par les cosinus des angles : K=0x4D=1001101
+					--if (r_i = b"000") then
+						--r_x				<= r_dx_7 + r_dx_5 + r_dx_4 + r_dx_1;
+						--r_i				<= b"001";
+						--r_i_mkc			<= '1';
+						--r_placeme		<= '0';						-- DEMANDE CHANGEMENT ETAT
+					--else
+						--r_y				<= r_dy_7 + r_dy_5 + r_dy_4 + r_dy_1;
+						--r_i				<= b"000";
+						--r_i_mkc			<= '0';
+						--r_placeme		<= '1';						-- DEMANDE CHANGEMENT ETAT
+					--end if;
+				--when PLACE =>
+					------ PLACEMENT DANS LE BON CADRANT
+					------ todo verifier?
+					--if(r_q(1) xor r_q(0))then
+						--r_dx <= - r_x(14 downto 7);
+					--else
+						--r_dx <= r_x(14 downto 7);
+					--end if;
 
-					if(r_q(1) = '1') then
-						r_dy <= - r_y(14 downto 7);
-					else
-						r_dy <= r_y(14 downto 7);
-					end if;
-					r_placeme		<= '0';
-					r_rd_nxy_p		<= '1';						-- DEMANDE CHANGEMENT ETAT
-				when PUT =>
-					r_nx				<= r_dx;
-					r_ny				<= r_dy;
-					r_rd_nxy_p			<= '0';
-					r_wr_axy_p			<= '1';						-- DEMANDE CHANGEMENT ETAT
-			end case;
-		end if;
+					--if(r_q(1) = '1') then
+						--r_dy <= - r_y(14 downto 7);
+					--else
+						--r_dy <= r_y(14 downto 7);
+					--end if;
+					--r_placeme		<= '0';
+					--r_rd_nxy_p		<= '1';						-- DEMANDE CHANGEMENT ETAT
+				--when PUT =>
+					--r_nx				<= r_dx;
+					--r_ny				<= r_dy;
+					--r_rd_nxy_p			<= '0';
+					--r_wr_axy_p			<= '1';						-- DEMANDE CHANGEMENT ETAT
+			--end case;
+		--end if;
 	end process;
 
-	-- CREATION DE L'ETAT FUTUR MUTUELLEMENT EXCLUSIF
+	---- CREATION DE L'ETAT FUTUR MUTUELLEMENT EXCLUSIF
 	process(ck)
 	begin
 		if (ck='1' and not ck'stable) then
@@ -302,19 +308,20 @@ begin
 						buf_nx <= buf_nx;
 						buf_ny <= buf_ny;
 					end if;
-					when others => assert ('1') report "etat illegal";
-				end case;
-			end if;
-		end process;
+				when others =>
+					assert ('1') report "etat illegal";
+			end case;
+		end if;
+	end process;
 
 	-- CHAMGEMENT D"ETAT EP <= EF
-		process(ck, reset)
-		begin
-			if (reset = '1') then
-				EP <= GET;
-			elsif (ck='1' and not ck'stable) then  
-				EP <= EF;
-			end if;
-		end process;
+	process(ck, reset)
+	begin
+		if (reset = '1') then
+			EP <= GET;
+		elsif (ck='1' and not ck'stable) then  
+			EP <= EF;
+		end if;
+	end process;
 
-	end;
+end;

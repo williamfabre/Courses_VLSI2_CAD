@@ -1,14 +1,21 @@
-CFLAGS=-Wall -O3 -std=c99 #-DDEBUG
-LDFLAGS=-lm
+logic=cordic2
+ifndef logic
+		$(error logic must be set)
+endif
 
-#cercle: cercle.c
+all : $(logic).vbe \
+		$(logic)_o.vbe \
+		$(logic)_o.vst
 
-plot: cercle
-	./cercle
-	gnuplot \
-            -e 'plot [-128:127] [-128:127] "cordic.dat" with lines;'\
-            -e 'replot "cossin.dat" with lines;' \
-            -e 'pause -1' 
+$(logic).vbe : $(logic).vhdl
+	vasy -I vhdl -V -o -a $(logic).vhdl $(logic)
+
+$(logic)_o.vbe : $(logic).vbe
+	boom -l 3 -V -sjbg -A $<
+
+$(logic)_o.vst : $(logic)_o.vbe
+	boog $(logic)_o
+
 
 clean:
-	rm *.dat *~ cercle
+	rm -f *.al *.vbe *.vst *.rep *.o core *~
