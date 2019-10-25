@@ -12,7 +12,7 @@ ARCHITECTURE arch OF cordic_tb IS
  
 	SIGNAL reset : std_logic := '0';
 	SIGNAL ck : std_logic := '1';
-	SIGNAL A : std_logic_vector(8 DOWNTO 0) := X"00";
+	SIGNAL A : std_logic_vector(8 DOWNTO 0) := "000000000";
 	SIGNAL X : std_logic_vector(7 DOWNTO 0) := X"7F";
 	SIGNAL Y : std_logic_vector(7 DOWNTO 0) := X"00";
 	SIGNAL wr : std_logic := '0';
@@ -23,7 +23,7 @@ ARCHITECTURE arch OF cordic_tb IS
 	SIGNAL nY : std_logic_vector(7 DOWNTO 0);
 	SIGNAL vdd : std_logic;
 	SIGNAL vss : std_logic;
-	file   dat : text open read_mode is "cossin.dat" ;
+	file   dat : text open read_mode is "/users/enseig/sekouri/Documents/tempCordic/MOCCA/tp3/tempCORDIC/tempCORDIC.srcs/sim_1/new/cossin.dat" ;
 	SIGNAL nX_ext : std_logic_vector(7 DOWNTO 0);
 	SIGNAL nY_ext : std_logic_vector(7 DOWNTO 0);
  
@@ -76,7 +76,7 @@ BEGIN
         begin
         wait until rok = '1';
             i := i + 1;
-            assert nX = nX_ext and nY = nY_ext report " error matching value(s) on output at image iteration " & integer'image(i) & ": nX value is " & std_logic_vector(7 downto 0)'image(nX) & " and must be " & std_logic_vector(7 downto 0)'image(nX_ext) & " ; and nY value is " & std_logic_vector(7 downto 0)'image(nY) & " and must be " & std_logic_vector(7 downto 0)'image(ny_ext) &";"severity error;--mettre des printf
+            assert nX = nX_ext and nY = nY_ext report " error matching value(s) on output at image iteration " & integer'image(i) & ": nX value is " & integer'image(to_integer(signed(nX))) & " and must be " & integer'image(to_integer(signed(nX_ext))) & " ; and nY value is " & integer'image(to_integer(signed(nY))) & " and must be " & integer'image(to_integer(signed(nY_ext))) &";"severity error;--mettre des printf
         end procedure check;
         
         variable tt: integer;
