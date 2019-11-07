@@ -1,2 +1,2 @@
 #!/bin/bash
-blif2vst --cell=design
+blif2vst --cell=cordic_cor

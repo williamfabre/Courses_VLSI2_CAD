@@ -1,7 +1,7 @@
 CFLAGS=-Wall -O3 -std=c99 #-DDEBUG
 LDFLAGS=-lm
 
-cercle: cercle.c
+#cercle: cercle.c
 
 plot: cercle
 	./cercle
