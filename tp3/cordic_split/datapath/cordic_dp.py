@@ -32,7 +32,8 @@ class Cordic_DP ( Model ):
 		# MASTER CELL
 		Generate( 'DpgenNmux2' ,  'nmux2_16b', param={'nbit':16,'behavioral':True,'physical':True,'flags':0} )
 		Generate( 'DpgenMux2'  ,   'mux2_16b', param={'nbit':16,'behavioral':True,'physical':True,'flags':0} )
-
+		Generate( 'DpgenOr2'	, 'or2' 	, param= {'nbit': 1,'physical'  :True,'behavioral':True} )
+		
 		self.instances = {}
 
 
@@ -182,7 +183,10 @@ class Cordic_DP ( Model ):
 													, 'vss' : self.vss
 													} )
 
-
+		self.instances['n_xkc_2'] = Inst( 'mux2_16b', 'n_xkc_2',
+											map = { 'cmd' : self.xmkc_p
+												
+												})
 
 
 		return
