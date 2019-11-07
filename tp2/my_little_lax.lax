@@ -1,0 +1,24 @@
+## This line is a comment
+
+## Set the Optimisation Mode (0..4)
+## 0 : full area optimisation
+## 2 : 50% area, 50% delay
+## 4 : full delay optimisation
+## Used by boog and loon
+#M{4}
+
+## Fanout factor : the max fanout of the
+## output connector is multiplied by this factor
+## T{1000}
+
+## Input Capacitance : The primary inputs of the circuit
+## can have fanout values. (in fF)
+## F{
+##	c:50;
+##	}
+
+## External Output Capacitance (in fF)
+## Used by boog and loon
+#C{
+porte:50;
+}
