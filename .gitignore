@@ -8,3 +8,5 @@
 *.pat
 *.xsc
 *.xst
+*.v
+*.blif
