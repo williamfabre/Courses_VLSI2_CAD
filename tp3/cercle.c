@@ -104,7 +104,7 @@ int main()
 		char nx_p;
 		char ny_p;
 		cossin(a, 125, 0, &nx_p, &ny_p);
-		fprintf(f, "%4d %4d\n", nx_p, ny_p);
+		fprintf(f, "%4d\n%4d\n", nx_p, ny_p);
 	}
 	fclose(f);
 

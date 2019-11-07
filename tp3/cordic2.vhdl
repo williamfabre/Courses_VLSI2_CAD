@@ -201,7 +201,7 @@ begin
 			-- angle en radian
 			r_a						<= "0000000" & A;
 			-- state
-			r_wr_axy_p				<= wr;
+			r_wr_axy_p				<= '1';
 			r_quadrant0				<= '0';
 			r_i_calc				<= '0';
 			r_i_mkc					<= '0';
@@ -330,8 +330,9 @@ begin
 						buf_nx <= buf_nx;
 						buf_ny <= buf_ny;
 					end if;
-				 --when others => report "unreachable state" severity failure;
-				  when others => assert ('1') report "etat illegal";
+				when others => 
+				        report "unreachable state" severity failure;
+				  --when others => assert ('1') report "etat illegal";
 			end case;
 		end if;
 	end process;
