@@ -29,6 +29,7 @@ class Cordic_DP ( Model ):
 	def Netlist ( self ):
 		print 'Cordic_DP.Netlist()'
 
+		# MASTER CELL
 		Generate( 'DpgenNmux2' ,  'nmux2_16b', param={'nbit':16,'behavioral':True,'physical':True,'flags':0} )
 		Generate( 'DpgenMux2'  ,   'mux2_16b', param={'nbit':16,'behavioral':True,'physical':True,'flags':0} )
 
@@ -37,7 +38,7 @@ class Cordic_DP ( Model ):
 
 		x = Signal( 'x', 16 )
 
-		# MULTIPLEXOR X LAYER 1
+		############  VALUE 0 ############
 		zero_16b = Signal( 'zero_16b', 16 )
 		self.instances['zero_16b'] = Inst( 'zero_16b', 'zero_16b'
 										  , map = { 'q'   : zero_16b
@@ -45,6 +46,8 @@ class Cordic_DP ( Model ):
 												   , 'vss' : self.vss
 												   } )
 
+	
+		############  MULTIPLEXOR X LAYER 1 ############
 		self.instances['x_sra_0_0'] = Inst( 'nmux2_16b', 'x_sra_0_0'
 										   , map = { 'cmd' : self.i_p[0]
 													, 'i0'  : x
@@ -81,7 +84,7 @@ class Cordic_DP ( Model ):
 													, 'vss' : self.vss
 													} )
 
-		# MULTIPLEXOR X LAYER 2
+		############  MULTIPLEXOR X LAYER 2 ############
 		self.instances['x_sra_1_0'] = Inst( 'nmux2_16b', 'x_sra_1_0'
 										   , map = { 'cmd' : self.i_p[1]
 													, 'i0'  : x_sra_0_0
@@ -99,6 +102,88 @@ class Cordic_DP ( Model ):
 													, 'vdd' : self.vdd
 													, 'vss' : self.vss
 													} )
+
+		############  MULTIPLEXOR X LAYER 2 ############
+		self.instances['x_sra_i'] = Inst( 'mux2_16b', 'x_sra_i'
+										   , map = { 'cmd' : self.i_p[2]
+													, 'i0'  : x_sra_1_0
+													, 'i1'  : x_sra_1_1
+													, 'q'  : x_sra_i # pas nq
+													, 'vdd' : self.vdd
+													, 'vss' : self.vss
+													} )
+
+
+
+
+		############  MULTIPLEXOR Y LAYER 1 ############
+		self.instances['y_sra_0_0'] = Inst( 'nmux2_16b', 'y_sra_0_0'
+										   , map = { 'cmd'  : self.i_p[0]
+													, 'i0'  : y
+													, 'i1'  : y_sra_1
+													, 'nq'  : y_sra_0_0
+													, 'vdd' : self.vdd
+													, 'vss' : self.vss
+													} )
+
+		self.instances['y_sra_0_1'] = Inst( 'nmux2_16b', 'y_sra_0_1'
+										   , map = { 'cmd'  : self.i_p[0]
+													, 'i0'  : y_sra_2
+													, 'i1'  : y_sra_3
+													, 'nq'  : y_sra_0_1
+													, 'vdd' : self.vdd
+													, 'vss' : self.vss
+													} )
+
+		self.instances['y_sra_0_3'] = Inst( 'nmux2_16b', 'y_sra_0_3'
+										   , map = { 'cmd'  : self.i_p[0]
+													, 'i0'  : y_sra_4
+													, 'i1'  : y_sra_5
+													, 'nq'  : y_sra_0_3
+													, 'vdd' : self.vdd
+													, 'vss' : self.vss
+													} )
+
+		self.instances['y_sra_0_4'] = Inst( 'nmux2_16b', 'y_sra_0_4'
+										   , map = { 'cmd'  : self.i_p[0]
+													, 'i0'  : y_sra_6
+													, 'i1'  : y_sra_7
+													, 'nq'  : y_sra_0_4
+													, 'vdd' : self.vdd
+													, 'vss' : self.vss
+													} )
+
+		############  MULTIPLEXOR Y LAYER 2 ############
+		self.instances['y_sra_1_0'] = Inst( 'nmux2_16b', 'y_sra_1_0'
+										   , map = { 'cmd'  : self.i_p[1]
+													, 'i0'  : y_sra_0_0
+													, 'i1'  : y_sra_0_1
+													, 'nq'  : y_sra_1_0
+													, 'vdd' : self.vdd
+													, 'vss' : self.vss
+													} )
+
+		self.instances['y_sra_1_1'] = Inst( 'nmux2_16b', 'y_sra_1_1'
+										   , map = { 'cmd'  : self.i_p[1]
+													, 'i0'  : y_sra_0_3
+													, 'i1'  : y_sra_0_4
+													, 'nq'  : y_sra_1_1
+													, 'vdd' : self.vdd
+													, 'vss' : self.vss
+													} )
+
+		############  MULTIPLEXOR Y LAYER 2 ############
+		self.instances['y_sra_i']   = Inst( 'mux2_16b', 'y_sra_i'
+										   , map = { 'cmd'  : self.i_p[2]
+													, 'i0'  : y_sra_1_0
+													, 'i1'  : y_sra_1_1
+													, 'q'   : y_sra_i # pas nq
+													, 'vdd' : self.vdd
+													, 'vss' : self.vss
+													} )
+
+
+
 
 		return
 
