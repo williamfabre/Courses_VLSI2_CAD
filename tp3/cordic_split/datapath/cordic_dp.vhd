@@ -90,7 +90,7 @@ BEGIN
               else -ykc                     when xcmd_p = 4 -- place_p AND (quadrant_p = 1)
               else -xkc                     when xcmd_p = 5 -- place_p AND (quadrant_p = 2)
               else ykc                      when xcmd_p = 6 -- place_p AND (quadrant_p = 3)
-              else x;					    -- et 8
+              else x										-- et 8
 
     n_y         <= y_p(7) & y_p & "0000000" when ycmd_p = 0 -- init
               else y + x_sra_i              when ycmd_p = 1 -- calc_and_calc_p AND NOT a_lt_0_p

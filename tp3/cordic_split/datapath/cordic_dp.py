@@ -18,7 +18,7 @@ class Cordic_DP ( Model ):
         self.xmkc_p     = SignalOut( 'xmkc_p', 2 )
         self.ymkc_p     = SignalOut( 'ymkc_p', 2 )
         self.xcmd_p     = SignalOut( 'xcmd_p', 4 )
-        self.ymkc_p     = SignalOut( 'ymkc_p', 4 )
+        self.ycmd_p     = SignalOut( 'ycmd_p', 4 )
         self.i_p        = SignalOut( 'i_p',    4 )
 
         self.ck         = CkIn     ( 'ck'  )
@@ -32,6 +32,7 @@ class Cordic_DP ( Model ):
         # SIGNALS 
         zero_16b            = Signal( 'zero_16b',       16 )
         zero_1b             = Signal( 'zero_1b',         1 )
+        one_1b              = Signal( 'one_1b',          1 )
 
         n_x                 = Signal( 'n_x',            16 )
         x                   = Signal( 'x',              16 )
@@ -48,7 +49,18 @@ class Cordic_DP ( Model ):
         x_mkc_command               = Signal( 'x_mkc_command',              1  )
         x_signed_overflow_0         = Signal( 'x_signed_overflow_0',        1  )
         x_unsigned_overflow_0       = Signal( 'x_unsigned_overflow_0',      1  )
+        x_signed_overflow_1         = Signal( 'x_signed_overflow_0',        1  )
+        x_unsigned_overflow_1       = Signal( 'x_unsigned_overflow_0',      1  )
+        x_adder_16_0                = Signal( 'x_adder_16_0',               16 )
+        x_adder_16_1                = Signal( 'x_adder_16_1',               16 )
+        x_plus_minus_y_sra_i        = Signal( 'x_plus_minus_y_sra_i',      16 )
+
+        minus_xkc                   = Signal('minus_xkc'                    16 )
+        minus_xkc_signed_overflow_0 = Signal('minus_xkc_signed_overflow_0'  16 )
+        minus_xkc_unsigned_overflow_0 = Signal('minus_xkc_unsigned_overflow_0'16)
+
         n_xkc               = Signal( 'n_xkc',          16 )
+        not_xkc             = Signal( 'not_xkc',        16 )
         xkc                 = Signal( 'xkc',            16 )
 
 
@@ -59,10 +71,25 @@ class Cordic_DP ( Model ):
         n_ykc_p_mux_1               = Signal( 'n_ykc_p_mux_1',              16 )
         n_ykc_p_mux_out_1           = Signal( 'n_ykc_p_mux_out_1',          16 )
         y_mkc_command               = Signal( 'y_mkc_command',              1  )
-        y_signed_overflow_0         = Signal( 'x_signed_overflow_1',        1  )
-        y_unsigned_overflow_0       = Signal( 'x_unsigned_overflow_1',      1  )
+        y_signed_overflow_0         = Signal( 'x_signed_overflow_0',        1  )
+        y_unsigned_overflow_0       = Signal( 'x_unsigned_overflow_0',      1  )
+        y_signed_overflow_1         = Signal( 'x_signed_overflow_1',        1  )
+        y_unsigned_overflow_1       = Signal( 'x_unsigned_overflow_1',      1  )
+        y_adder_16_0                = Signal( 'y_adder_16_0',               16 )
+        y_adder_16_1                = Signal( 'y_adder_16_1',               16 )
+        y_plus_minus_x_sra_i        = Signal( 'y_plus_minus_x_sra_i',       16 )
+
+        minus_ykc                   = Signal('minus_ykc'                    16 )
+        minus_ykc_signed_overflow_0 = Signal('minus_ykc_signed_overflow_0'  16 )
+        minus_ykc_unsigned_overflow_0 = Signal('minus_ykc_unsigned_overflow_0'16)
+
+
         n_ykc               = Signal( 'n_ykc',          16 )
+        not_ykc             = Signal( 'not_ykc',        16 )
         ykc                 = Signal( 'ykc',            16 )
+
+
+
 
 
         x_sra_1             = Signal( 'x_sra_1',        16 )
@@ -92,9 +119,13 @@ class Cordic_DP ( Model ):
         Generate( 'DpgenMux2'   ,  'mux2_16b'   , param={'nbit':16,     'behavioral':True,'physical':True,'flags':0} )
         # Generate( 'DpgenOr2'  ,  'or2'        , param={'nbit': 1,'physical'  :True,'behavioral':True} )
         Generate( 'DpgenOr2'    , 'or2_1'       , param={'nbit': 1,     'physical' : True })
-        Generate ( 'DpgenAdsb2f', 'adder_16'    , param={'nbit': 16 ,   'physical' : True })
-        Generate ( 'DpgenConst' , 'zero_16b'    , param={ 'nbit': 16,   'const': "0x0000" , 'physical' : True })
-        Generate ( 'DpgenConst' , 'zero_1b'     , param={ 'nbit': 1,     'const' : "0b0" , 'physical' : True })
+        Generate ( 'DpgenAdsb2f', 'adder_16'    , param={'nbit': 16,   'physical' : True })
+        Generate ( 'DpgenConst' , 'zero_16b'    , param={'nbit': 16,   'const': "0x0000" , 'physical' : True })
+        Generate ( 'DpgenConst' , 'zero_1b'     , param={'nbit': 1,     'const' : "0b0" , 'physical' : True })
+        Generate ( 'DpgenConst' , 'one_1b'      , param={'nbit': 1,     'const' : "0b1" , 'physical' : True })
+        Generate ( 'DpgenSff'   , 'sff_16'      , param={'nbit': 16, 'physical' : True })
+        Generate ( 'DpgenInv'   , 'inv_16'      , param={'nbit': 16, 'physical' : True })
+        
 
         #######################################################################
 
@@ -113,15 +144,15 @@ class Cordic_DP ( Model ):
                                                    , 'vss' : self.vss
                                                    } )
         self.instances['zero_1b'] = Inst( 'zero_1b', 'zero_1b'
-                                          , map = { 'q'   : zero_1b
-                                                   , 'vdd' : self.vdd
-                                                   , 'vss' : self.vss
-                                                   } )
+                                         , map = { 'q'   : zero_1b
+                                                  , 'vdd' : self.vdd
+                                                  , 'vss' : self.vss
+                                                  } )
         #######################################################################
 
 
 
-        ############  MULTIPLEXOR SHIFTER X ############
+        ############  SHIFTER X ############
         ############  MULTIPLEXOR X LAYER 1 ############
         #######################################################################
         self.instances['x_sra_0_0'] = Inst( 'nmux2_16b', 'x_sra_0_0'
@@ -193,8 +224,8 @@ class Cordic_DP ( Model ):
 
 
 
-        ############  MULTIPLEXOR SHIFTER Y ############
-        ############  MULTIPLEXOR Y LAYER 1 ############
+        ############  SHIFTER Y ############
+        ############  MULTIPLEXOR Y LAYER 0 ############
         #######################################################################
         self.instances['y_sra_0_0'] = Inst( 'nmux2_16b', 'y_sra_0_0'
                                            , map = { 'cmd'  : self.i_p[0]
@@ -232,7 +263,7 @@ class Cordic_DP ( Model ):
                                                     , 'vss' : self.vss
                                                     } )
 
-        ############  MULTIPLEXOR Y LAYER 2 ############
+        ############  MULTIPLEXOR Y LAYER 1 ############
         self.instances['y_sra_1_0'] = Inst( 'nmux2_16b', 'y_sra_1_0'
                                            , map = { 'cmd'  : self.i_p[1]
                                                     , 'i0'  : y_sra_0_0
@@ -251,7 +282,7 @@ class Cordic_DP ( Model ):
                                                     , 'vss' : self.vss
                                                     } )
 
-        ############  MULTIPLEXOR Y LAYER 3 ############
+        ############  MULTIPLEXOR Y LAYER 2 ############
         self.instances['y_sra_i']   = Inst( 'mux2_16b', 'y_sra_i'
                                            , map = { 'cmd'  : self.i_p[2]
                                                     , 'i0'  : y_sra_1_0
@@ -296,8 +327,8 @@ class Cordic_DP ( Model ):
 
         ############  COMMAND MULTIPLEXOR 1 xmkc_p[0] or xmkc_p[1] ############
         self.instances['or2_1']         = Inst ( 'or2_1', 'inst'
-                                                , map = { 'i0'  : xmkc_p[1]
-                                                         , 'i1'  : xmkc_p[0]
+                                                , map = { 'i0'  : self.xmkc_p[1]
+                                                         , 'i1'  : self.xmkc_p[0]
                                                          , 'q'   : xmkc_command
                                                          , 'vdd' : self.vdd
                                                          , 'vss' : self.vss
@@ -313,39 +344,79 @@ class Cordic_DP ( Model ):
                                                         , 'vdd' : self.vdd
                                                         , 'vss' : self.vss
                                                         })
-        ############  ADDER/SUBBER X  ############
+        ############  ADDER/SUBBER 0 X  ############
         self.instances['x_adder_16_0']     = Inst ( 'adder_16', 'x_adder_16_0'
-                                               , map = { 'i0'       : n_xkc_p_mux_out_0
-                                                        , 'i1'      : n_xkc_p_mux_out_1
-                                                        , 'add_sub' : zero_16b
-                                                        , 'q'       : n_xkc
-                                                        , 'c30'     : signed_overflow_x
-                                                        , 'c31'     : unsigned_overflow_x
-                                                        , 'vdd'     : self.vdd
-                                                        , 'vss'     : self.vss
-                                                        })
+                                                   , map = { 'i0'       : n_xkc_p_mux_out_0
+                                                            , 'i1'      : n_xkc_p_mux_out_1
+                                                            , 'add_sub' : zero_16b
+                                                            , 'q'       : n_xkc
+                                                            , 'c30'     : x_signed_overflow_0
+                                                            , 'c31'     : x_unsigned_overflow_0
+                                                            , 'vdd'     : self.vdd
+                                                            , 'vss'     : self.vss
+                                                            })
+
+
+        ############  REGISTER AFTER ADDER/SUBBER 0 X  ############
+        self.instances['xkc_register']      = Inst ( 'sff_16', 'xkc_register'
+                                                    , map = { "wen" : self.ck
+                                                             , "ck"  : self.ck
+                                                             , "i0"  : n_xkc
+                                                             ,  "q"  : xkc
+                                                             , 'vdd' : self.vdd
+                                                             , 'vss' : self.vss
+                                                             })
+
+        self.instances['x_inv']              = Inst ( 'inv_16', 'x_inv'
+                                                      , map = { 'i0'  : xkc
+                                                              , 'nq'  : not_xkc
+                                                              , 'vdd' : self.vdd
+                                                              , 'vss' : self.vss
+                                                              })
+        self.instances['minus_xkc']         = Inst ( 'adder_16', 'minus_xkc'
+                                                   , map = { 'i0'       : not_xkc
+                                                            , 'i1'      : n_xkc_p_mux_out_1
+                                                            , 'add_sub' : one_1b
+                                                            , 'q'       : minus_xkc
+                                                            , 'c30'     : minus_xkc_signed_overflow_0
+                                                            , 'c31'     : minus_xkc_unsigned_overflow_0
+                                                            , 'vdd'     : self.vdd
+                                                            , 'vss'     : self.vss
+                                                            })
+
+
+
+        ############  ADDER/SUBBER 1 X  ############
+        self.instances['x_adder_16_1']     = Inst ( 'adder_16', 'x_adder_16_1'
+                                                   , map = { 'i0'       : x
+                                                            , 'i1'      : y_sra_i
+                                                            , 'add_sub' : self.xcmd_p[1]#TODO
+                                                            , 'q'       : x_plus_minus_y_sra_i
+                                                            , 'c30'     : x_signed_overflow_1
+                                                            , 'c31'     : x_unsigned_overflow_1
+                                                            , 'vdd'     : self.vdd
+                                                            , 'vss'     : self.vss
+                                                            })
 
 
         ############  MULTIPLEXOR BEFORE ADD FOR N_YKC ############
         ############  (before n_ykc_p_mux_0) MULTIPLEXOR commanded by ymkc_p LAYER 0 ############
         self.instances['n_ykc_p_internal_mux'] = Inst( 'mux2_16b', 'n_ykc_p_internal_mux'
-                                                , map = { 'cmd'  : self.ymkc_p
-                                                         , 'i0'  : y_sra_4
-                                                         , 'i1'  : y_sra_5
-                                                         , 'q'   : n_ykc_p_internal_mux_out
-                                                         , 'vdd' : self.vdd
-                                                         , 'vss' : self.vss
-                                                         })
+                                                      , map = { 'cmd'  : self.ymkc_p
+                                                               , 'i0'  : y_sra_4
+                                                               , 'i1'  : y_sra_5
+                                                               , 'q'   : n_ykc_p_internal_mux_out
+                                                               , 'vdd' : self.vdd
+                                                               , 'vss' : self.vss
+                                                               })
 
         self.instances['or2_1']         = Inst ( 'or2_1', 'inst'
-                                                , map = { 'i0'  : ymkc_p[1]
-                                                         , 'i1'  : ymkc_p[0]
+                                                , map = { 'i0'  : self.ymkc_p[1]
+                                                         , 'i1'  : self.ymkc_p[0]
                                                          , 'q'   : ymkc_command
                                                          , 'vdd' : self.vdd
                                                          , 'vss' : self.vss
                                                          })
-
-
 
 
         ############  MULTIPLEXOR 0 commanded by ymkc_p LAYER 1 ############
@@ -360,8 +431,8 @@ class Cordic_DP ( Model ):
 
         ############  COMMAND MULTIPLEXOR 1 ymkc_p[0] or ymkc_p[1] LAYER 2 ############
         self.instances['or2_1']         = Inst ( 'or2_1', 'inst'
-                                                , map = { 'i0'  : ymkc_p[1]
-                                                         , 'i1'  : ymkc_p[0]
+                                                , map = { 'i0'  : self.ymkc_p[1]
+                                                         , 'i1'  : self.ymkc_p[0]
                                                          , 'q'   : ymkc_command
                                                          , 'vdd' : self.vdd
                                                          , 'vss' : self.vss
@@ -378,17 +449,57 @@ class Cordic_DP ( Model ):
                                                         , 'vss' : self.vss
                                                         })
 
-        ############  ADDER/SUBBER y  ############
+        ############  ADDER/SUBBER 0 y  ############
         self.instances['y_adder_16_0']     = Inst ( 'adder_16', 'y_adder_16_0'
-                                               , map = { 'i0'       : n_ykc_p_mux_out_0
-                                                        , 'i1'      : n_ykc_p_mux_out_1
-                                                        , 'add_sub' : zero_16b
-                                                        , 'q'       : n_ykc
-                                                        , 'c30'     : signed_overflow_y
-                                                        , 'c31'     : unsigned_overflow_y
-                                                        , 'vdd'     : self.vdd
-                                                        , 'vss'     : self.vss
-                                                        })
+                                                   , map = { 'i0'       : n_ykc_p_mux_out_0
+                                                            , 'i1'      : n_ykc_p_mux_out_1
+                                                            , 'add_sub' : zero_16b
+                                                            , 'q'       : n_ykc
+                                                            , 'c30'     : y_signed_overflow_0
+                                                            , 'c31'     : y_unsigned_overflow_0
+                                                            , 'vdd'     : self.vdd
+                                                            , 'vss'     : self.vss
+                                                            })
+
+        ############  REGISTER AFTER ADDER/SUBBER 0 Y  ############
+        self.instances['ykc_register']       = Inst ( 'sff_16', 'ykc_register'
+                                                     , map = { "wen" : self.ck
+                                                              , "ck"  : self.ck
+                                                              , "i0"  : n_ykc
+                                                              ,  "q"  : ykc
+                                                              , 'vdd' : self.vdd
+                                                              , 'vss' : self.vss
+                                                              })
+
+        self.instances['y_inv']              = Inst ( 'inv_16', 'y_inv'
+                                                  , map = { 'i0'  : ykc
+                                                          , 'nq'  : not_ykc
+                                                          , 'vdd' : self.vdd
+                                                          , 'vss' : self.vss
+                                                          })
+
+        self.instances['minus_ykc']         = Inst ( 'adder_16', 'minus_ykc'
+                                                   , map = { 'i0'       : not_ykc
+                                                            , 'i1'      : zero_16b
+                                                            , 'add_sub' : one_1b
+                                                            , 'q'       : minus_ykc
+                                                            , 'c30'     : minus_ykc_signed_overflow_0
+                                                            , 'c31'     : minus_ykc_unsigned_overflow_0
+                                                            , 'vdd'     : self.vdd
+                                                            , 'vss'     : self.vss
+                                                            })
+
+        ############  ADDER/SUBBER 1 y  ############
+        self.instances['y_adder_16_1']     = Inst ( 'adder_16', 'y_adder_16_1'
+                                                   , map = { 'i0'       : y
+                                                            , 'i1'      : x_sra_i
+                                                            , 'add_sub' : self.ycmd_p[1]#TODO
+                                                            , 'q'       : y_plus_minus_x_sra_i
+                                                            , 'c30'     : y_signed_overflow_1
+                                                            , 'c31'     : y_unsigned_overflow_1
+                                                            , 'vdd'     : self.vdd
+                                                            , 'vss'     : self.vss
+                                                            })
 
 
 
