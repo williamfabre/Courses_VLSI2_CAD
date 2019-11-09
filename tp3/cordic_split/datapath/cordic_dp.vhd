@@ -71,14 +71,14 @@ BEGIN
 
     -- produits des coordonnées de rotation par KC
 
-    n_xkc       <= x_sra_7 + x_sra_5 when xmkc_p = 0 -- mkc_p AND i_p = 0
-              else xkc     + x_sra_4 when xmkc_p = 1 -- mkc_p AND i_p = 1
-              else xkc     + x_sra_1 when xmkc_p = 1 -- mkc_p AND i_p = 2
+    n_xkc       <= x_sra_7 + x_sra_5 when xmkc_p = 0 --00 -- mkc_p AND i_p = 0
+              else xkc     + x_sra_4 when xmkc_p = 1 --01-- mkc_p AND i_p = 1
+              else xkc     + x_sra_1 when xmkc_p = 2 --11-- mkc_p AND i_p = 2
               else xkc;
 
-    n_ykc       <= y_sra_7 + y_sra_5 when ymkc_p = 0 -- mkc_p AND i_p = 0
-              else ykc     + y_sra_4 when ymkc_p = 1 -- mkc_p AND i_p = 1
-              else ykc     + y_sra_1 when ymkc_p = 1 -- mkc_p AND i_p = 2
+    n_ykc       <= y_sra_7 + y_sra_5 when ymkc_p = 0 --00-- mkc_p AND i_p = 0
+              else ykc     + y_sra_4 when ymkc_p = 1 --01-- mkc_p AND i_p = 1
+              else ykc     + y_sra_1 when ymkc_p = 2 --11-- mkc_p AND i_p = 2
               else ykc;
 
     -- coordonnées
