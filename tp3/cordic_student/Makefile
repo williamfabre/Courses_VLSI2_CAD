@@ -1,4 +1,3 @@
-logic=cordic_student
 
 all : $(logic).v 
 
