@@ -37,7 +37,7 @@ BEGIN
 
     -- Shifters : x_sra_i <= x << i et y_sra_i <= y << i
 
-    x_sra_1     <= x(15) &     x(15 downto 1);
+    x_sra_1     <= x(15) & x(15 downto 1);
     x_sra_2     <= x(15) & x_sra_1(15 downto 1);
     x_sra_3     <= x(15) & x_sra_2(15 downto 1);
     x_sra_4     <= x(15) & x_sra_3(15 downto 1);
@@ -71,14 +71,14 @@ BEGIN
 
     -- produits des coordonnées de rotation par KC
 
-    n_xkc       <= x_sra_7 + x_sra_5 when xmkc_p = 0 --00 -- mkc_p AND i_p = 0
-              else xkc     + x_sra_4 when xmkc_p = 1 --01-- mkc_p AND i_p = 1
-              else xkc     + x_sra_1 when xmkc_p = 2 --11-- mkc_p AND i_p = 2
-              else xkc;
+    n_xkc       <= x_sra_7 + x_sra_5 when xmkc_p = 0 -- <==> mkc_p = 1 AND i_p = 0
+              else xkc     + x_sra_4 when xmkc_p = 1 -- <==> mkc_p = 1 AND i_p = 1
+              else xkc     + x_sra_1 when xmkc_p = 2 -- <==> mkc_p = 1 AND i_p = 2
+              else xkc;								 -- <==> mkc_p = 1 AND i_p = {3 ou 4 ou 5 ou 6 ou 7}
 
-    n_ykc       <= y_sra_7 + y_sra_5 when ymkc_p = 0 --00-- mkc_p AND i_p = 0
-              else ykc     + y_sra_4 when ymkc_p = 1 --01-- mkc_p AND i_p = 1
-              else ykc     + y_sra_1 when ymkc_p = 2 --11-- mkc_p AND i_p = 2
+    n_ykc       <= y_sra_7 + y_sra_5 when ymkc_p = 0 -- mkc_p AND i_p = 0
+              else ykc     + y_sra_4 when ymkc_p = 1 -- mkc_p AND i_p = 1
+              else ykc     + y_sra_1 when ymkc_p = 2 -- mkc_p AND i_p = 2
               else ykc;
 
     -- coordonnées
@@ -90,7 +90,7 @@ BEGIN
               else -ykc                     when xcmd_p = 4 -- place_p AND (quadrant_p = 1)
               else -xkc                     when xcmd_p = 5 -- place_p AND (quadrant_p = 2)
               else ykc                      when xcmd_p = 6 -- place_p AND (quadrant_p = 3)
-              else x										-- et 8
+              else x;					    				-- et 8 //when n_put = '1'
 
     n_y         <= y_p(7) & y_p & "0000000" when ycmd_p = 0 -- init
               else y + x_sra_i              when ycmd_p = 1 -- calc_and_calc_p AND NOT a_lt_0_p
@@ -99,7 +99,7 @@ BEGIN
               else xkc                      when ycmd_p = 4 -- place_p AND (quadrant_p = 1)
               else -ykc                     when ycmd_p = 5 -- place_p AND (quadrant_p = 2)
               else -xkc                     when ycmd_p = 6 -- place_p AND (quadrant_p = 3)
-              else y;                                       -- et 8
+              else y;                                       -- et 8 //when n_put = '1'
 
     DP : PROCESS (ck) begin
     if ((ck = '1') AND NOT(ck'STABLE) )

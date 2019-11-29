@@ -9,17 +9,30 @@ class Cordic_DP ( Model ):
 
     def Interface ( self ):
         print 'Cordic_DP.Interface()'
+
         self.x_p        = SignalIn ( 'x_p',    8 )
         self.y_p        = SignalIn ( 'y_p',    8 )
 
         self.nx_p       = SignalOut( 'nx_p',   8 )
         self.ny_p       = SignalOut( 'ny_p',   8 )
 
-        self.xmkc_p     = SignalOut( 'xmkc_p', 2 )
-        self.ymkc_p     = SignalOut( 'ymkc_p', 2 )
-        self.xcmd_p     = SignalOut( 'xcmd_p', 4 )
-        self.ycmd_p     = SignalOut( 'ycmd_p', 4 )
-        self.i_p        = SignalOut( 'i_p',    4 )
+        self.xmkc_p     = SignalIn( 'xmkc_p', 2 )
+        self.ymkc_p     = SignalIn( 'ymkc_p', 2 )
+        self.xcmd_p     = SignalIn( 'xcmd_p', 4 )
+        self.ycmd_p     = SignalIn( 'ycmd_p', 4 )
+        self.i_p        = SignalIn( 'i_p',    4 )
+        self.A          = SignalIn( 'A',      1 )
+        self.B          = SignalIn( 'B',      1 )
+        self.C          = SignalIn( 'C',      1 )
+        self.D          = SignalIn( 'D',      1 )
+        self.E          = SignalIn( 'E',      1 )
+        self.F          = SignalIn( 'F',      1 )
+        self.G          = SignalIn( 'G',      1 )
+        self.H          = SignalIn( 'H',      1 )
+        self.I          = SignalIn( 'I',      1 )
+        self.J          = SignalIn( 'J',      1 )
+        self.C0         = SignalIn( 'C0',     1 )
+        self.C1         = SignalIn( 'C1',     1 )
 
         self.ck         = CkIn     ( 'ck'  )
         self.vdd        = VddIn    ( 'vdd' )
@@ -40,11 +53,12 @@ class Cordic_DP ( Model ):
         n_y                 = Signal( 'n_y',            16 )
         y                   = Signal( 'y',              16 )
 
-        n_xkc_p_internal_mux        = Signal( 'nxkc_p_internal_mux',        16 )
-        n_xkc_p_internal_mux_out    = Signal( 'n_xkc_p_internal_mux_out',   16 )
-        n_xkc_p_mux_0               = Signal( 'n_xkc_p_mux_0',              16 )
+        #n_xkc_p_internal_mux        = Signal( 'nxkc_p_internal_mux',        16 )
+        n_xkc_p_internal_mux_out0   = Signal( 'n_xkc_p_internal_mux_out0',  16 )
+        n_xkc_p_internal_mux_out1   = Signal( 'n_xkc_p_internal_mux_out1',  16 )
+        #n_xkc_p_mux_0               = Signal( 'n_xkc_p_mux_0',              16 )
         n_xkc_p_mux_out_0           = Signal( 'n_xkc_p_mux_out_0',          16 )
-        n_xkc_p_mux_1               = Signal( 'n_xkc_p_mux_1',              16 )
+        #n_xkc_p_mux_1               = Signal( 'n_xkc_p_mux_1',              16 )
         n_xkc_p_mux_out_1           = Signal( 'n_xkc_p_mux_out_1',          16 )
         x_mkc_command               = Signal( 'x_mkc_command',              1  )
         x_signed_overflow_0         = Signal( 'x_signed_overflow_0',        1  )
@@ -55,12 +69,12 @@ class Cordic_DP ( Model ):
         x_adder_16_1                = Signal( 'x_adder_16_1',               16 )
         x_plus_minus_y_sra_i        = Signal( 'x_plus_minus_y_sra_i',      16 )
 
-        minus_xkc                   = Signal('minus_xkc'                    16 )
-        minus_xkc_signed_overflow_0 = Signal('minus_xkc_signed_overflow_0'  16 )
-        minus_xkc_unsigned_overflow_0 = Signal('minus_xkc_unsigned_overflow_0'16)
+        p_m_xkc                   = Signal('p_m_xkc'                    16 )
+        p_m_xkc_signed_overflow_0 = Signal('p_m_xkc_signed_overflow_0'  16 )
+        p_m_xkc_unsigned_overflow_0 = Signal('p_m_xkc_unsigned_overflow_0'16)
 
         n_xkc               = Signal( 'n_xkc',          16 )
-        not_xkc             = Signal( 'not_xkc',        16 )
+        #not_xkc             = Signal( 'not_xkc',        16 )
         xkc                 = Signal( 'xkc',            16 )
 
 
@@ -297,53 +311,43 @@ class Cordic_DP ( Model ):
 
         ############  MULTIPLEXOR BEFORE ADD FOR N_XKC ############
         ############  (before n_xkc_p_mux_0) MULTIPLEXOR commanded by xmkc_p LAYER 0 ############
-        self.instances['n_xkc_p_internal_mux'] = Inst( 'mux2_16b', 'n_xkc_p_internal_mux'
-                                                      , map = { 'cmd'  : self.xmkc_p[0]
-                                                               , 'i0'  : x_sra_4
-                                                               , 'i1'  : x_sra_5
-                                                               , 'q'   : n_xkc_p_internal_mux_out
+        ############  MULTIPLEXOR 0 commanded by xmkc_p LAYER 0 ############
+        self.instances['n_xkc_p_internal_mux0'] = Inst( 'nmux2_16b', 'n_xkc_p_internal_mux0'
+                                                      , map = { 'cmd'  : self.I
+                                                               , 'i0'  : x_sra_1
+                                                               , 'i1'  : zero_16b
+                                                               , 'q'   : n_xkc_p_internal_mux_out1
                                                                , 'vdd' : self.vdd
                                                                , 'vss' : self.vss
                                                                })
 
-        ############  MULTIPLEXOR 0 commanded by xmkc_p LAYER 0 ############
-        self.instances['n_xkc_p_mux_0'] = Inst( 'mux2_16b', 'n_xkc_p_mux_0'
-                                               , map = { 'cmd'  : self.xmkc_p[1]
-                                                        , 'i0'  : x_sra_1
-                                                        , 'i1'  : n_xkc_p_internal_mux_out
+        self.instances['n_xkc_p_internal_mux1'] = Inst( 'nmux2_16b', 'n_xkc_p_internal_mux1'
+                                                      , map = { 'cmd'  : self.G
+                                                               , 'i0'  : x_sra_5
+                                                               , 'i1'  : x_sra_4
+                                                               , 'q'   : n_xkc_p_internal_mux_out0
+                                                               , 'vdd' : self.vdd
+                                                               , 'vss' : self.vss
+                                                               })
+        
+        self.instances['n_xkc_p_mux_0'] = Inst( 'nmux2_16b', 'n_xkc_p_mux_0'
+                                               , map = { 'cmd'  : self.H
+                                                        , 'i0'  : n_xkc_p_internal_mux_out0
+                                                        , 'i1'  : n_xkc_p_internal_mux_out1
                                                         , 'q'   : n_xkc_p_mux_out_0
                                                         , 'vdd' : self.vdd
                                                         , 'vss' : self.vss
                                                         })
 
         self.instances['n_xkc_p_mux_1'] = Inst( 'mux2_16b', 'n_xkc_p_mux_1'
-                                               , map = { 'cmd'  : self.xmkc_p
-                                                        , 'i0'  : xkc
-                                                        , 'i1'  : x_sra_7
+                                               , map = { 'cmd'  : self.J
+                                                        , 'i0'  : x_sra_7
+                                                        , 'i1'  : xkc
                                                         , 'q'   : n_xkc_p_mux_out_1
                                                         , 'vdd' : self.vdd
                                                         , 'vss' : self.vss
                                                         })
 
-        ############  COMMAND MULTIPLEXOR 1 xmkc_p[0] or xmkc_p[1] ############
-        self.instances['or2_1']         = Inst ( 'or2_1', 'inst'
-                                                , map = { 'i0'  : self.xmkc_p[1]
-                                                         , 'i1'  : self.xmkc_p[0]
-                                                         , 'q'   : xmkc_command
-                                                         , 'vdd' : self.vdd
-                                                         , 'vss' : self.vss
-                                                         })
-
-
-        ############  MULTIPLEXOR 1 commanded by xmkc_p LAYER 1 ############
-        self.instances['n_xkc_p_mux_1'] = Inst( 'mux2_16b', 'n_xkc_p_mux_1'
-                                               , map = { 'cmd'  : xmkc_command
-                                                        , 'i0'  : xkc
-                                                        , 'i1'  : x_sra_7
-                                                        , 'q'   : n_xkc_p_mux_out_1
-                                                        , 'vdd' : self.vdd
-                                                        , 'vss' : self.vss
-                                                        })
         ############  ADDER/SUBBER 0 X  ############
         self.instances['x_adder_16_0']     = Inst ( 'adder_16', 'x_adder_16_0'
                                                    , map = { 'i0'       : n_xkc_p_mux_out_0
@@ -367,19 +371,15 @@ class Cordic_DP ( Model ):
                                                              , 'vss' : self.vss
                                                              })
 
-        self.instances['x_inv']              = Inst ( 'inv_16', 'x_inv'
-                                                      , map = { 'i0'  : xkc
-                                                              , 'nq'  : not_xkc
-                                                              , 'vdd' : self.vdd
-                                                              , 'vss' : self.vss
-                                                              })
-        self.instances['minus_xkc']         = Inst ( 'adder_16', 'minus_xkc'
-                                                   , map = { 'i0'       : not_xkc
-                                                            , 'i1'      : n_xkc_p_mux_out_1
-                                                            , 'add_sub' : one_1b
-                                                            , 'q'       : minus_xkc
-                                                            , 'c30'     : minus_xkc_signed_overflow_0
-                                                            , 'c31'     : minus_xkc_unsigned_overflow_0
+        
+        
+        self.instances['p_m_xkc']         = Inst ( 'adder_16', 'p_m_xkc'
+                                                   , map = { 'i0'       : zero_16b
+                                                            , 'i1'      : xkc
+                                                            , 'add_sub' : self.E
+                                                            , 'q'       : p_m_xkc
+                                                            , 'c30'     : p_m_xkc_signed_overflow_0
+                                                            , 'c31'     : p_m_xkc_unsigned_overflow_0
                                                             , 'vdd'     : self.vdd
                                                             , 'vss'     : self.vss
                                                             })
@@ -390,7 +390,7 @@ class Cordic_DP ( Model ):
         self.instances['x_adder_16_1']     = Inst ( 'adder_16', 'x_adder_16_1'
                                                    , map = { 'i0'       : x
                                                             , 'i1'      : y_sra_i
-                                                            , 'add_sub' : self.xcmd_p[1]#TODO
+                                                            , 'add_sub' : self.C0
                                                             , 'q'       : x_plus_minus_y_sra_i
                                                             , 'c30'     : x_signed_overflow_1
                                                             , 'c31'     : x_unsigned_overflow_1
@@ -398,6 +398,52 @@ class Cordic_DP ( Model ):
                                                             , 'vss'     : self.vss
                                                             })
 
+        ############  OUTPUT MUX 5 TO 1 GIVE nx  ############
+        ############  OUTPUT MULTI LAYER OF MUX2  ############
+        self.instances['nx_mux_2_1_layer0_A']   = Inst( 'mux2_16b', 'nx_mux_2_1_layer0_A'
+                                                      , map = { 'cmd'  : self.A
+                                                               , 'i0'  : x
+                                                               , 'i1'  : X##TODO trouver comment générer la pseudo-constante X <= x7|x|0000000 et la sortie nx_p du circuit nx_p <=  x(14 downto 7); 
+                                                               , 'q'   : nx_internal_mux0_A
+                                                               , 'vdd' : self.vdd
+                                                               , 'vss' : self.vss
+                                                               })
+                                                               
+        self.instances['nx_mux_2_1_layer1_B']   = Inst( 'mux2_16b', 'nx_mux_2_1_layer0_B'
+                                                      , map = { 'cmd'  : self.B
+                                                               , 'i0'  : p_m_xkc
+                                                               , 'i1'  : p_m_ykc
+                                                               , 'q'   : nx_internal_mux1_B
+                                                               , 'vdd' : self.vdd
+                                                               , 'vss' : self.vss
+                                                               })
+
+        self.instances['nx_mux_2_1_layer1_C']   = Inst( 'mux2_16b', 'nx_mux_2_1_layer0_C'
+                                                      , map = { 'cmd'  : self.C
+                                                               , 'i0'  : x_plus_minus_y_sra_i
+                                                               , 'i1'  : nx_internal_mux0_A
+                                                               , 'q'   : nx_internal_mux1_C
+                                                               , 'vdd' : self.vdd
+                                                               , 'vss' : self.vss
+                                                               })
+
+        self.instances['nx_mux_2_1_layer2_D']   = Inst( 'mux2_16b', 'nx_mux_2_1_layer2_D'
+                                                      , map = { 'cmd'  : self.D
+                                                               , 'i0'  : nx_internal_mux1_C
+                                                               , 'i1'  : nx_internal_mux1_B
+                                                               , 'q'   : n_x
+                                                               , 'vdd' : self.vdd
+                                                               , 'vss' : self.vss
+                                                               })
+
+        self.instances['x_register']      = Inst ( 'sff_16', 'x_register'
+                                                    , map = { "wen" : self.ck
+                                                             , "ck"  : self.ck
+                                                             , "i0"  : n_x
+                                                             ,  "q"  : x
+                                                             , 'vdd' : self.vdd
+                                                             , 'vss' : self.vss
+                                                             })
 
         ############  MULTIPLEXOR BEFORE ADD FOR N_YKC ############
         ############  (before n_ykc_p_mux_0) MULTIPLEXOR commanded by ymkc_p LAYER 0 ############
