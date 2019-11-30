@@ -3,7 +3,7 @@
 
 - Compte rendu
   - [1. TP1 : Dessin de cellule ](tp1/tp1_CR.md)
-  - [2. TP2 : Synthèse d'automate avec Alliance ](tp2/tp2_CR.md)
+  - [2. TP2 : Synthèse d'automate avec Alliance ](tp2/TP2_FABRE_SEKOURI.md)
   - [3. TP3](tp3/tp3_CR.md)
   - [4. TP4](tp4/tp4_CR.md)
   - [5. TP5](tp5/tp5_CR.md)
