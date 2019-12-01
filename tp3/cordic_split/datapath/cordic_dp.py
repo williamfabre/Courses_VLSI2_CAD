@@ -16,10 +16,10 @@ class Cordic_DP ( Model ):
         self.nx_p       = SignalOut( 'nx_p',   8 )
         self.ny_p       = SignalOut( 'ny_p',   8 )
 
-        self.xmkc_p     = SignalIn( 'xmkc_p', 2 )
-        self.ymkc_p     = SignalIn( 'ymkc_p', 2 )
-        self.xcmd_p     = SignalIn( 'xcmd_p', 4 )
-        self.ycmd_p     = SignalIn( 'ycmd_p', 4 )
+        #self.xmkc_p     = SignalIn( 'xmkc_p', 2 )
+        #self.ymkc_p     = SignalIn( 'ymkc_p', 2 )
+        #self.xcmd_p     = SignalIn( 'xcmd_p', 4 )
+        #self.ycmd_p     = SignalIn( 'ycmd_p', 4 )
         self.i_p        = SignalIn( 'i_p',    4 )
         self.CMD_n_0            = SignalIn( 'A',      1 )
         self.CMD_n_1_1          = SignalIn( 'B',      1 )
@@ -42,6 +42,7 @@ class Cordic_DP ( Model ):
 
     def Netlist ( self ):
         print 'Cordic_DP.Netlist()'
+        #######################################################################
         # MASTER CELL
         #######################################################################
         Generate( 'DpgenNmux2'  ,  'nmux2_16b'  , param={'nbit':16,     'behavioral':True,'physical':True,'flags':0} )
@@ -50,44 +51,78 @@ class Cordic_DP ( Model ):
         Generate( 'DpgenOr2'    , 'or2_1'       , param={'nbit': 1,     'physical' : True })
         Generate ( 'DpgenAdsb2f', 'adder_16'    , param={'nbit': 16,   'physical' : True })
         Generate ( 'DpgenConst' , 'zero_16b'    , param={'nbit': 16,   'const': "0x0000" , 'physical' : True })
+        Generate ( 'DpgenConst' , 'zero_7b'     , param={'nbit': 7,     'const' : "0b0000000" , 'physical' : True })
         Generate ( 'DpgenConst' , 'zero_1b'     , param={'nbit': 1,     'const' : "0b0" , 'physical' : True })
         Generate ( 'DpgenConst' , 'one_1b'      , param={'nbit': 1,     'const' : "0b1" , 'physical' : True })
         Generate ( 'DpgenSff'   , 'sff_16'      , param={'nbit': 16, 'physical' : True })
         Generate ( 'DpgenInv'   , 'inv_16'      , param={'nbit': 16, 'physical' : True })
+        #######################################################################
+
+        #######################################################################
         # LISTE DES INSTANCES
         #######################################################################
         self.instances = {}
         #######################################################################
 
-        # SIGNALS 
-        ## CONSTANT SIGNALS
-        zero_16b            = Signal( 'zero_16b',       16 )
-        zero_7b             = Signal( 'zero_7b' ,        7 )
-        zero_1b             = Signal( 'zero_1b',         1 )
-        one_1b              = Signal( 'one_1b',          1 )
-        ############  VALUE 0 ############
         #######################################################################
-        self.instances['zero_16b'] = Inst( 'zero_16b', 'zero_16b'
-                                          , map = { 'q'   : zero_16b
+        ############################## SIGNALS ################################
+        #######################################################################
+        ######################### CONSTANT SIGNALS ############################
+        #######################################################################
+        zero_16b_0_x        = Signal( 'zero_16b_0_x',    16 )
+        zero_16b_1_x        = Signal( 'zero_16b_1_x',    16 )
+        zero_16b_0_y        = Signal( 'zero_16b_0_y',    16 )
+        zero_16b_1_y        = Signal( 'zero_16b_1_y',    16 )
+        zero_7b_x           = Signal( 'zero_7b_x' ,       7 )
+        zero_7b_y           = Signal( 'zero_7b_y' ,       7 )
+        zero_1b_x           = Signal( 'zero_1b_x',        1 )
+        zero_1b_y           = Signal( 'zero_1b_y',        1 )
+        #one_1b              = Signal( 'one_1b',          1 )
+        self.instances['zero_16b_0_x'] = Inst( 'zero_16b', 'zero_16b_0_x'
+                                          , map = { 'q'   : zero_16b_0_x
                                                    , 'vdd' : self.vdd
                                                    , 'vss' : self.vss
                                                    } )
-        self.instances['zero_1b'] = Inst( 'zero_1b', 'zero_1b'
-                                         , map = { 'q'   : zero_1b
+        self.instances['zero_16b_1_x'] = Inst( 'zero_16b', 'zero_16b_1_x'
+                                          , map = { 'q'   : zero_16b_1_x
+                                                   , 'vdd' : self.vdd
+                                                   , 'vss' : self.vss
+                                                   } )
+        self.instances['zero_16b_0_y'] = Inst( 'zero_16b', 'zero_16b_0_y'
+                                          , map = { 'q'   : zero_16b_0_y
+                                                   , 'vdd' : self.vdd
+                                                   , 'vss' : self.vss
+                                                   } )
+        self.instances['zero_16b_1_y'] = Inst( 'zero_16b', 'zero_16b_1_y'
+                                          , map = { 'q'   : zero_16b_1_y
+                                                   , 'vdd' : self.vdd
+                                                   , 'vss' : self.vss
+                                                   } )
+        self.instances['zero_7b_x'] = Inst( 'zero_7b', 'zero_7b_x'
+                                         , map = { 'q'   : zero_7b_x
                                                   , 'vdd' : self.vdd
                                                   , 'vss' : self.vss
                                                   } )
+        self.instances['zero_1b_x'] = Inst( 'zero_1b', 'zero_1b_x'
+                                         , map = { 'q'   : zero_1b_x
+                                                  , 'vdd' : self.vdd
+                                                  , 'vss' : self.vss
+                                                  } )
+        # self.instances['one_1b'] = Inst( 'one_1b', 'one_1b'
+        #                                  , map = { 'q'   : one_1b
+        #                                           , 'vdd' : self.vdd
+        #                                           , 'vss' : self.vss
+        #                                           } )
         #######################################################################
-
-        ## DEPENDENCY SIGNALS
-        pm_xkc              = Signal( 'pm_xkc',             16 )
-        pm_ykc              = Signal( 'pm_ykc',             16 )
-        x_sra_i             = Signal( 'x_sra_i'  ,      16 )
-        y_sra_i             = Signal( 'y_sra_i'  ,      16 )
-        ##
-
-
-        ## x_sra_i SIGNALS
+        ########################## DEPENDENCY SIGNALS #########################
+        #######################################################################
+        pm_xkc              = Signal( 'pm_xkc'  ,      16 )
+        pm_ykc              = Signal( 'pm_ykc'  ,      16 )
+        x_sra_i             = Signal( 'x_sra_i' ,      16 )
+        y_sra_i             = Signal( 'y_sra_i' ,      16 )
+        #######################################################################
+        ########################## x_sra_i SIGNALS ############################
+        #######################################################################
         x                   = Signal( 'x',              16 )
         ### shift_cat
         x_sra_1             = Signal( 'x_sra_1',        16 )
@@ -106,16 +141,18 @@ class Cordic_DP ( Model ):
         x_sra_7.Alias( Cat( x[15],x[15],x[15],x[15],x[15],x[15],x[15],x[15:7] ) )
         ### X7_x_0 cat_SIGNALS
         X7_x_0              = Signal( 'X7_x_0',         16 )
-        X7_x_0.Alias( Cat( x[7],x,zero_7b ) )
-
-        ############  SHIFTER X ############
+        X7_x_0.Alias( Cat( x[7],x,zero_7b_x ) )
         #######################################################################
-        ## x_sra_0_j SIGNALS //first stage of x_sra MUX : x_sra_0_j 
+
+        #######################################################################
+        ############################## SHIFTER X ##############################
+        #######################################################################
+        ######################## MULTIPLEXOR X LAYER 1 ########################
+        ####### x_sra_0_j SIGNALS//first stage of x_sra MUX : x_sra_0_j #######
         x_sra_0_0           = Signal( 'x_sra_0_0',      16 )
         x_sra_0_1           = Signal( 'x_sra_0_1',      16 )
         x_sra_0_2           = Signal( 'x_sra_0_2',      16 )
         x_sra_0_3           = Signal( 'x_sra_0_3',      16 )
-        ############  MULTIPLEXOR X LAYER 1 ############
         self.instances['x_sra_0_0'] = Inst( 'nmux2_16b', 'x_sra_0_0'
                                            , map = { 'cmd' : self.i_p[0]
                                                     , 'i0'  : x
@@ -134,27 +171,27 @@ class Cordic_DP ( Model ):
                                                     , 'vss' : self.vss
                                                     } )
 
-        self.instances['x_sra_0_3'] = Inst( 'nmux2_16b', 'x_sra_0_3'
+        self.instances['x_sra_0_2'] = Inst( 'nmux2_16b', 'x_sra_0_2'
                                            , map = { 'cmd' : self.i_p[0]
                                                     , 'i0'  : x_sra_4
                                                     , 'i1'  : x_sra_5
-                                                    , 'nq'  : x_sra_0_3
+                                                    , 'nq'  : x_sra_0_2
                                                     , 'vdd' : self.vdd
                                                     , 'vss' : self.vss
                                                     } )
 
-        self.instances['x_sra_0_4'] = Inst( 'nmux2_16b', 'x_sra_0_4'
+        self.instances['x_sra_0_3'] = Inst( 'nmux2_16b', 'x_sra_0_3'
                                            , map = { 'cmd' : self.i_p[0]
                                                     , 'i0'  : x_sra_6
                                                     , 'i1'  : x_sra_7
-                                                    , 'nq'  : x_sra_0_4
+                                                    , 'nq'  : x_sra_0_3
                                                     , 'vdd' : self.vdd
                                                     , 'vss' : self.vss
                                                     } )
-        ## x_sra_1_k SIGNALS //second stage of x_sra MUX : x_sra_0_j
+        ######################## MULTIPLEXOR X LAYER 2 ########################
+        ###### x_sra_1_k SIGNALS //second stage of x_sra MUX : x_sra_0_j ######
         x_sra_1_0           = Signal( 'x_sra_1_0',      16 )
         x_sra_1_1           = Signal( 'x_sra_1_1',      16 )
-        ############  MULTIPLEXOR X LAYER 2 ############
         self.instances['x_sra_1_0'] = Inst( 'nmux2_16b', 'x_sra_1_0'
                                            , map = { 'cmd' : self.i_p[1]
                                                     , 'i0'  : x_sra_0_0
@@ -166,15 +203,15 @@ class Cordic_DP ( Model ):
 
         self.instances['x_sra_1_1'] = Inst( 'nmux2_16b', 'x_sra_1_1'
                                            , map = { 'cmd' : self.i_p[1]
-                                                    , 'i0'  : x_sra_0_3
-                                                    , 'i1'  : x_sra_0_4
+                                                    , 'i0'  : x_sra_0_2
+                                                    , 'i1'  : x_sra_0_3
                                                     , 'nq'  : x_sra_1_1
                                                     , 'vdd' : self.vdd
                                                     , 'vss' : self.vss
                                                     } )
-        ## x_sra_i SIGNALS //last stage of x_sra MUX : x_sra_0_j
+        ######################## MULTIPLEXOR X LAYER 2 ########################
+        ######## x_sra_i SIGNALS //last stage of x_sra MUX : x_sra_0_j ########
         #DEPENDENCY# x_sra_i             = Signal( 'x_sra_i'  ,      16 )
-        ############  MULTIPLEXOR X LAYER 3 ###########
         self.instances['x_sra_i'] = Inst( 'mux2_16b', 'x_sra_i'
                                          , map = { 'cmd' : self.i_p[2]
                                                   , 'i0'  : x_sra_1_0
@@ -196,7 +233,7 @@ class Cordic_DP ( Model ):
         self.instances['xkc_post0_adder_0'] = Inst( 'nmux2_16b', 'xkc_post0_adder_0'
                                                       , map = { 'cmd'  : self.CMD_post0_adder_0
                                                                , 'i0'  : x_sra_1
-                                                               , 'i1'  : zero_16b
+                                                               , 'i1'  : zero_16b_0_x
                                                                , 'nq'  : xkc_post0_adder_0
                                                                , 'vdd' : self.vdd
                                                                , 'vss' : self.vss
@@ -242,7 +279,7 @@ class Cordic_DP ( Model ):
         self.instances['xkc_adder']     = Inst ( 'adder_16', 'xkc_adder'
                                                    , map = { 'i0'       : xkc_post0_adder
                                                             , 'i1'      : xkc_post1_adder
-                                                            , 'add_sub' : zero_16b
+                                                            , 'add_sub' : zero_1b_x
                                                             , 'q'       : n_xkc
                                                             , 'c30'     : n_xkc_signed_overflow_0
                                                             , 'c31'     : n_xkc_unsigned_overflow_0
@@ -263,10 +300,10 @@ class Cordic_DP ( Model ):
         ######################################################################
         ################################ pm BLOCK ############################BEGIN
         #!# pm_xkc              = Signal( 'pm_xkc',             16 )
-        pm_xkc_signed_overflow_0        = Signal( 'n_xkc_signed_overflow_0',    16 )
-        pm_xkc_unsigned_overflow_0      = Signal( 'n_xkc_unsigned_overflow_0',  16 )
-        self.instances['pm_xkc']        = Inst ( 'adder_16', 'pm_xkc'
-                                                   , map = { 'i0'       : zero_16b
+        pm_xkc_signed_overflow_0        = Signal( 'pm_xkc_signed_overflow_0',    16 )
+        pm_xkc_unsigned_overflow_0      = Signal( 'pm_xkc_unsigned_overflow_0',  16 )
+        self.instances['adder_pm_xkc']        = Inst ( 'adder_16', 'adder_pm_xkc'
+                                                   , map = { 'i0'       : zero_16b_1_x
                                                             , 'i1'      : xkc
                                                             , 'add_sub' : self.CMD_adder_pm_xkc
                                                             , 'q'       : pm_xkc
@@ -351,13 +388,17 @@ class Cordic_DP ( Model ):
 ######################################################################################
 ######################################################################################
 ######################################################################################
+######################################################################################
+######################################################################################
 
 #######################################BEGIN Y DATAPATH###############################
 
 
 
 
-## y_sra_i SIGNALS
+        #######################################################################
+        ########################## y_sra_i SIGNALS ############################
+        #######################################################################
         y                   = Signal( 'y',              16 )
         ### shift_cat
         y_sra_1             = Signal( 'y_sra_1',        16 )
@@ -375,17 +416,19 @@ class Cordic_DP ( Model ):
         y_sra_7             = Signal( 'y_sra_7',        16 )
         y_sra_7.Alias( Cat( y[15],y[15],y[15],y[15],y[15],y[15],y[15],y[15:7] ) )
         ### Y7_y_0 cat_SIGNALS
-        Y7_y_0              = Signal( 'y7_y_0',         16 )
-        Y7_y_0.Alias( Cat( y[7],y,zero_7b ) )
-
-        ############  SHIFTER y ############
+        Y7_y_0              = Signal( 'Y7_y_0',         16 )
+        Y7_y_0.Alias( Cat( y[7],y,zero_7b_y ) )
         #######################################################################
-        ## y_sra_0_j SIGNALS //first stage of y_sra MUX : y_sra_0_j 
+
+        #######################################################################
+        ############################## SHIFTER Y ##############################
+        #######################################################################
+        ######################## MULTIPLEXOR Y LAYER 1 ########################
+        ####### y_sra_0_j SIGNALS//first stage of y_sra MUX : y_sra_0_j #######
         y_sra_0_0           = Signal( 'y_sra_0_0',      16 )
         y_sra_0_1           = Signal( 'y_sra_0_1',      16 )
         y_sra_0_2           = Signal( 'y_sra_0_2',      16 )
         y_sra_0_3           = Signal( 'y_sra_0_3',      16 )
-        ############  MULTIPLEXOR Y LAYER 1 ############
         self.instances['y_sra_0_0'] = Inst( 'nmux2_16b', 'y_sra_0_0'
                                            , map = { 'cmd' : self.i_p[0]
                                                     , 'i0'  : y
@@ -404,27 +447,27 @@ class Cordic_DP ( Model ):
                                                     , 'vss' : self.vss
                                                     } )
 
-        self.instances['y_sra_0_3'] = Inst( 'nmux2_16b', 'y_sra_0_3'
+        self.instances['y_sra_0_2'] = Inst( 'nmux2_16b', 'y_sra_0_2'
                                            , map = { 'cmd' : self.i_p[0]
                                                     , 'i0'  : y_sra_4
                                                     , 'i1'  : y_sra_5
-                                                    , 'nq'  : y_sra_0_3
+                                                    , 'nq'  : y_sra_0_2
                                                     , 'vdd' : self.vdd
                                                     , 'vss' : self.vss
                                                     } )
 
-        self.instances['y_sra_0_4'] = Inst( 'nmux2_16b', 'y_sra_0_4'
+        self.instances['y_sra_0_3'] = Inst( 'nmux2_16b', 'y_sra_0_3'
                                            , map = { 'cmd' : self.i_p[0]
                                                     , 'i0'  : y_sra_6
                                                     , 'i1'  : y_sra_7
-                                                    , 'nq'  : y_sra_0_4
+                                                    , 'nq'  : y_sra_0_3
                                                     , 'vdd' : self.vdd
                                                     , 'vss' : self.vss
                                                     } )
-        ## y_sra_1_k SIGNALS //second stage of y_sra MUX : y_sra_0_j
+        ######################## MULTIPLEXOR X LAYER 2 ########################
+        ###### y_sra_1_k SIGNALS //second stage of y_sra MUX : y_sra_0_j ######
         y_sra_1_0           = Signal( 'y_sra_1_0',      16 )
         y_sra_1_1           = Signal( 'y_sra_1_1',      16 )
-        ############  MULTIPLEXOR y LAYER 2 ############
         self.instances['y_sra_1_0'] = Inst( 'nmux2_16b', 'y_sra_1_0'
                                            , map = { 'cmd' : self.i_p[1]
                                                     , 'i0'  : y_sra_0_0
@@ -436,15 +479,15 @@ class Cordic_DP ( Model ):
 
         self.instances['y_sra_1_1'] = Inst( 'nmux2_16b', 'y_sra_1_1'
                                            , map = { 'cmd' : self.i_p[1]
-                                                    , 'i0'  : y_sra_0_3
-                                                    , 'i1'  : y_sra_0_4
+                                                    , 'i0'  : y_sra_0_2
+                                                    , 'i1'  : y_sra_0_3
                                                     , 'nq'  : y_sra_1_1
                                                     , 'vdd' : self.vdd
                                                     , 'vss' : self.vss
                                                     } )
-        ## y_sra_i SIGNALS //last stage of y_sra MUX : y_sra_0_j
+        ######################## MULTIPLEXOR X LAYER 2 ########################
+        ######## y_sra_i SIGNALS //last stage of y_sra MUX : y_sra_0_j ########
         #DEPENDENCY# y_sra_i             = Signal( 'y_sra_i'  ,      16 )
-        ############  MULTIPLEXOR y LAYER 3 ###########
         self.instances['y_sra_i'] = Inst( 'mux2_16b', 'y_sra_i'
                                          , map = { 'cmd' : self.i_p[2]
                                                   , 'i0'  : y_sra_1_0
@@ -466,7 +509,7 @@ class Cordic_DP ( Model ):
         self.instances['ykc_post0_adder_0'] = Inst( 'nmux2_16b', 'ykc_post0_adder_0'
                                                       , map = { 'cmd'  : self.CMD_post0_adder_0
                                                                , 'i0'  : y_sra_1
-                                                               , 'i1'  : zero_16b
+                                                               , 'i1'  : zero_16b_0_y
                                                                , 'nq'  : ykc_post0_adder_0
                                                                , 'vdd' : self.vdd
                                                                , 'vss' : self.vss
@@ -505,21 +548,21 @@ class Cordic_DP ( Model ):
                                                                })
         ######################################################################END ykc_post1_adder
 
-        ############  ADDER/SUBBER 0 X  ############
+        ############  ADDER/SUBBER 0 Y  ############
         n_ykc               = Signal( 'n_ykc',              16 )
         n_ykc_signed_overflow_0         = Signal( 'n_ykc_signed_overflow_0',    16 )
         n_ykc_unsigned_overflow_0       = Signal( 'n_ykc_unsigned_overflow_0',  16 )
         self.instances['ykc_adder']     = Inst ( 'adder_16', 'ykc_adder'
                                                    , map = { 'i0'       : ykc_post0_adder
                                                             , 'i1'      : ykc_post1_adder
-                                                            , 'add_sub' : zero_16b
+                                                            , 'add_sub' : zero_1b_y
                                                             , 'q'       : n_ykc
                                                             , 'c30'     : n_ykc_signed_overflow_0
                                                             , 'c31'     : n_ykc_unsigned_overflow_0
                                                             , 'vdd'     : self.vdd
                                                             , 'vss'     : self.vss
                                                             })
-        ############  REGISTER AFTER ADDER/SUBBER 0 X  ############
+        ############  REGISTER AFTER ADDER/SUBBER 0 Y  ############
         self.instances['ykc_reg']       = Inst ( 'sff_16', 'ykc_reg'
                                                     , map = { "wen" : self.ck
                                                              , "ck"  : self.ck
@@ -533,10 +576,10 @@ class Cordic_DP ( Model ):
         ######################################################################
         ################################ pm BLOCK ############################BEGIN
         #!# pm_ykc              = Signal( 'pm_ykc',             16 )
-        pm_ykc_signed_overflow_0        = Signal( 'n_ykc_signed_overflow_0',    16 )
-        pm_ykc_unsigned_overflow_0      = Signal( 'n_ykc_unsigned_overflow_0',  16 )
-        self.instances['pm_ykc']        = Inst ( 'adder_16', 'pm_ykc'
-                                                   , map = { 'i0'       : zero_16b
+        pm_ykc_signed_overflow_0        = Signal( 'pm_ykc_signed_overflow_0',    16 )
+        pm_ykc_unsigned_overflow_0      = Signal( 'pm_ykc_unsigned_overflow_0',  16 )
+        self.instances['adder_pm_ykc']        = Inst ( 'adder_16', 'adder_pm_ykc'
+                                                   , map = { 'i0'       : zero_16b_1_y
                                                             , 'i1'      : ykc
                                                             , 'add_sub' : self.CMD_adder_pm_ykc
                                                             , 'q'       : pm_ykc
@@ -551,7 +594,7 @@ class Cordic_DP ( Model ):
         y_pm_x_sra_i_unsigned_overflow_0      = Signal( 'y_pm_x_sra_i_unsigned_overflow_0',  16 )
         self.instances['adder_y_pm_x_sra_i']        = Inst ( 'adder_16', 'adder_y_pm_x_sra_i'
                                                    , map = { 'i0'       : y
-                                                            , 'i1'      : y_sra_i
+                                                            , 'i1'      : x_sra_i
                                                             , 'add_sub' : self.CMD_adder_y_pm_x_sra_i
                                                             , 'q'       : y_pm_x_sra_i
                                                             , 'c30'     : y_pm_x_sra_i_signed_overflow_0
@@ -569,7 +612,7 @@ class Cordic_DP ( Model ):
                                          , map = { 'cmd' : self.CMD_n_0
                                                   , 'i0'  : y
                                                   , 'i1'  : Y7_y_0
-                                                  , 'q'   : n_y_0 # pas nq
+                                                  , 'q'   : ny_0 # pas nq
                                                   , 'vdd' : self.vdd
                                                   , 'vss' : self.vss
                                                   } )
@@ -605,7 +648,7 @@ class Cordic_DP ( Model ):
         ######################################################################END NY STAGES SHIFTER
 
         ######################################################################
-        ############################### Y REG ################################
+        ############################### X REG ################################
         self.instances['y_reg']       = Inst ( 'sff_16', 'y_reg'
                                                     , map = { "wen" : self.ck
                                                              , "ck"  : self.ck
@@ -615,6 +658,8 @@ class Cordic_DP ( Model ):
                                                              , 'vss' : self.vss
                                                              })
         ######################################################################END Y REG
+
+#######################################END Y DATAPATH#################################
 
 
 
@@ -632,9 +677,59 @@ class Cordic_DP ( Model ):
         print 'Cordic_DP.Layout()'
 
         # X processing.
-        Place     ( self.instances['zero_16b'        ], NOSYM, XY( 0, 0 ) )
-        PlaceRight( self.instances['x_sra_0_0'       ], NOSYM )
-
+        Place     ( self.instances['x_sra_0_0'        ], NOSYM, XY( 0, 0 ) )
+        PlaceRight( self.instances['zero_16b_0_x'     ], NOSYM )
+        PlaceRight( self.instances['xkc_post0_adder_0'       ], NOSYM )
+        PlaceRight( self.instances['x_reg'       ], SYM_X )
+        PlaceRight( self.instances['n_x'       ], SYM_X )
+        PlaceRight( self.instances['n_x_1_0'       ], SYM_X )
+        PlaceRight( self.instances['n_x_0'       ], SYM_X )
+        PlaceRight( self.instances['zero_7b_x'       ], SYM_X )
+        SetRefIns ( self.instances['x_sra_0_0'] )
+        PlaceBottom( self.instances['x_sra_0_1'], NOSYM )
+        PlaceRight( self.instances['x_sra_1_0'], NOSYM )
+        PlaceRight( self.instances['xkc_post0_adder_1'], NOSYM )
+        PlaceRight( self.instances['xkc_post0_adder'], NOSYM )
+        PlaceRight( self.instances['zero_1b_x'], NOSYM )
+        PlaceRight( self.instances['zero_16b_1_x'], NOSYM )
+        PlaceRight( self.instances['n_x_1_1'       ], SYM_X )
+        PlaceRight( self.instances['adder_x_pm_y_sra_i'       ], SYM_X )
+        SetRefIns ( self.instances['x_sra_0_1'] )
+        PlaceBottom( self.instances['x_sra_0_2'], NOSYM )
+        PlaceRight( self.instances['x_sra_1_1'], NOSYM )
+        PlaceRight( self.instances['x_sra_i'], NOSYM )
+        PlaceRight( self.instances['xkc_post1_adder'], NOSYM )
+        PlaceRight( self.instances['xkc_adder'], NOSYM )
+        PlaceRight( self.instances['xkc_reg'], NOSYM )
+        PlaceRight( self.instances['adder_pm_xkc'], NOSYM )
+        PlaceRight( self.instances['y_sra_0_3'], SYM_X )
+        SetRefIns ( self.instances['x_sra_0_2'] )
+        PlaceBottom( self.instances['x_sra_0_3'], NOSYM )
+        PlaceRight( self.instances['adder_pm_ykc'       ], SYM_X )
+        PlaceRight( self.instances['ykc_reg'       ], SYM_X )
+        PlaceRight( self.instances['ykc_adder'       ], SYM_X )
+        PlaceRight( self.instances['ykc_post1_adder'       ], SYM_X )
+        PlaceRight( self.instances['y_sra_i'       ], SYM_X )
+        PlaceRight( self.instances['y_sra_1_1'       ], SYM_X )
+        PlaceRight( self.instances['y_sra_0_2'       ], SYM_X )
+        SetRefIns ( self.instances['x_sra_0_3'] )
+        PlaceBottom( self.instances['adder_y_pm_x_sra_i'], NOSYM )
+        PlaceRight( self.instances['n_y_1_1'       ], NOSYM )
+        PlaceRight( self.instances['zero_16b_1_y'       ], SYM_X )
+        PlaceRight( self.instances['zero_1b_y'       ], SYM_X )
+        PlaceRight( self.instances['xkc_post0_adder'       ], SYM_X )
+        PlaceRight( self.instances['ykc_post0_adder_1'       ], SYM_X )
+        PlaceRight( self.instances['y_sra_1_0'       ], SYM_X )
+        PlaceRight( self.instances['y_sra_0_1'       ], SYM_X )
+        SetRefIns ( self.instances['adder_y_pm_x_sra_i'] )
+        PlaceBottom( self.instances['zero_7b_y'], NOSYM )
+        PlaceRight( self.instances['n_y_0'       ], NOSYM )
+        PlaceRight( self.instances['n_y_1_0'       ], NOSYM )
+        PlaceRight( self.instances['n_y'       ], NOSYM )
+        PlaceRight( self.instances['y_reg'       ], NOSYM )
+        PlaceRight( self.instances['ykc_post0_adder_0'       ], NOSYM )
+        PlaceRight( self.instances['zero_16b_0_y'       ], SYM_X )
+        PlaceRight( self.instances['y_sra_0_0'       ], SYM_X )
         # Layout a completer.
         # ...
 
