@@ -10,25 +10,19 @@ PORT(
     rd_nxy_p    : IN  std_logic;
     rok_nxy_p   : OUT std_logic;
 
-    get_p	: OUT std_logic;
-    calc_p	: OUT std_logic;
-    mkc_p	: OUT std_logic;
-    place_p	: OUT std_logic;
-    a_lt_0_p    : OUT std_logic;
-    quadrant_p  : OUT std_logic_vector(1 DOWNTO 0);
     i_p         : OUT std_logic_vector(2 DOWNTO 0);
-	CMD_n_0		: OUT std_logic;
-	CMD_n_1_1	: OUT std_logic;
-	CMD_n_1_0	: OUT std_logic;
-	CMD_n		: OUT std_logic;
-	CMD_adder_pm_xkc		: OUT std_logic;
-	CMD_adder_pm_ykc		: OUT std_logic;
-	CMD_post0_adder_1		: OUT std_logic;
-	CMD_post0_adder		: OUT std_logic;
-	CMD_post0_adder_0		: OUT std_logic;
-	CMD_post1_adder		: OUT std_logic;
-	CMD_adder_x_pm_y_sra_i		: OUT std_logic;
-	CMD_adder_y_pm_x_sra_i		: OUT std_logic
+	cmd_n_0		: OUT std_logic;
+	cmd_n_1_1	: OUT std_logic;
+	cmd_n_1_0	: OUT std_logic;
+	cmd_n		: OUT std_logic;
+	cmd_adder_pm_xkc		: OUT std_logic;
+	cmd_adder_pm_ykc		: OUT std_logic;
+	cmd_post0_adder_1		: OUT std_logic;
+	cmd_post0_adder			: OUT std_logic;
+	cmd_post0_adder_0		: OUT std_logic;
+	cmd_post1_adder			: OUT std_logic;
+	cmd_adder_x_pm_y_sra_i	: OUT std_logic;
+	cmd_adder_y_pm_x_sra_i	: OUT std_logic
 );
 END cordic_ctl;
 
@@ -171,27 +165,27 @@ BEGIN
 	-- Combinatoire de controle
 
 	-- Pour x
-	CMD_adder_pm_xkc = quadrant_p(1) AND NOT(quadrant_p(0)); --NB : quadrant_p(1) suffit sans le "AND NOT..."
-	CMD_n_0 = init;
-	CMD_n_1_1 = place_p AND quadrant_p(0) --( ( quadrant_p(0) AND (NOT(quadrant_p)) ) OR ( quadrant_p(1) AND quadrant_p(0) ) ); -- Q_p = 1 OR Q_p = 3 <==> 
-	CMD_n_1_0 = put OR init;
-	CMD_n = place_p;
+	cmd_adder_pm_xkc = quadrant_p(1) AND NOT(quadrant_p(0)); --NB : quadrant_p(1) suffit sans le "AND NOT..."
+	cmd_n_0 = init;
+	cmd_n_1_1 = place_p AND quadrant_p(0) --( ( quadrant_p(0) AND (NOT(quadrant_p)) ) OR ( quadrant_p(1) AND quadrant_p(0) ) ); -- Q_p = 1 OR Q_p = 3 <==> 
+	cmd_n_1_0 = put OR init;
+	cmd_n = place_p;
 
-	CMD_adder_x_pm_y_sra_i = NOT(a_lt_0_p);
+	cmd_adder_x_pm_y_sra_i = NOT(a_lt_0_p);
 
 	-- Pour y
 
-	CMD_adder_pm_xkc = quadrant_p(1) XOR quadrant_p(0);
+	cmd_adder_pm_xkc = quadrant_p(1) XOR quadrant_p(0);
 	--Pour le mux de sortie donant ny, on reprend les commandes A,B,C et D
 	
-	CMD_adder_y_pm_x_sra_i = a_lt_0_p;
+	cmd_adder_y_pm_x_sra_i = a_lt_0_p;
 
 	-- Pour x et y
 
-	CMD_post0_adder_1 = mkc_p AND i(0);
-	CMD_post0_adder = mkc_p AND ( i(2) OR i(1) );
-	CMD_post0_adder_0 = mkc_p AND ( i(2) OR i(0) );
-	CMD_post1_adder = mkc_p AND ( i(2) OR i(1) OR i(0) );
+	cmd_post0_adder_1 = mkc_p AND i(0);
+	cmd_post0_adder = mkc_p AND ( i(2) OR i(1) );
+	cmd_post0_adder_0 = mkc_p AND ( i(2) OR i(0) );
+	cmd_post1_adder = mkc_p AND ( i(2) OR i(1) OR i(0) );
 
 
 
