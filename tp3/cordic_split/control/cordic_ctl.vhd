@@ -105,13 +105,13 @@ BEGIN
     wok_axy_p   <= get;
     rok_nxy_p   <= put;
 
-    get_p       <= get;
-    calc_p      <= calc;
-    mkc_p       <= mkc;
-    place_p     <= place;
+--    get_p       <= get;
+--    calc_p      <= calc;
+--    mkc_p       <= mkc;
+--    place_p     <= place;
     i_p         <= i;
-    quadrant_p  <= quadrant;
-    a_lt_0_p    <= a_lt_0;
+--    quadrant_p  <= quadrant;
+--    a_lt_0_p    <= a_lt_0;
     
 -------------------------------------------------------------------------------
 -- Compteurs de l'algorithme et calcul de l'angle de rotation@
@@ -165,27 +165,27 @@ BEGIN
 	-- Combinatoire de controle
 
 	-- Pour x
-	cmd_adder_pm_xkc = quadrant_p(1) AND NOT(quadrant_p(0)); --NB : quadrant_p(1) suffit sans le "AND NOT..."
-	cmd_n_0 = init;
-	cmd_n_1_1 = place_p AND quadrant_p(0) --( ( quadrant_p(0) AND (NOT(quadrant_p)) ) OR ( quadrant_p(1) AND quadrant_p(0) ) ); -- Q_p = 1 OR Q_p = 3 <==> 
-	cmd_n_1_0 = put OR init;
-	cmd_n = place_p;
+	cmd_adder_pm_xkc <= quadrant(1) AND NOT(quadrant(0)); --NB : quadrant_p(1) suffit sans le "AND NOT..."
+	cmd_n_0 <= get;
+	cmd_n_1_1 <= place AND quadrant(0); --( ( quadrant_p(0) AND (NOT(quadrant_p)) ) OR ( quadrant_p(1) AND quadrant_p(0) ) ); -- Q_p = 1 OR Q_p = 3 <==> 
+	cmd_n_1_0 <= put OR get;
+	cmd_n <= place;
 
-	cmd_adder_x_pm_y_sra_i = NOT(a_lt_0_p);
+	cmd_adder_x_pm_y_sra_i <= NOT(a_lt_0);
 
 	-- Pour y
 
-	cmd_adder_pm_xkc = quadrant_p(1) XOR quadrant_p(0);
+	cmd_adder_pm_xkc <= quadrant(1) XOR quadrant(0);
 	--Pour le mux de sortie donant ny, on reprend les commandes A,B,C et D
 	
-	cmd_adder_y_pm_x_sra_i = a_lt_0_p;
+	cmd_adder_y_pm_x_sra_i <= a_lt_0;
 
 	-- Pour x et y
 
-	cmd_post0_adder_1 = mkc_p AND i(0);
-	cmd_post0_adder = mkc_p AND ( i(2) OR i(1) );
-	cmd_post0_adder_0 = mkc_p AND ( i(2) OR i(0) );
-	cmd_post1_adder = mkc_p AND ( i(2) OR i(1) OR i(0) );
+	cmd_post0_adder_1 <= mkc AND i(0);
+	cmd_post0_adder <= mkc AND ( i(2) OR i(1) );
+	cmd_post0_adder_0 <= mkc AND ( i(2) OR i(0) );
+	cmd_post1_adder <= mkc AND ( i(2) OR i(1) OR i(0) );
 
 
 
