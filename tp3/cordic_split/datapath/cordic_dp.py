@@ -683,54 +683,54 @@ class Cordic_DP ( Model ):
         print 'Cordic_DP.Layout()'
 
         # X processing.
-        # Place     ( self.instances['x_sra_0_0'        ], NOSYM, XY( 0, 0 ) )
-        # PlaceRight( self.instances['zero_16b_0_x'     ], NOSYM )
-        # PlaceRight( self.instances['xkc_post0_adder_0'       ], NOSYM )
-        # PlaceRight( self.instances['x_reg'       ], SYM_X )
-        # PlaceRight( self.instances['n_x'       ], SYM_X )
-        # PlaceRight( self.instances['n_x_1_0'       ], SYM_X )
-        # PlaceRight( self.instances['n_x_0'       ], SYM_X )
-        # PlaceRight( self.instances['zero_7b_x'       ], SYM_X )
-        # PlaceRight( self.instances['x_sra_0_1'], NOSYM )
-        # PlaceRight( self.instances['x_sra_1_0'], NOSYM )
-        # PlaceRight( self.instances['xkc_post0_adder_1'], NOSYM )
-        # PlaceRight( self.instances['xkc_post0_adder'], NOSYM )
-        # PlaceRight( self.instances['zero_1b_x'], NOSYM )
-        # PlaceRight( self.instances['zero_16b_1_x'], NOSYM )
-        # PlaceRight( self.instances['n_x_1_1'       ], SYM_X )
-        # PlaceRight( self.instances['adder_x_pm_y_sra_i'       ], SYM_X )
-        # PlaceRight( self.instances['x_sra_0_2'], NOSYM )
-        # PlaceRight( self.instances['x_sra_1_1'], NOSYM )
-        # PlaceRight( self.instances['x_sra_i'], NOSYM )
-        # PlaceRight( self.instances['xkc_post1_adder'], NOSYM )
-        # PlaceRight( self.instances['n_xkc_adder'], NOSYM )
-        # PlaceRight( self.instances['xkc_reg'], NOSYM )
-        # PlaceRight( self.instances['adder_pm_xkc'], NOSYM )
-        # PlaceRight( self.instances['y_sra_0_3'], SYM_X )
-        # PlaceRight( self.instances['x_sra_0_3'], NOSYM )
-        # PlaceRight( self.instances['adder_pm_ykc'       ], SYM_X )
-        # PlaceRight( self.instances['ykc_reg'       ], SYM_X )
-        # PlaceRight( self.instances['ykc_adder'       ], SYM_X )
-        # PlaceRight( self.instances['ykc_post1_adder'       ], SYM_X )
-        # PlaceRight( self.instances['y_sra_i'       ], SYM_X )
-        # PlaceRight( self.instances['y_sra_1_1'       ], SYM_X )
-        # PlaceRight( self.instances['y_sra_0_2'       ], SYM_X )
-        # PlaceRight( self.instances['adder_y_pm_x_sra_i'], NOSYM )
-        # PlaceRight( self.instances['n_y_1_1'       ], NOSYM )
-        # PlaceRight( self.instances['zero_16b_1_y'       ], SYM_X )
-        # PlaceRight( self.instances['zero_1b_y'       ], SYM_X )
-        # PlaceRight( self.instances['ykc_post0_adder'       ], SYM_X )
-        # PlaceRight( self.instances['ykc_post0_adder_1'       ], SYM_X )
-        # PlaceRight( self.instances['y_sra_1_0'       ], SYM_X )
-        # PlaceRight( self.instances['y_sra_0_1'       ], SYM_X )
-        # PlaceRight( self.instances['zero_7b_y'], NOSYM )
-        # PlaceRight( self.instances['n_y_0'       ], NOSYM )
-        # PlaceRight( self.instances['n_y_1_0'       ], NOSYM )
-        # PlaceRight( self.instances['n_y'       ], NOSYM )
-        # PlaceRight( self.instances['y_reg'       ], NOSYM )
-        # PlaceRight( self.instances['ykc_post0_adder_0'       ], NOSYM )
-        # PlaceRight( self.instances['zero_16b_0_y'       ], SYM_X )
-        # PlaceRight( self.instances['y_sra_0_0'       ], SYM_X )
+	Place     ( self.instances['x_sra_0_0'        ], NOSYM, XY( 0, 0 ) )
+	PlaceRight( self.instances['zero_16b_0_x'     ], NOSYM )
+	PlaceRight( self.instances['xkc_post0_adder_0'       ], NOSYM )
+	PlaceRight( self.instances['x_reg'       ], SYM_X )
+	PlaceRight( self.instances['n_x'       ], SYM_X )
+	PlaceRight( self.instances['n_x_1_0'       ], SYM_X )
+	PlaceRight( self.instances['n_x_0'       ], SYM_X )
+	PlaceRight( self.instances['zero_7b_x'       ], SYM_X )
+	PlaceRight( self.instances['x_sra_0_1'], NOSYM )
+	PlaceRight( self.instances['x_sra_1_0'], NOSYM )
+	PlaceRight( self.instances['xkc_post0_adder_1'], NOSYM )
+	PlaceRight( self.instances['xkc_post0_adder'], NOSYM )
+	PlaceRight( self.instances['zero_1b_x'], NOSYM )
+	PlaceRight( self.instances['zero_16b_1_x'], NOSYM )
+	PlaceRight( self.instances['n_x_1_1'       ], SYM_X )
+	PlaceRight( self.instances['adder_x_pm_y_sra_i'       ], SYM_X )
+	PlaceRight( self.instances['x_sra_0_2'], NOSYM )
+	PlaceRight( self.instances['x_sra_1_1'], NOSYM )
+	PlaceRight( self.instances['x_sra_i'], NOSYM )
+	PlaceRight( self.instances['xkc_post1_adder'], NOSYM )
+	PlaceRight( self.instances['n_xkc_adder'], NOSYM )
+	PlaceRight( self.instances['xkc_reg'], NOSYM )
+	PlaceRight( self.instances['adder_pm_xkc'], NOSYM )
+	PlaceRight( self.instances['y_sra_0_3'], SYM_X )
+	PlaceRight( self.instances['x_sra_0_3'], NOSYM )
+	PlaceRight( self.instances['adder_pm_ykc'       ], SYM_X )
+	PlaceRight( self.instances['ykc_reg'       ], SYM_X )
+	PlaceRight( self.instances['ykc_adder'       ], SYM_X )
+	PlaceRight( self.instances['ykc_post1_adder'       ], SYM_X )
+	PlaceRight( self.instances['y_sra_i'       ], SYM_X )
+	PlaceRight( self.instances['y_sra_1_1'       ], SYM_X )
+	PlaceRight( self.instances['y_sra_0_2'       ], SYM_X )
+	PlaceRight( self.instances['adder_y_pm_x_sra_i'], NOSYM )
+	PlaceRight( self.instances['n_y_1_1'       ], NOSYM )
+	PlaceRight( self.instances['zero_16b_1_y'       ], SYM_X )
+	PlaceRight( self.instances['zero_1b_y'       ], SYM_X )
+	PlaceRight( self.instances['ykc_post0_adder'       ], SYM_X )
+	PlaceRight( self.instances['ykc_post0_adder_1'       ], SYM_X )
+	PlaceRight( self.instances['y_sra_1_0'       ], SYM_X )
+	PlaceRight( self.instances['y_sra_0_1'       ], SYM_X )
+	PlaceRight( self.instances['zero_7b_y'], NOSYM )
+	PlaceRight( self.instances['n_y_0'       ], NOSYM )
+	PlaceRight( self.instances['n_y_1_0'       ], NOSYM )
+	PlaceRight( self.instances['n_y'       ], NOSYM )
+	PlaceRight( self.instances['y_reg'       ], NOSYM )
+	PlaceRight( self.instances['ykc_post0_adder_0'       ], NOSYM )
+	PlaceRight( self.instances['zero_16b_0_y'       ], SYM_X )
+	PlaceRight( self.instances['y_sra_0_0'       ], SYM_X )
 
 # ####### X - tentative 1
 #         Place       ( self.instances['n_x_1_0'],            NOSYM, XY( 0, 0 ))#21
@@ -814,36 +814,36 @@ class Cordic_DP ( Model ):
 #         ## END LINE 2
 
 ####### X - tentative 3
-        Place       ( self.instances['n_x_1_0'],            NOSYM, XY( 0, 0 ))#21
-        PlaceRight  ( self.instances['n_x'],                NOSYM)#23
-        PlaceRight  ( self.instances['x_sra_0_2'],          NOSYM)#7
-        PlaceRight  ( self.instances['x_sra_0_3'],          NOSYM)#8
-        PlaceRight  ( self.instances['x_sra_1_1'],          NOSYM)#10
-        PlaceRight  ( self.instances['xkc_post0_adder_1'],  NOSYM)#13
-        PlaceRight  ( self.instances['xkc_post1_adder'],    NOSYM)#15
-        PlaceRight  ( self.instances['n_xkc_adder'],        NOSYM)#16
-        PlaceRight  ( self.instances['zero_1b_x'],          NOSYM)#
-        PlaceRight  ( self.instances['zero_16b_1_x'],       NOSYM)#
-        SetRefIns   ( self.instances['n_x_1_0'] )
-        ## END LINE 0
+        # Place       ( self.instances['n_x_1_0'],            NOSYM, XY( 0, 0 ))#21
+        # PlaceRight  ( self.instances['n_x'],                NOSYM)#23
+        # PlaceRight  ( self.instances['x_sra_0_2'],          NOSYM)#7
+        # PlaceRight  ( self.instances['x_sra_0_3'],          NOSYM)#8
+        # PlaceRight  ( self.instances['x_sra_1_1'],          NOSYM)#10
+        # PlaceRight  ( self.instances['xkc_post0_adder_1'],  NOSYM)#13
+        # PlaceRight  ( self.instances['xkc_post1_adder'],    NOSYM)#15
+        # PlaceRight  ( self.instances['n_xkc_adder'],        NOSYM)#16
+        # PlaceRight  ( self.instances['zero_1b_x'],          NOSYM)#
+        # PlaceRight  ( self.instances['zero_16b_1_x'],       NOSYM)#
+        # SetRefIns   ( self.instances['n_x_1_0'] )
+        # ## END LINE 0
 
-        PlaceBottom ( self.instances['adder_x_pm_y_sra_i'], NOSYM)#19
-        PlaceRight  ( self.instances['n_x_0'],              NOSYM)#20
-        PlaceRight  ( self.instances['x_reg'],              NOSYM)#24
-        PlaceRight  ( self.instances['zero_16b_0_x'],       NOSYM)#
-        PlaceRight  ( self.instances['x_sra_i'],            NOSYM)#11
-        PlaceRight  ( self.instances['xkc_post0_adder'],    NOSYM)#14
-        PlaceRight  ( self.instances['xkc_reg'],            NOSYM)#17
-        SetRefIns   ( self.instances['adder_x_pm_y_sra_i'] )
-        ##END LINE 1
+        # PlaceBottom ( self.instances['adder_x_pm_y_sra_i'], NOSYM)#19
+        # PlaceRight  ( self.instances['n_x_0'],              NOSYM)#20
+        # PlaceRight  ( self.instances['x_reg'],              NOSYM)#24
+        # PlaceRight  ( self.instances['zero_16b_0_x'],       NOSYM)#
+        # PlaceRight  ( self.instances['x_sra_i'],            NOSYM)#11
+        # PlaceRight  ( self.instances['xkc_post0_adder'],    NOSYM)#14
+        # PlaceRight  ( self.instances['xkc_reg'],            NOSYM)#17
+        # SetRefIns   ( self.instances['adder_x_pm_y_sra_i'] )
+        # ##END LINE 1
 
-        PlaceBottom ( self.instances['zero_7b_x'],          NOSYM)#
-        PlaceRight  ( self.instances['n_x_1_1'],            NOSYM)#22
-        PlaceRight  ( self.instances['x_sra_0_0'],          NOSYM)#5
-        PlaceRight  ( self.instances['x_sra_0_1'],          NOSYM)#6
-        PlaceRight  ( self.instances['x_sra_1_0'],          NOSYM)#9
-        PlaceRight  ( self.instances['xkc_post0_adder_0'],  NOSYM)#12
-        PlaceRight  ( self.instances['adder_pm_xkc'],       NOSYM)#18
+        # PlaceBottom ( self.instances['zero_7b_x'],          NOSYM)#
+        # PlaceRight  ( self.instances['n_x_1_1'],            NOSYM)#22
+        # PlaceRight  ( self.instances['x_sra_0_0'],          NOSYM)#5
+        # PlaceRight  ( self.instances['x_sra_0_1'],          NOSYM)#6
+        # PlaceRight  ( self.instances['x_sra_1_0'],          NOSYM)#9
+        # PlaceRight  ( self.instances['xkc_post0_adder_0'],  NOSYM)#12
+        # PlaceRight  ( self.instances['adder_pm_xkc'],       NOSYM)#18
 
         #SetRefIns   ( self.instances['zero_7b_x'] )
         ## END LINE 2
@@ -881,37 +881,37 @@ class Cordic_DP ( Model ):
         # PlaceLeft   ( self.instances['zero_1b_y'],          SYM_X)
         ## END LINE 5
 
-####### Y - tentative 3
-        PlaceBottom ( self.instances['n_y_1_0'],            SYM_X)#21
-        PlaceLeft   ( self.instances['n_y'],                SYM_X)#23
-        PlaceLeft   ( self.instances['y_sra_0_2'],          SYM_X)#7
-        PlaceLeft   ( self.instances['y_sra_0_3'],          SYM_X)#8
-        PlaceLeft   ( self.instances['y_sra_1_1'],          SYM_X)#10
-        PlaceLeft   ( self.instances['ykc_post0_adder_1'],  SYM_X)#13
-        PlaceLeft   ( self.instances['ykc_post1_adder'],    SYM_X)#15
-        PlaceLeft   ( self.instances['ykc_adder'],        SYM_X)#16
-        PlaceLeft   ( self.instances['zero_1b_y'],          SYM_X)#
-        PlaceLeft   ( self.instances['zero_16b_1_y'],       SYM_X)#
-        SetRefIns   ( self.instances['n_y_1_0'] )
-        ## END LINE 0
+# ####### Y - tentative 3
+        # PlaceBottom ( self.instances['n_y_1_0'],            SYM_X)#21
+        # PlaceLeft   ( self.instances['n_y'],                SYM_X)#23
+        # PlaceLeft   ( self.instances['y_sra_0_2'],          SYM_X)#7
+        # PlaceLeft   ( self.instances['y_sra_0_3'],          SYM_X)#8
+        # PlaceLeft   ( self.instances['y_sra_1_1'],          SYM_X)#10
+        # PlaceLeft   ( self.instances['ykc_post0_adder_1'],  SYM_X)#13
+        # PlaceLeft   ( self.instances['ykc_post1_adder'],    SYM_X)#15
+        # PlaceLeft   ( self.instances['ykc_adder'],        SYM_X)#16
+        # PlaceLeft   ( self.instances['zero_1b_y'],          SYM_X)#
+        # PlaceLeft   ( self.instances['zero_16b_1_y'],       SYM_X)#
+        # SetRefIns   ( self.instances['n_y_1_0'] )
+        # ## END LINE 0
 
-        PlaceBottom ( self.instances['adder_y_pm_x_sra_i'], SYM_X)#19
-        PlaceLeft   ( self.instances['n_y_0'],              SYM_X)#20
-        PlaceLeft   ( self.instances['y_reg'],              SYM_X)#24
-        PlaceLeft   ( self.instances['zero_16b_0_y'],       SYM_X)#
-        PlaceLeft   ( self.instances['y_sra_i'],            SYM_X)#11
-        PlaceLeft   ( self.instances['ykc_post0_adder'],    SYM_X)#14
-        PlaceLeft   ( self.instances['ykc_reg'],            SYM_X)#17
-        SetRefIns   ( self.instances['adder_y_pm_x_sra_i'] )
-        ##END LINE 1
+        # PlaceBottom ( self.instances['adder_y_pm_x_sra_i'], SYM_X)#19
+        # PlaceLeft   ( self.instances['n_y_0'],              SYM_X)#20
+        # PlaceLeft   ( self.instances['y_reg'],              SYM_X)#24
+        # PlaceLeft   ( self.instances['zero_16b_0_y'],       SYM_X)#
+        # PlaceLeft   ( self.instances['y_sra_i'],            SYM_X)#11
+        # PlaceLeft   ( self.instances['ykc_post0_adder'],    SYM_X)#14
+        # PlaceLeft   ( self.instances['ykc_reg'],            SYM_X)#17
+        # SetRefIns   ( self.instances['adder_y_pm_x_sra_i'] )
+        # ##END LINE 1
 
-        PlaceBottom ( self.instances['zero_7b_y'],          SYM_X)#
-        PlaceLeft   ( self.instances['n_y_1_1'],            SYM_X)#22
-        PlaceLeft   ( self.instances['y_sra_0_0'],          SYM_X)#5
-        PlaceLeft   ( self.instances['y_sra_0_1'],          SYM_X)#6
-        PlaceLeft   ( self.instances['y_sra_1_0'],          SYM_X)#9
-        PlaceLeft   ( self.instances['ykc_post0_adder_0'],  SYM_X)#12
-        PlaceLeft   ( self.instances['adder_pm_ykc'],       SYM_X)#18
+        # PlaceBottom ( self.instances['zero_7b_y'],          SYM_X)#
+        # PlaceLeft   ( self.instances['n_y_1_1'],            SYM_X)#22
+        # PlaceLeft   ( self.instances['y_sra_0_0'],          SYM_X)#5
+        # PlaceLeft   ( self.instances['y_sra_0_1'],          SYM_X)#6
+        # PlaceLeft   ( self.instances['y_sra_1_0'],          SYM_X)#9
+        # PlaceLeft   ( self.instances['ykc_post0_adder_0'],  SYM_X)#12
+        # PlaceLeft   ( self.instances['adder_pm_ykc'],       SYM_X)#18
 
         #SetRefIns   ( self.instances['zero_7b_y'] )
         ## END LINE 2
