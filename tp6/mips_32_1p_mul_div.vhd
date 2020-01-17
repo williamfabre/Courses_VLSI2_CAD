@@ -5744,7 +5744,7 @@ begin
 
   if (CK = '1' and CK'EVENT) then
 
-    RESET_RX   <= not RESET_N   ;
+    RESET_RX   <= not flip2-;
     HWSWIT_RX  <=     HWSWIT_XX ;
     INTRQ_RX   <=     INTRQ_XX  ;
 
@@ -5895,69 +5895,18 @@ SCOUT      <= '0';
 	-- ### ------------------------------------------------------ ###
 	-- #			reset synchronizer			#
 	-- ### ------------------------------------------------------ ###
+
 synchronizer : process (RESET_N, CK)
-    signal flip1, flip2;
+    signal flip1, flip2 : std_logic;
 begin
-
-
+    --RESET_N actif 0
+    -- desactivation asynchrone
+	flip1 = '1';
+	flip2 = '1';
+    -- activation synchrone
+    elsif rising_edge(CK) then 
+	flip1 = RESET_N;
+	flip2 = flip1;
 end process;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 end;

@@ -11,3 +11,5 @@
   - [7. TP7](tp7/tp7_CR.md)
   - [8. TP8](tp8/tp8_CR.md)
   - [9. TP9](tp9/tp9_CR.md)
+
+- TO SOURCE : source /soc/alliance/etc/profile.d/alc_env.sh
