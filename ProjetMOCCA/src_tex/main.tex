@@ -1,0 +1,90 @@
+\documentclass[11pt,a4paper,sans]{report}
+\input{header.sty}
+
+\begin{document}
+\begin{titlepage}
+
+	\center % Center everything on the page
+
+	%----------------------------------------------------------------------------------------
+	%	HEADING SECTIONS
+	%----------------------------------------------------------------------------------------
+
+	\textsc{\LARGE University Pierre et Marie Curie}\\[1.5cm] % Name of your university/college
+	\textsc{\Large project MOCCA}\\[0.5cm] % Major heading such as course name
+
+	%----------------------------------------------------------------------------------------
+	%	TITLE SECTION
+	%----------------------------------------------------------------------------------------
+	\vfill
+	\HRule \\[0.4cm]
+	{ \huge \bfseries Report MOCCA : Synthesys, place and route of a given MIPS architecture with CADENCE toolchain}\\[0.4cm] 
+	\HRule \\[1.5cm]
+	\vfill
+	%----------------------------------------------------------------------------------------
+	%	AUTHOR SECTION
+	%----------------------------------------------------------------------------------------
+
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft} \large
+			\emph{Authors:}\\
+			% Ordre alphabetique sur les noms
+			\textsc{Youcef Sekouri, William Fabre} 
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushright} \large
+			\emph{Teachers :} \\
+			Mr \textsc{Matthieu Tuna},\textsc{Pirouz Bazarghan-Sabet}
+		\end{flushright}
+	\end{minipage}\\[2cm]
+
+	%----------------------------------------------------------------------------------------
+	%	DATE SECTION
+	%----------------------------------------------------------------------------------------
+
+	{\large Year 2019-2020}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\vspace*{3cm}
+\begingroup\let\clearpage\relax
+
+	\newpage
+	\chapter{Introduction}
+
+	%multilinecomments
+	\begin{comment}
+	\end{comment}
+
+	% TODO quotation work use the biblio.bib to add references.
+	TODOCHANGEHEREtest1234\cite{greenwade93}
+
+	\newpage
+	\chapter{Project Installation}
+	% TODO tutoriel d'installation
+	\newpage
+
+
+	\newpage
+	\bibliographystyle{IEEEtran}
+	\bibliography{biblio}
+
+	\newpage
+	% \phantomsection
+	\addcontentsline{toc}{chapter}{\listfigurename}
+	\listoffigures
+
+
+
+	\newpage
+	\chapter{Annexe}
+
+
+
+
+\end{document}
+
