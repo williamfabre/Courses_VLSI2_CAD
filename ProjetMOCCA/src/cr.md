@@ -1,3 +1,23 @@
+
+4/
+-- Explain the difference between these two different types.
+
+WC (WorstCase) correspond à la library rapportant à des timings "max". Soit la contrainte haute sur le timing à respecter. Cela correspond au temps de setup et est utile pour resoudre les problèmes de chaine longue.
+
+BC...
+
+-- Which one is needed for the synthesis step ? Explain your choice.
+
+Avec le wire-load models on peut commencer à faire de la synthèse physique et donc limiter les problèmes de chaines longues avant P&R. Donc on utilisera toutes les WC_lib.
+
+Utiliser la BC_lib ,n'a pas de sens car cela depends des skew-clock qui sont produits au P&R !
+
+--Pick up a timing arc in the WC lib and the same timing arc in the BC, what is the value in the first library and in the second library. Add in your report a figure of the cell and the corresponding timing arc.
+
+>NAND : 
+    WC_core : cell
+    BC_core : 
+
 7/ This signal should be handled carefully. 
 What kind of reset is used in this design ? Synchronous or asynchronous ? 
 Please explain the differences between both and which one is used in the design.
