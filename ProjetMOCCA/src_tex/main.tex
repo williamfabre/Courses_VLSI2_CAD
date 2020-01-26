@@ -82,7 +82,90 @@
 
 	\newpage
 	\chapter{Annexe}
+	\section{Glossary :}
 
+\begin{itemize}
+	\item EDA : Electronic design automation
+	\item DFT : design for test %TODO
+	\item CTS : Clock Tree Synthesys : %TODO
+	\item STA : Static Timing Analysis  %TODO operates independently of characterization reading both a Verilog netlist and multiple timing libraries in Liberty format 
+
+	\item Formal Verification :
+	\item DRC : Design Rule Check %TODO
+	\item LVS : Logical Vs Schematic %TODO extraction of circuit
+	\item IC : Integrated Circuit
+	\item PCB : Printed Circuit Board
+	\item Plot : %TODO
+	\item Pad : %TODO
+	\item FP : Floot Planing %TODO (guide the tool)
+	\item ATPG : Automatic Test Pattern generation
+	\item SDC :
+
+	\item PVT : process voltage temperature %TODO?
+		%Lot to Lot
+		%Wafer to Wafer
+		%Dye to Dye
+		%Corner-based analysis?
+
+	% TODO
+	\item Timing Constraints :
+		Reg to Reg
+		Input to Reg
+		Reg to Output
+		Input Delay
+		Output Delay
+		Input to output : Mealy path (Combinatory cannot be constraints) so you need to contraint input/output with absolut value
+
+
+	\item Fanout : how much cells my signal can attack without being degraded
+
+	\item Setup :
+	\item Hold :
+
+	\item .lib :Technology library source files
+
+	\item library max (WC=Worst Case) : The timing in this kind of library are the longest (Max path/Max Data path). They are used for setup analysis. 
+	\item library in (BC=Best Case) : The timing in the kind of library are the shortest (Min path/Min Data path). They are used for hold analysis.
+	
+
+	\item WNS : Worst negative slack : The longest path in the design
+	\item TNS : Total Negative Slack : The Sum of all the longest path in the design
+	\item WLM : Wire Load Model : Statistical Model that help having a coherent
+		analysis of the circuit after synthesys (there is no wire yet).
+
+
+	\item TA  : Timing Arc %TODO
+		* Cell
+			Cell Delay : propagation delay inside a cell
+
+			Fall : inside cell Delay to transition from 1 to 0
+			Rise : inside ell Delay to transition from 0 to 1
+
+		* Transition
+			fall : (a,b) in CELLS :
+				Delay from cell a start going down to cell b that start going down
+			rise: (a,b) in CELLS :
+				Delay from cell a start going up to cell b that start going up
+
+	\item Delay equation %TODO
+	\item TC  : Timing Clean %TODO
+
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+\end{itemize}
 
 
 
