@@ -1127,7 +1127,8 @@ signal   HWRENA_RM    : std_logic_vector ( 31 downto  0);-- hw r enable
 signal   WHWRENA_SM   : std_logic                       ;-- hw r enable wen
 
 signal   RESET_RX     : std_logic                       ;-- reset
-signal   RESET_SYNC   : std_logic                       ;-- reset synchronizer
+signal   RESET_SYNC1  : std_logic                       ;-- reset synchroniz
+signal   RESET_SYNC2  : std_logic                       ;-- reset synchroniz
 
 signal   R1_RW        : std_logic_vector ( 31 downto  0);-- int reg nbr  1
 signal   R2_RW        : std_logic_vector ( 31 downto  0);-- int reg nbr  2
@@ -2211,7 +2212,7 @@ S_SD       <= R0_RW        when B"00000",
               R29_RW       when B"11101",
               R30_RW       when B"11110",
               R31_RW       when B"11111",
-              X"0000_0000" when others  ;
+              X"00000000" when others  ;
 
 with RT_SD select
 T_SD       <= R0_RW        when B"00000",
@@ -2246,7 +2247,7 @@ T_SD       <= R0_RW        when B"00000",
               R29_RW       when B"11101",
               R30_RW       when B"11110",
               R31_RW       when B"11111",
-              X"0000_0000" when others  ;
+              X"00000000" when others  ;
 
 	-- ### ------------------------------------------------------ ###
 	-- #   data hazards in Instruction Decode stage :		#
@@ -5736,6 +5737,20 @@ begin
 end process;
 
 	-- ### ------------------------------------------------------ ###
+	-- #   				synchronous reset synchronizer				#
+	-- ### ------------------------------------------------------ ###
+synchronious_synchronizer : process (CK)
+begin
+    -- RESET_N actif 0
+    -- activation synchrone
+    -- desactivation synchrone
+    if rising_edge(CK) then 
+    	RESET_SYNC1 <= RESET_N;
+    	RESET_SYNC2 <= RESET_SYNC1;
+	end if;
+end process;
+
+	-- ### ------------------------------------------------------ ###
 	-- #   assign registers (those directly controled by hardware)	#
 	-- ### ------------------------------------------------------ ###
 
@@ -5744,7 +5759,7 @@ begin
 
   if (CK = '1' and CK'EVENT) then
 
-    RESET_RX   <= not flip2-;
+    RESET_RX   <= not RESET_SYNC2   ;
     HWSWIT_RX  <=     HWSWIT_XX ;
     INTRQ_RX   <=     INTRQ_XX  ;
 
@@ -5891,22 +5906,5 @@ D_ACK      <= DREAD_RM;
 	-- ### ------------------------------------------------------ ###
 
 SCOUT      <= '0';
-
-	-- ### ------------------------------------------------------ ###
-	-- #			reset synchronizer			#
-	-- ### ------------------------------------------------------ ###
-
-synchronizer : process (RESET_N, CK)
-    signal flip1, flip2 : std_logic;
-begin
-    --RESET_N actif 0
-    -- desactivation asynchrone
-	flip1 = '1';
-	flip2 = '1';
-    -- activation synchrone
-    elsif rising_edge(CK) then 
-	flip1 = RESET_N;
-	flip2 = flip1;
-end process;
 
 end;
