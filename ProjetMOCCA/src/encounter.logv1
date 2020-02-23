@@ -1,0 +1,752 @@
+Checking out Encounter license ...
+[02/23 00:17:37     0s] Virtuoso_Digital_Implem_XL 13.2 license checkout succeeded.
+[02/23 00:17:39     0s] 	Maximum number of instance allowed (1 x 50000).
+[02/23 00:17:39     0s] **ERROR: (ENCOAX-142):	Could not open shared library libfeoax22.so : liboaDesign.so: cannot open shared object file: No such file or directory
+[02/23 00:17:40     0s] 
+[02/23 00:17:40     0s] **ERROR: (ENCOAX-142):	OA features will be disabled in this session.
+[02/23 00:17:40     0s] 
+[02/23 00:17:40     0s] 
+[02/23 00:17:40     1s] *******************************************************************
+*   Copyright (c)  Cadence Design Systems, Inc.  1996 - 2013.     *
+*                     All rights reserved.                        *
+*                                                                 *
+*                                                                 *
+*                                                                 *
+* This program contains confidential and trade secret information *
+* of Cadence Design Systems, Inc. and is protected by copyright   *
+* law and international treaties.  Any reproduction, use,         *
+* distribution or disclosure of this program or any portion of it,*
+* or any attempt to obtain a human-readable version of this       *
+* program, without the express, prior written consent of          *
+* Cadence Design Systems, Inc., is strictly prohibited.           *
+*                                                                 *
+*                 Cadence Design Systems, Inc.                    *
+*                    2655 Seely Avenue                            *
+*                   San Jose, CA 95134,  USA                      *
+*                                                                 *
+*                                                                 *
+*******************************************************************
+
+[02/23 00:17:42     2s] @(#)CDS: Encounter v13.24-s026_1 (64bit) 02/20/2014 14:03 (Linux 2.6)
+[02/23 00:17:42     2s] @(#)CDS: NanoRoute v13.24-s007 NR140131-1116/13_20-UB (database version 2.30, 211.6.1) {superthreading v1.19}
+[02/23 00:17:42     2s] @(#)CDS: CeltIC v13.24-s011_1 (64bit) 02/10/2014 04:19:33 (Linux 2.6.18-194.el5)
+[02/23 00:17:42     2s] @(#)CDS: AAE 13.24-s010 (64bit) 02/20/2014 (Linux 2.6.18-194.el5)
+[02/23 00:17:42     2s] @(#)CDS: CTE 13.24-s011_1 (64bit) Feb 10 2014 02:25:09 (Linux 2.6.18-194.el5)
+[02/23 00:17:42     2s] @(#)CDS: CPE v13.24-s021
+[02/23 00:17:42     2s] @(#)CDS: IQRC/TQRC 13.1.0-s302 (64bit) Mon Jan 13 11:11:46 PST 2014 (Linux 2.6.18-194.el5)
+[02/23 00:17:42     2s] --- Starting "Encounter v13.24-s026_1" on Sun Feb 23 00:17:42 2020 (mem=74.0M) ---
+[02/23 00:17:42     2s] --- Running on gallus (x86_64 w/Linux 3.10.0-1062.1.2.el7.x86_64) ---
+[02/23 00:17:42     2s] This version was compiled on Thu Feb 20 14:03:43 PST 2014.
+[02/23 00:17:42     2s] Set DBUPerIGU to 1000.
+[02/23 00:17:42     2s] Set net toggle Scale Factor to 1.00
+[02/23 00:17:42     2s] Set Shrink Factor to 1.00000
+[02/23 00:17:42     2s] 
+[02/23 00:17:43     2s] **INFO:  MMMC transition support version v31-84 
+[02/23 00:17:43     2s] 
+[02/23 00:17:43     2s] <CMD> set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+[02/23 00:17:43     2s] <CMD> suppressMessage ENCEXT-2799
+[02/23 00:17:43     2s] <CMD> win
+[02/23 00:17:43     2s] *** Memory pool thread-safe mode activated.
+[02/23 00:18:09     6s] <CMD> save_global mips.globals
+[02/23 00:36:32   264s] <CMD> set init_gnd_net gnd_core
+[02/23 00:36:37   264s] <CMD> set init_lef_file ../../../../../tuna/ue_vlsi2/techno/cmos_120/cmos_120nm.lef
+[02/23 00:36:37   264s] <CMD> set init_design_settop 0
+[02/23 00:36:37   264s] <CMD> set init_verilog mips_post_optimisation.v
+[02/23 00:36:37   264s] <CMD> set init_mmmc_file mips.view
+[02/23 00:36:37   264s] <CMD> set init_pwr_net vdd_core
+[02/23 00:36:37   264s] <CMD> init_design
+[02/23 00:36:37   264s] **ERROR: (ENCOAX-820):	The OA features are disabled in the current session of Encounter because the oax shared library could not be loaded properly. This could be because your installation was not properly configured. To enable OA features, exit the current session and re-launch Encounter either after fixing your installation by running the Configure Installation phase, or after setting the OA_HOME variable to point to a proper OA installation. Check the "OpenAccess Installation and Configuration Guide" manual for more information.
+[02/23 00:36:37   264s] 
+[02/23 00:36:37   264s] **ERROR: (ENCOAX-850):	oaxCreateCdsLibArray command cannot be run as OA features are disabled in this session.
+[02/23 00:36:37   264s] 
+[02/23 00:36:37   264s] Loading LEF file ../../../../../tuna/ue_vlsi2/techno/cmos_120/cmos_120nm.lef ...
+[02/23 00:36:37   264s] Set DBUPerIGU to M2 pitch 410.
+[02/23 00:36:37   264s] 
+[02/23 00:36:37   264s] viaInitial starts at Sun Feb 23 00:36:37 2020
+**WARN: (ENCPP-557):	a single-layer VIARULE GENERATE for turn-vias is obsolete and is being ignored. You should remove this statement from your LEF file. VIARULE TURN1 GENERATE
+[02/23 00:36:37   264s] **WARN: (ENCPP-557):	a single-layer VIARULE GENERATE for turn-vias is obsolete and is being ignored. You should remove this statement from your LEF file. VIARULE TURN2 GENERATE
+[02/23 00:36:37   264s] **WARN: (ENCPP-557):	a single-layer VIARULE GENERATE for turn-vias is obsolete and is being ignored. You should remove this statement from your LEF file. VIARULE TURN3 GENERATE
+[02/23 00:36:37   264s] **WARN: (ENCPP-557):	a single-layer VIARULE GENERATE for turn-vias is obsolete and is being ignored. You should remove this statement from your LEF file. VIARULE TURN4 GENERATE
+[02/23 00:36:37   264s] **WARN: (ENCPP-557):	a single-layer VIARULE GENERATE for turn-vias is obsolete and is being ignored. You should remove this statement from your LEF file. VIARULE TURN5 GENERATE
+[02/23 00:36:37   264s] **WARN: (ENCPP-557):	a single-layer VIARULE GENERATE for turn-vias is obsolete and is being ignored. You should remove this statement from your LEF file. VIARULE TURN6 GENERATE
+[02/23 00:36:37   264s] viaInitial ends at Sun Feb 23 00:36:37 2020
+Reading netlist ...
+[02/23 00:36:37   264s] Backslashed names will retain backslash and a trailing blank character.
+[02/23 00:36:37   264s] Reading verilog netlist 'mips_post_optimisation.v'
+[02/23 00:36:37   264s] Module FD1QHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module FD1QHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND4ABCHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO7HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO7HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND4HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO7CHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module FD1QHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND2HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module IVHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND2HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO6HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module HA1HSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND4HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module MUX21NHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module IVHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO3HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module HA1HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND4ABHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ENHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO6HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module MUX21HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO7AHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO1HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR2HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND3ABHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO9HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO10NHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND2HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO23HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO11NHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO3HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module MUX21NHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO6HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO3NHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO11HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND3HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO2HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO8HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO10NHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module MUX21NHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module FD7SQNHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module OR4HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module IVHSX05 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO20HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO1HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO6NHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND3HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module FD1SQHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO2NHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR2HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR4ABCHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO52HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO23HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO4HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR4ABCHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO6NHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module FD1SQHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND3ABHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO7NHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module HA1HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO10HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO10HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module FD1SQHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO2AHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR3HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module FD1QNHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR4ABHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module MUX21HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO7NHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO9HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module FA1HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND3HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module OR3BCHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module MUX21HSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO2NHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR2HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR4AHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO20AHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO7NHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND3AHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO6AHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND3AHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR3ABHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO8HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO7HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module OR2HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO20AHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO52NHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO9NHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO52HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module EO3HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO23NHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO17HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO20HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR2AHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND2AHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO35HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR3HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module EO3HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND2AHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR2AHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO21HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module HA1HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module OR2ABHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO20CHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN2HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO17NHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR4ABHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND4HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO7NHSX8 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN2HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module EN3HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR2HSX8 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module IVHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module EOHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN2HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND2HSX8 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN4BCDHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO3CHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND4ABHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module FA1HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO2HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO23NHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR4HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND4AHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO4AHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO11HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR2AHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO17HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ENHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO11HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO6CHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND4ABHSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND2HSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO7AHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO8HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR4ABHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO20DHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO3AHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO52HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN2ABHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO17CHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO6AHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO23NHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO14HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module BFHSX05 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN3HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO6HSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR4HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR3ABHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN2BHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module IVHSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN2BHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO8NHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module BFHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO2AHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR2HSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module BFHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO21HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND4ABCHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO35HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN2ABHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module OR2ABHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN2HSX8 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO4HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO5HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN4CDHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN3CHSX8 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO4NHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module OR2HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN4HSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR4ABCHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module IVHSX8 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module OR2HSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO4AHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module BFHSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO3HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN4ABCDHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO2AHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR3ABHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND3ABHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO4HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module BFHSX10 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO4NHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module EOHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR3HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module IVHSX10 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN4DHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ENHSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module BFHSX8 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND3HSX8 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO8AHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module OR4ABCDHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO6HSX8 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module MUX21HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO2HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO6CHSX8 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO6CHSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO2HSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module IVHSX12 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module BFHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO7CHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND3ABHSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module FA1HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO6NHSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR2AHSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module FD7QHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO1NHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module OR3CHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module OR3ABCHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO7AHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO9NHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN3CHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN3HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN3CHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR3HSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO7HSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN2HSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN4DHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO3AHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO20HS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module OR3BCHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR4ABCHSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module NR3AHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module FD1QNHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO1CHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO17NHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module OR2BHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO17HSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO6AHSX4 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO35NHSP not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND3HSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module ND4ABCHSX6 not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AO8DHS not defined.  Created automatically.
+[02/23 00:36:37   264s] Module AN3BCHSP not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AN2ABHSX6 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO17CHSP not defined.  Created automatically.
+[02/23 00:36:37   265s] Module OR2HSX8 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO1AHS not defined.  Created automatically.
+[02/23 00:36:37   265s] Module ND4ABHSX4 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AN3HSX8 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AN3ABCHSX4 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module ND3AHSX8 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module ND2AHSX8 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module BFHSX12 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module ND4ABCHSX8 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO5NHS not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO17AHS not defined.  Created automatically.
+[02/23 00:36:37   265s] Module OR3HSP not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO21NHSP not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO14NHS not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AN2BHSX4 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module ND2AHSX6 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AN4CDHSX8 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module NR3ABHSX8 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module FD1QNHS not defined.  Created automatically.
+[02/23 00:36:37   265s] Module ENHS not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AN3BCHSX4 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO5HSX4 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module ND3ABHSX8 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module HA1HSX8 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO6CHS not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO17CHSX6 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module NR3ABHSX6 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AN3CHSX6 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO7NHSX6 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AN3ABCHSX6 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AN2BHSX6 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO20DHSX4 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO20CHSP not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO21DHSP not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO17DHSP not defined.  Created automatically.
+[02/23 00:36:37   265s] Module OR3HSX6 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module OR2BHSX6 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO6CHSX4 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AN4CDHSX4 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO8AHSX4 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO20DHSX6 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO3NHSX4 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AN4HSX4 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO1NHSX4 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module ND4AHSX4 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module ND4ABHSX8 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO2NHSX4 not defined.  Created automatically.
+[02/23 00:36:37   265s] Module AO6NHSX4 not defined.  Created automatically.
+[02/23 00:36:37   265s] Inserting temporary buffers to remove assignment statements.
+[02/23 00:36:37   265s] 
+[02/23 00:36:37   265s] *** Memory Usage v#1 (Current mem = 594.301M, initial mem = 73.965M) ***
+[02/23 00:36:37   265s] *** End netlist parsing (cpu=0:00:00.3, real=0:00:00.0, mem=594.3M) ***
+[02/23 00:36:37   265s] Top level cell is MIPS_32_1P_MUL_DIV.
+[02/23 00:36:37   265s] Reading libsWC timing library '/users/enseig/tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_clock_Worst.lib' ...
+[02/23 00:36:37   265s] Read 0 cells in library 'CLOCK9GPHS' 
+[02/23 00:36:37   265s] Ignored 34 cells in library 'CLOCK9GPHS' because they are not defined in the LEF file, and they are not used in the Verilog netlist.
+[02/23 00:36:37   265s] Reading libsWC timing library '/users/enseig/tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_io_Worst.lib' ...
+[02/23 00:36:37   265s] Read 0 cells in library 'IOLIB_65_M6_LL' 
+[02/23 00:36:37   265s] Ignored 160 cells in library 'IOLIB_65_M6_LL' because they are not defined in the LEF file, and they are not used in the Verilog netlist.
+[02/23 00:36:37   265s] Reading libsWC timing library '/users/enseig/tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_io_3v3_Worst.lib' ...
+[02/23 00:36:37   265s] Read 0 cells in library 'IOLIB_65_3V3_M6_LL_50A' 
+[02/23 00:36:37   265s] Ignored 86 cells in library 'IOLIB_65_3V3_M6_LL_50A' because they are not defined in the LEF file, and they are not used in the Verilog netlist.
+[02/23 00:36:37   265s] Reading libsWC timing library '/users/enseig/tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_core_Worst.lib' ...
+[02/23 00:36:37   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'Z' of cell 'OR4HS' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'A' of cell 'OR4HS' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'B' of cell 'OR4HS' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'C' of cell 'OR4HS' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'D' of cell 'OR4HS' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'Z' of cell 'OR4ABCDHSP' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'A' of cell 'OR4ABCDHSP' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'B' of cell 'OR4ABCDHSP' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'C' of cell 'OR4ABCDHSP' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'D' of cell 'OR4ABCDHSP' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'Z' of cell 'OR3HSX6' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'A' of cell 'OR3HSX6' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'B' of cell 'OR3HSX6' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'C' of cell 'OR3HSX6' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'Z' of cell 'OR3HSP' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'A' of cell 'OR3HSP' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'B' of cell 'OR3HSP' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'C' of cell 'OR3HSP' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'Z' of cell 'OR3CHSP' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (ENCTS-414):	There is mismatch in pin direction for the pin 'A' of cell 'OR3CHSP' specified in LEF or Verilog, and the timing library. The timing library value will be used.
+[02/23 00:36:38   265s] **WARN: (EMS-63):	Message <ENCTS-414> has exceeded the default message display limit of 20.
+[02/23 00:36:38   265s] To avoid this warning, increase the display limit per unique message
+[02/23 00:36:38   265s] by using the setMessageLimit <number> command.
+[02/23 00:36:38   265s] The message limit can be removed by using the unsetMessageLimit command.
+[02/23 00:36:38   265s] Note that setting a very large number using the setMessageLimit command
+[02/23 00:36:38   265s] or removing the message limit using the unsetMessageLimit command can
+[02/23 00:36:38   265s] significantly increase the log file size.
+[02/23 00:36:38   265s] To suppress a message, use the suppressMessage command.
+[02/23 00:36:38   265s] Read 286 cells in library 'CORE9GPHS' 
+[02/23 00:36:38   265s] Ignored 407 cells in library 'CORE9GPHS' because they are not defined in the LEF file, and they are not used in the Verilog netlist.
+[02/23 00:36:38   265s] Reading libsWC timing library '/users/enseig/tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_filler_Worst.lib' ...
+[02/23 00:36:38   265s] Read 0 cells in library 'PR9M6' 
+[02/23 00:36:38   265s] Ignored 9 cells in library 'PR9M6' because they are not defined in the LEF file, and they are not used in the Verilog netlist.
+[02/23 00:36:38   265s] Reading libsBC timing library '/users/enseig/tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_clock_Best.lib' ...
+[02/23 00:36:38   265s] Read 0 cells in library 'CLOCK9GPHS' 
+[02/23 00:36:38   265s] Ignored 34 cells in library 'CLOCK9GPHS' because they are not defined in the LEF file, and they are not used in the Verilog netlist.
+[02/23 00:36:38   265s] Reading libsBC timing library '/users/enseig/tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_core_Best.lib' ...
+[02/23 00:36:38   265s] Read 286 cells in library 'CORE9GPHS' 
+[02/23 00:36:38   265s] Ignored 407 cells in library 'CORE9GPHS' because they are not defined in the LEF file, and they are not used in the Verilog netlist.
+[02/23 00:36:38   265s] Reading libsBC timing library '/users/enseig/tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_filler_Best.lib' ...
+[02/23 00:36:38   265s] Read 0 cells in library 'PR9M6' 
+[02/23 00:36:38   265s] Ignored 9 cells in library 'PR9M6' because they are not defined in the LEF file, and they are not used in the Verilog netlist.
+[02/23 00:36:38   265s] Reading libsBC timing library '/users/enseig/tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_io_3v3_Best.lib' ...
+[02/23 00:36:38   265s] Read 0 cells in library 'IOLIB_65_3V3_M6_LL_50A' 
+[02/23 00:36:38   265s] Ignored 86 cells in library 'IOLIB_65_3V3_M6_LL_50A' because they are not defined in the LEF file, and they are not used in the Verilog netlist.
+[02/23 00:36:38   265s] Reading libsBC timing library '/users/enseig/tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_io_Best.lib' ...
+[02/23 00:36:38   265s] Read 0 cells in library 'IOLIB_65_M6_LL' 
+[02/23 00:36:38   265s] Ignored 160 cells in library 'IOLIB_65_M6_LL' because they are not defined in the LEF file, and they are not used in the Verilog netlist.
+[02/23 00:36:38   265s] *** End library_loading (cpu=0.00min, mem=0.0M, fe_cpu=4.43min, fe_real=19.02min, fe_mem=604.7M) ***
+[02/23 00:36:38   265s] Starting recursive module instantiation check.
+[02/23 00:36:38   265s] No recursion found.
+[02/23 00:36:38   265s] Term dir updated for 0 vinsts of 286 cells.
+[02/23 00:36:38   265s] Building hierarchical netlist for Cell MIPS_32_1P_MUL_DIV ...
+[02/23 00:36:38   265s] *** Netlist is unique.
+[02/23 00:36:38   265s] Setting Std. cell height to 4920 DBU, based on Site CORE.
+[02/23 00:36:38   265s] **WARN: (ENCTRN-1101):	Could not determine power-rail locations in cells. Use default value GNDOnBtm.
+[02/23 00:36:38   265s] **WARN: (ENCTRN-1102):	Could not determine power-rail locations of some cells.
+[02/23 00:36:38   265s] 	Forcing all single height cell pwr-rail setting to GND-on-bottom.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance \DIVX_RE_reg[31]  of the cell FD1QHSX4 has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance \DIVX_RE_reg[23]  of the cell FD1QHS has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance g816289 of the cell ND4ABCHSX4 has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance g816309 of the cell AO7HSP has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance \DIVX_RE_reg[30]  of the cell FD1QHSX4 has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance \DIVX_RE_reg[22]  of the cell FD1QHSX4 has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance \DIVY_RE_reg[21]  of the cell FD1QHSX4 has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance \DIVQ_RE_reg[22]  of the cell FD1QHS has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance \DIVY_RE_reg[22]  of the cell FD1QHS has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance \DIVQ_RE_reg[31]  of the cell FD1QHSX4 has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance \DIVY_RE_reg[31]  of the cell FD1QHSX4 has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance g816350 of the cell AO7HS has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance g816249 of the cell ND4HSX4 has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance \DIVQ_RE_reg[21]  of the cell FD1QHSX4 has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance g816241 of the cell AO7HS has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance g816242 of the cell AO7HS has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance g816331 of the cell AO7CHSP has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance g816339 of the cell AO7CHSP has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance \DIVX_RE_reg[29]  of the cell FD1QHSP has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-102):	Instance \DIVX_RE_reg[21]  of the cell FD1QHSP has no physical library or has wrong dimen-
+[02/23 00:36:38   265s] sion values (<=0). Check your design setup to make sure the physical
+[02/23 00:36:38   265s]  library is loaded in and the attributes specified in physical library are correct.
+[02/23 00:36:38   265s] **WARN: (EMS-63):	Message <ENCREPO-102> has exceeded the default message display limit of 20.
+[02/23 00:36:38   265s] To avoid this warning, increase the display limit per unique message
+[02/23 00:36:38   265s] by using the setMessageLimit <number> command.
+[02/23 00:36:38   265s] The message limit can be removed by using the unsetMessageLimit command.
+[02/23 00:36:38   265s] Note that setting a very large number using the setMessageLimit command
+[02/23 00:36:38   265s] or removing the message limit using the unsetMessageLimit command can
+[02/23 00:36:38   265s] significantly increase the log file size.
+[02/23 00:36:38   265s] To suppress a message, use the suppressMessage command.
+[02/23 00:36:38   265s] ** info: there are 573 modules.
+[02/23 00:36:38   265s] ** info: there are 16884 stdCell insts.
+[02/23 00:36:38   265s] **WARN: (ENCREPO-103):	There are 16884 instances (286 cells) with no dimension defined.
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] *** Memory Usage v#1 (Current mem = 626.281M, initial mem = 73.965M) ***
+[02/23 00:36:38   265s] *info - Done with setDoAssign with 1 assigns removed and 0 assigns could not be removed.
+[02/23 00:36:38   265s] **WARN: (ENCFP-3961):	techSite 'IOPADSITE_174' has no related Cells in LEF library. Cannot make calculations for this site type unless cell models of this type exist in the LEF library.
+[02/23 00:36:38   265s] **WARN: (ENCFP-3961):	techSite 'CORE' has no related Cells in LEF library. Cannot make calculations for this site type unless cell models of this type exist in the LEF library.
+[02/23 00:36:38   265s] Horizontal Layer M1 offset = 205 (guessed)
+[02/23 00:36:38   265s] Vertical Layer M2 offset = 205 (derived)
+[02/23 00:36:38   265s] Suggestion: specify LAYER OFFSET in LEF file
+[02/23 00:36:38   265s] Reason: hard to extract LAYER OFFSET from standard cells
+[02/23 00:36:38   265s] Generated pitch 1.025 in M6 is different from 0.9 defined in technology file in preferred direction.
+[02/23 00:36:38   265s] Set Using Default Delay Limit as 1000.
+[02/23 00:36:38   265s] Set Default Net Delay as 1000 ps.
+[02/23 00:36:38   265s] Set Default Net Load as 0.5 pF. 
+[02/23 00:36:38   265s] Set Input Pin Transition Delay as 0.1 ps.
+[02/23 00:36:38   265s] Initializing multi-corner RC extraction with 1 active RC Corners ...
+[02/23 00:36:38   265s] **WARN: (ENCEXT-2773):	The via resistance between layers POLY and M1 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+[02/23 00:36:38   265s] **WARN: (ENCEXT-2776):	The via resistance between layers M1 and M2 is not defined in the capacitance table file. The via resistance of 5 Ohms defined in the LEF technology file will be used as via resistance between these layers.
+[02/23 00:36:38   265s] Type 'man ENCEXT-2776' for more detail.
+[02/23 00:36:38   265s] **WARN: (ENCEXT-2776):	The via resistance between layers M2 and M3 is not defined in the capacitance table file. The via resistance of 5 Ohms defined in the LEF technology file will be used as via resistance between these layers.
+[02/23 00:36:38   265s] Type 'man ENCEXT-2776' for more detail.
+[02/23 00:36:38   265s] **WARN: (ENCEXT-2776):	The via resistance between layers M3 and M4 is not defined in the capacitance table file. The via resistance of 5 Ohms defined in the LEF technology file will be used as via resistance between these layers.
+[02/23 00:36:38   265s] Type 'man ENCEXT-2776' for more detail.
+[02/23 00:36:38   265s] **WARN: (ENCEXT-2776):	The via resistance between layers M4 and M5 is not defined in the capacitance table file. The via resistance of 5 Ohms defined in the LEF technology file will be used as via resistance between these layers.
+[02/23 00:36:38   265s] Type 'man ENCEXT-2776' for more detail.
+[02/23 00:36:38   265s] **WARN: (ENCEXT-2776):	The via resistance between layers M5 and M6 is not defined in the capacitance table file. The via resistance of 1.2 Ohms defined in the LEF technology file will be used as via resistance between these layers.
+[02/23 00:36:38   265s] Type 'man ENCEXT-2776' for more detail.
+[02/23 00:36:38   265s] **WARN: (ENCEXT-2766):	Sheet resistance for layer M1 is not defined in the cap table. LEF value 0.12 will be used.
+[02/23 00:36:38   265s] **WARN: (ENCEXT-2766):	Sheet resistance for layer M2 is not defined in the cap table. LEF value 0.09 will be used.
+[02/23 00:36:38   265s] **WARN: (ENCEXT-2766):	Sheet resistance for layer M3 is not defined in the cap table. LEF value 0.09 will be used.
+[02/23 00:36:38   265s] **WARN: (ENCEXT-2766):	Sheet resistance for layer M4 is not defined in the cap table. LEF value 0.09 will be used.
+[02/23 00:36:38   265s] **WARN: (ENCEXT-2766):	Sheet resistance for layer M5 is not defined in the cap table. LEF value 0.09 will be used.
+[02/23 00:36:38   265s] **WARN: (ENCEXT-2766):	Sheet resistance for layer M6 is not defined in the cap table. LEF value 0.035 will be used.
+[02/23 00:36:38   265s] Summary of Active RC-Corners : 
+[02/23 00:36:38   265s]  
+[02/23 00:36:38   265s]  Analysis View: setup
+[02/23 00:36:38   265s]     RC-Corner Name        : default_rc_corner
+[02/23 00:36:38   265s]     RC-Corner Index       : 0
+[02/23 00:36:38   265s]     RC-Corner Temperature : 25 Celsius
+[02/23 00:36:38   265s]     RC-Corner Cap Table   : ''
+[02/23 00:36:38   265s]     RC-Corner PreRoute Res Factor         : 1
+[02/23 00:36:38   265s]     RC-Corner PreRoute Cap Factor         : 1
+[02/23 00:36:38   265s]     RC-Corner PostRoute Res Factor        : 1
+[02/23 00:36:38   265s]     RC-Corner PostRoute Cap Factor        : 1
+[02/23 00:36:38   265s]     RC-Corner PostRoute XCap Factor       : 1
+[02/23 00:36:38   265s]     RC-Corner PreRoute Clock Res Factor   : 1	[Derived from Cap Table]
+[02/23 00:36:38   265s]     RC-Corner PreRoute Clock Cap Factor   : 1	[Derived from Cap Table]
+[02/23 00:36:38   265s]     RC-Corner PostRoute Clock Cap Factor  : 1   	[Derived from postRoute_cap (effortLevel low)]
+[02/23 00:36:38   265s]     RC-Corner PostRoute Clock Res Factor  : 1   	[Derived from postRoute_res (effortLevel low)]
+[02/23 00:36:38   265s]  
+[02/23 00:36:38   265s]  Analysis View: hold
+[02/23 00:36:38   265s]     RC-Corner Name        : default_rc_corner
+[02/23 00:36:38   265s]     RC-Corner Index       : 0
+[02/23 00:36:38   265s]     RC-Corner Temperature : 25 Celsius
+[02/23 00:36:38   265s]     RC-Corner Cap Table   : ''
+[02/23 00:36:38   265s]     RC-Corner PreRoute Res Factor         : 1
+[02/23 00:36:38   265s]     RC-Corner PreRoute Cap Factor         : 1
+[02/23 00:36:38   265s]     RC-Corner PostRoute Res Factor        : 1
+[02/23 00:36:38   265s]     RC-Corner PostRoute Cap Factor        : 1
+[02/23 00:36:38   265s]     RC-Corner PostRoute XCap Factor       : 1
+[02/23 00:36:38   265s]     RC-Corner PreRoute Clock Res Factor   : 1	[Derived from Cap Table]
+[02/23 00:36:38   265s]     RC-Corner PreRoute Clock Cap Factor   : 1	[Derived from Cap Table]
+[02/23 00:36:38   265s]     RC-Corner PostRoute Clock Cap Factor  : 1   	[Derived from postRoute_cap (effortLevel low)]
+[02/23 00:36:38   265s]     RC-Corner PostRoute Clock Res Factor  : 1   	[Derived from postRoute_res (effortLevel low)]
+[02/23 00:36:38   265s] *Info: initialize multi-corner CTS.
+[02/23 00:36:38   265s] CTE reading timing constraint file 'mips_post_optimisation_constraints.sdc' ...
+[02/23 00:36:38   265s] Current (total cpu=0:04:26, real=0:19:01, peak res=372.7M, current mem=714.8M)
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/BK1HSX05' (File mips_post_optimisation_constraints.sdc, Line 222).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'library cells' that match 'CORE9GPHS/BK1HSX05' (File mips_post_optimisation_constraints.sdc, Line 222).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'modules, or cells' that match '' (File mips_post_optimisation_constraints.sdc, Line 222).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/BK1SHSX05' (File mips_post_optimisation_constraints.sdc, Line 223).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'library cells' that match 'CORE9GPHS/BK1SHSX05' (File mips_post_optimisation_constraints.sdc, Line 223).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'modules, or cells' that match '' (File mips_post_optimisation_constraints.sdc, Line 223).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/BTSHS' (File mips_post_optimisation_constraints.sdc, Line 224).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'library cells' that match 'CORE9GPHS/BTSHS' (File mips_post_optimisation_constraints.sdc, Line 224).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'modules, or cells' that match '' (File mips_post_optimisation_constraints.sdc, Line 224).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/FD9QHS' (File mips_post_optimisation_constraints.sdc, Line 225).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'library cells' that match 'CORE9GPHS/FD9QHS' (File mips_post_optimisation_constraints.sdc, Line 225).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'modules, or cells' that match '' (File mips_post_optimisation_constraints.sdc, Line 225).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/FD9QHSP' (File mips_post_optimisation_constraints.sdc, Line 226).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'library cells' that match 'CORE9GPHS/FD9QHSP' (File mips_post_optimisation_constraints.sdc, Line 226).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'modules, or cells' that match '' (File mips_post_optimisation_constraints.sdc, Line 226).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/FD9QHSX4' (File mips_post_optimisation_constraints.sdc, Line 227).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'library cells' that match 'CORE9GPHS/FD9QHSX4' (File mips_post_optimisation_constraints.sdc, Line 227).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'modules, or cells' that match '' (File mips_post_optimisation_constraints.sdc, Line 227).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/FD9SQHS' (File mips_post_optimisation_constraints.sdc, Line 228).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'library cells' that match 'CORE9GPHS/FD9SQHS' (File mips_post_optimisation_constraints.sdc, Line 228).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'modules, or cells' that match '' (File mips_post_optimisation_constraints.sdc, Line 228).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/FD9SQHSP' (File mips_post_optimisation_constraints.sdc, Line 229).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'library cells' that match 'CORE9GPHS/FD9SQHSP' (File mips_post_optimisation_constraints.sdc, Line 229).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'modules, or cells' that match '' (File mips_post_optimisation_constraints.sdc, Line 229).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/FD9SQHSX4' (File mips_post_optimisation_constraints.sdc, Line 230).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'library cells' that match 'CORE9GPHS/FD9SQHSX4' (File mips_post_optimisation_constraints.sdc, Line 230).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'modules, or cells' that match '' (File mips_post_optimisation_constraints.sdc, Line 230).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/ITSHS' (File mips_post_optimisation_constraints.sdc, Line 231).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'library cells' that match 'CORE9GPHS/ITSHS' (File mips_post_optimisation_constraints.sdc, Line 231).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **ERROR: (TCLCMD-917):	Cannot find 'modules, or cells' that match '' (File mips_post_optimisation_constraints.sdc, Line 231).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/LD1TQHS' (File mips_post_optimisation_constraints.sdc, Line 232).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] Message <TCLCMD-917> has exceeded the message display limit of '20'. setMessageLimit/set_message_limit sets the limit. unsetMessageLimit/unset_message_limit can be used to reset this. (File mips_post_optimisation_constraints.sdc, Line 232).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/LD7QHS' (File mips_post_optimisation_constraints.sdc, Line 233).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/LD7QHSP' (File mips_post_optimisation_constraints.sdc, Line 234).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/LD7QHSX4' (File mips_post_optimisation_constraints.sdc, Line 235).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/LD7QHSX6' (File mips_post_optimisation_constraints.sdc, Line 236).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/LD7QHSX8' (File mips_post_optimisation_constraints.sdc, Line 237).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/LD8QHS' (File mips_post_optimisation_constraints.sdc, Line 238).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/LD8QHSP' (File mips_post_optimisation_constraints.sdc, Line 239).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/LD8QHSX4' (File mips_post_optimisation_constraints.sdc, Line 240).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] **WARN: (TCLCMD-513):	The software could not find a matching object of the specified type for the pattern 'CORE9GPHS/LD8QHSX6' (File mips_post_optimisation_constraints.sdc, Line 241).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] Message <TCLCMD-513> has exceeded the message display limit of '20'. setMessageLimit/set_message_limit sets the limit. unsetMessageLimit/unset_message_limit can be used to reset this. (File mips_post_optimisation_constraints.sdc, Line 242).
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] INFO (CTE): read_dc_script finished with 20 WARNING and 20 ERROR.
+[02/23 00:36:38   265s] WARNING (CTE-25): Line: 9, 10 of File mips_post_optimisation_constraints.sdc : Skipped unsupported command: set_units
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] 
+[02/23 00:36:38   265s] Ending "Constraint file reading stats" (total cpu=0:00:00.0, real=0:00:00.0, peak res=386.3M, current mem=730.5M)
+[02/23 00:36:38   265s] Current (total cpu=0:04:26, real=0:19:01, peak res=386.3M, current mem=730.5M)
+[02/23 00:36:38   265s] Total number of combinational cells: 0
+[02/23 00:36:38   265s] Total number of sequential cells: 0
+[02/23 00:36:38   265s] Total number of tristate cells: 0
+[02/23 00:36:38   265s] Total number of level shifter cells: 0
+[02/23 00:36:38   265s] Total number of power gating cells: 0
+[02/23 00:36:38   265s] Total number of isolation cells: 0
+[02/23 00:36:38   265s] Total number of power switch cells: 0
+[02/23 00:36:38   265s] Total number of pulse generator cells: 0
+[02/23 00:36:38   265s] Total number of always on buffers: 0
+[02/23 00:36:38   265s] Total number of retention cells: 0
+[02/23 00:36:38   265s] List of usable buffers:
+[02/23 00:36:38   265s] Total number of usable buffers: 0
+[02/23 00:36:38   265s] List of unusable buffers:
+[02/23 00:36:38   265s] Total number of unusable buffers: 0
+[02/23 00:36:38   265s] List of usable inverters:
+[02/23 00:36:38   265s] Total number of usable inverters: 0
+[02/23 00:36:38   265s] List of unusable inverters:
+[02/23 00:36:38   265s] Total number of unusable inverters: 0
+[02/23 00:36:38   265s] List of identified usable delay cells:
+[02/23 00:36:38   265s] Total number of identified usable delay cells: 0
+[02/23 00:36:38   265s] List of identified unusable delay cells:
+[02/23 00:36:38   265s] Total number of identified unusable delay cells: 0
+[02/23 00:36:38   265s] No delay cells were detected in the set of buffers. Buffers will be used to fix hold violations.
+[02/23 00:36:38   265s] <CMD> checkDesign -netlist
+[02/23 00:37:01   270s] Creating directory checkDesign.
+[02/23 00:37:01   270s] ############################################################################
+[02/23 00:37:01   270s] # Encounter Netlist Design Rule Check
+[02/23 00:37:01   270s] # Sun Feb 23 00:37:01 2020
+
+[02/23 00:37:01   270s] ############################################################################
+[02/23 00:37:01   270s] Design: MIPS_32_1P_MUL_DIV
+[02/23 00:37:01   270s] 
+[02/23 00:37:01   270s] ------ Design Summary:
+[02/23 00:37:01   270s] Total Standard Cell Number   (cells) : 16884
+[02/23 00:37:01   270s] Total Block Cell Number      (cells) : 0
+[02/23 00:37:01   270s] Total I/O Pad Cell Number    (cells) : 0
+[02/23 00:37:01   270s] Total Standard Cell Area     ( um^2) : 0.00
+[02/23 00:37:01   270s] Total Block Cell Area        ( um^2) : 0.00
+[02/23 00:37:01   270s] Total I/O Pad Cell Area      ( um^2) : 0.00
+[02/23 00:37:01   270s] 
+[02/23 00:37:01   270s] ------ Design Statistics:
+[02/23 00:37:01   270s] 
+[02/23 00:37:01   270s] Number of Instances            : 16884
+[02/23 00:37:01   270s] Number of Nets                 : 18304
+[02/23 00:37:01   270s] Average number of Pins per Net : 3.62
+[02/23 00:37:01   270s] Maximum number of Pins in Net  : 2878
+[02/23 00:37:01   270s] 
+[02/23 00:37:01   270s] ------ I/O Port summary
+[02/23 00:37:01   270s] 
+[02/23 00:37:01   270s] Number of Primary I/O Ports    : 204
+[02/23 00:37:01   270s] Number of Input Ports          : 88
+[02/23 00:37:01   270s] Number of Output Ports         : 116
+[02/23 00:37:01   270s] Number of Bidirectional Ports  : 0
+[02/23 00:37:01   270s] Number of Power/Ground Ports   : 0
+[02/23 00:37:01   270s] Number of Floating Ports                     *: 1
+[02/23 00:37:01   270s] Number of Ports Connected to Multiple Pads   *: 0
+[02/23 00:37:01   270s] Number of Ports Connected to Core Instances   : 203
+[02/23 00:37:01   270s] 
+[02/23 00:37:01   270s] ------ Design Rule Checking:
+[02/23 00:37:01   270s] 
+[02/23 00:37:01   270s] Number of Output Pins connect to Power/Ground *: 0
+[02/23 00:37:01   270s] Number of Insts with Input Pins tied together ?: 6
+[02/23 00:37:01   270s] Number of TieHi/Lo term nets not connected to instance's PG terms ?: 0
+[02/23 00:37:01   270s] Number of Input/InOut Floating Pins            : 0
+[02/23 00:37:01   270s] Number of Output Floating Pins                 : 0
+[02/23 00:37:01   270s] Number of Output Term Marked TieHi/Lo         *: 0
+[02/23 00:37:01   270s] 
+[02/23 00:37:01   270s] Number of nets with tri-state drivers          : 0
+[02/23 00:37:01   270s] Number of nets with parallel drivers           : 0
+[02/23 00:37:01   270s] Number of nets with multiple drivers           : 0
+[02/23 00:37:01   270s] Number of nets with no driver (No FanIn)       : 0
+[02/23 00:37:01   270s] Number of Output Floating nets (No FanOut)     : 372
+[02/23 00:37:01   270s] Number of High Fanout nets (>50)               : 1
+[02/23 00:37:01   270s] Design check done.
+[02/23 00:37:01   270s] Report saved in file checkDesign/MIPS_32_1P_MUL_DIV.main.htm.ascii.
+[02/23 00:37:01   270s] ambiguous command name "report": reportAlwaysOnBuffer reportBudget reportCapViolation reportCellPad reportClockMesh reportClockMeshPath reportClockTree reportClockTreeGateRatio reportClockTreeOCV reportCongestArea reportCritInstance reportCritNet reportCritTerm reportDanglingPort reportDeCap reportDeCapCellCandidates reportDelayCalculation reportDensityMap reportDontUseCells reportFanoutViolation reportFootPrint reportFreqViolation reportGateCount reportIgnoredNets reportIlmStatus reportInstPad reportIsolation reportJointTimingLeakage reportJtagInst reportLegalWireWidthForBump reportLengthViolation reportNetGroup reportPathGroupOptions reportPinDensityMap reportPipeline reportPowerDomain reportPowerSwitch reportProbePins reportRoute reportRouteTypeConstraints reportScanCell reportScanChainPartition reportSeedConnection reportSelect reportShield reportShifter reportSpecialRoute reportStatLeakagePower reportTimingLib reportTranViolation reportUnalignedNets reportUnsnapBlocks reportWire report_analysis_coverage report_analysis_summary report_analysis_views report_annotated_assertions report_annotated_check report_annotated_delay report_annotated_parasitics report_annotations report_aocv_derate report_case_analysis report_ccopt_clock_trees report_ccopt_rc_corner report_ccopt_skew_groups report_ccopt_worst_chain report_cell_instance_timing report_clock_gating_check report_clock_timing report_clocks report_constraint report_cppr report_design report_double_clocking report_etm_arcs report_fanin report_fanout report_glitch_noise report_inactive_arcs report_instance_library report_instance_power report_locv_derate report_metal_fill report_min_pulse_width report_mode report_net report_net_parasitics report_path_exceptions report_path_groups report_ports report_power report_property report_proto_model report_rcdb report_resource report_statistical_timing_derate_factors report_timearc_params report_timing report_timing_derate report_vector_profile report_wire_load
+[02/23 00:40:13   306s] <CMD> report_clocks
+[02/23 00:40:19   307s] <CMD> report_clocks
+[02/23 00:40:23   307s] <CMD> getIoFlowFlag
+[02/23 00:42:02   326s] <CMD> setIoFlowFlag 0
+[02/23 00:43:59   349s] <CMD> floorPlan -site CORE -r 1.0 0.7 20 20 20 20
+[02/23 00:43:59   349s] Adjusting Core to Left to: 20.0900. Core to Bottom to: 20.0900.
+[02/23 00:43:59   349s] Horizontal Layer M1 offset = 205 (guessed)
+[02/23 00:43:59   349s] Vertical Layer M2 offset = 205 (derived)
+[02/23 00:43:59   349s] Suggestion: specify LAYER OFFSET in LEF file
+[02/23 00:43:59   349s] Reason: hard to extract LAYER OFFSET from standard cells
+[02/23 00:43:59   349s] Generated pitch 1.025 in M6 is different from 0.9 defined in technology file in preferred direction.
+[02/23 00:43:59   349s] <CMD> uiSetTool select
+[02/23 00:43:59   349s] <CMD> getIoFlowFlag
+[02/23 00:43:59   349s] <CMD> fit
+[02/23 00:43:59   349s] 

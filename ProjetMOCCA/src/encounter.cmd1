@@ -1,0 +1,35 @@
+#######################################################
+#                                                     
+#  Encounter Command Logging File                     
+#  Created on Sun Feb 23 00:17:43 2020                
+#                                                     
+#######################################################
+
+#@(#)CDS: Encounter v13.24-s026_1 (64bit) 02/20/2014 14:03 (Linux 2.6)
+#@(#)CDS: NanoRoute v13.24-s007 NR140131-1116/13_20-UB (database version 2.30, 211.6.1) {superthreading v1.19}
+#@(#)CDS: CeltIC v13.24-s011_1 (64bit) 02/10/2014 04:19:33 (Linux 2.6.18-194.el5)
+#@(#)CDS: AAE 13.24-s010 (64bit) 02/20/2014 (Linux 2.6.18-194.el5)
+#@(#)CDS: CTE 13.24-s011_1 (64bit) Feb 10 2014 02:25:09 (Linux 2.6.18-194.el5)
+#@(#)CDS: CPE v13.24-s021
+#@(#)CDS: IQRC/TQRC 13.1.0-s302 (64bit) Mon Jan 13 11:11:46 PST 2014 (Linux 2.6.18-194.el5)
+
+set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+suppressMessage ENCEXT-2799
+win
+save_global mips.globals
+set init_gnd_net gnd_core
+set init_lef_file ../../../../../tuna/ue_vlsi2/techno/cmos_120/cmos_120nm.lef
+set init_design_settop 0
+set init_verilog mips_post_optimisation.v
+set init_mmmc_file mips.view
+set init_pwr_net vdd_core
+init_design
+checkDesign -netlist
+report_clocks
+report_clocks
+getIoFlowFlag
+setIoFlowFlag 0
+floorPlan -site CORE -r 1.0 0.7 20 20 20 20
+uiSetTool select
+getIoFlowFlag
+fit

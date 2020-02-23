@@ -1,0 +1,37 @@
+   slew_lower_threshold_pct_rise : 10 ;
+   slew_upper_threshold_pct_rise : 90 ;
+   input_threshold_pct_fall : 60 ;
+   output_threshold_pct_fall : 60 ;
+   input_threshold_pct_rise : 40 ;
+   output_threshold_pct_rise : 40 ;
+   slew_lower_threshold_pct_fall : 10 ;
+   slew_upper_threshold_pct_fall : 90 ;
+   slew_derate_from_library : 1.0 ;
+ 
+
+WORST
+ Voltage values given:
+   Library nominal:                 1.08
+   Tech-file best case:             1.20
+   Tech-file centre:                1.08
+   Tech-file worst case:            1.0
+ Temperature values given:
+   Library nominal:                 125
+   Tech-file best case:             25
+   Tech-file centre:                125
+   Tech-file worst case:            150
+
+
+BEST 
+ Voltage values given:
+   Library nominal:                 1.32
+   Tech-file best case:             1.32
+   Tech-file centre:                1.32
+   Tech-file worst case:            1.20
+ Temperature values given:
+   Library nominal:                 -40.0
+   Tech-file best case:             -40.0
+   Tech-file centre:                0
+   Tech-file worst case:            25.0
+
+

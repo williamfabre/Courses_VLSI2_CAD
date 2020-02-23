@@ -1,0 +1,10 @@
+# Version:1.0 MMMC View Definition File
+# Do Not Remove Above Line
+create_library_set -name libsWC -timing {../../../../../tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_clock_Worst.lib ../../../../../tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_io_Worst.lib ../../../../../tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_io_3v3_Worst.lib ../../../../../tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_core_Worst.lib ../../../../../tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_filler_Worst.lib}
+create_library_set -name libsBC -timing {../../../../../tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_clock_Best.lib ../../../../../tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_core_Best.lib ../../../../../tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_filler_Best.lib ../../../../../tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_io_3v3_Best.lib ../../../../../tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_io_Best.lib}
+create_constraint_mode -name const -sdc_files {mips_post_optimisation_constraints.sdc}
+create_delay_corner -name cornerWC -library_set {libsWC}
+create_delay_corner -name cornerBC -library_set {libsBC}
+create_analysis_view -name setup -constraint_mode {const} -delay_corner {cornerWC}
+create_analysis_view -name hold -constraint_mode {const} -delay_corner {cornerBC}
+set_analysis_view -setup {setup} -hold {hold}

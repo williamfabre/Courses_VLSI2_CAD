@@ -1,0 +1,264 @@
+WORST
+/*******************************************************
+  Process values given:
+   Library nominal:                 1.2
+   Tech-file best case:             1.2
+   Tech-file centre:                1.2
+   Tech-file worst case:            1.2
+
+ Voltage values given:
+   Library nominal:                 1.08
+   Tech-file best case:             1.20
+   Tech-file centre:                1.08
+   Tech-file worst case:            1.0
+
+ Temperature values given:
+   Library nominal:                 125
+   Tech-file best case:             25
+   Tech-file centre:                125
+   Tech-file worst case:            150
+
+ *******************************************************/
+
+library( CLOCK9GPHS ) {
+  define("drc_celltype"    ,"cell"   ,"string" );
+  define("drc_blocktype"   ,"cell"   ,"string" );
+  define("drc_blockgroup"  ,"cell"   ,"string" );
+  define("drc_restriction" ,"cell"   ,"string" );
+  define("drc_maxparallel" ,"cell"   ,"integer");
+  define("drc_pinsigtype"  ,"pin"    ,"string" );
+  define("drc_pinkind"     ,"pin"    ,"string" );
+  define("drc_pindrive"    ,"pin"    ,"string" );
+  define("drc_pinfunction" ,"pin"    ,"string" );
+  define("drc_pinpolarity" ,"pin"    ,"string" );
+  define("drc_charcond"    ,"timing" ,"string" );
+
+   delay_model : table_lookup;
+
+/*******************************************************/
+
+  nom_process : 1.2;
+  nom_voltage : 1.08;
+  nom_temperature : 125;
+
+/*******************************************************/
+
+/*******************************************************/
+ 
+   simulation               : true;
+   time_unit                : "1ns";
+ 
+   voltage_unit             : "1V";
+   current_unit             : "1mA";
+   pulling_resistance_unit  : "1kohm";
+ 
+   capacitive_load_unit(1,pf);
+ 
+   define_cell_area(bond_pads,pad_slots);
+ 
+   in_place_swap_mode       : "match_footprint";
+   default_connection_class : "default";
+ 
+   default_inout_pin_cap    : 0.01;
+   default_input_pin_cap    : 0.01;
+   default_output_pin_cap   : 0.0;
+/* default_fanout_load value given in include file removed */
+ 
+
+ 
+   slew_lower_threshold_pct_rise : 10 ;
+   slew_upper_threshold_pct_rise : 90 ;
+   input_threshold_pct_fall : 60 ;
+   output_threshold_pct_fall : 60 ;
+   input_threshold_pct_rise : 40 ;
+   output_threshold_pct_rise : 40 ;
+   slew_lower_threshold_pct_fall : 10 ;
+   slew_upper_threshold_pct_fall : 90 ;
+   slew_derate_from_library : 1.0 ;
+   leakage_power_unit         : 1pW;
+    default_cell_leakage_power : 568997.22 ; /* mean leakage of IVHS */
+   default_leakage_power_density : 94024.26 ; /* mean leakage per unit area of IVHS */
+
+
+   library_features(report_delay_calculation);
+  default_max_fanout  : 20 ;
+  default_fanout_load : 1 ; 
+ 
+
+   define("timing_label", "timing", "string");
+   define("timing_label_mpw_low", "pin", "string");
+   define("timing_label_mpw_high", "pin", "string");
+
+/**********************************************************************************************************/
+
+/*  ObjId:    { @(#) lv1.0 $Path: SYNOPSYS_DC/opconds.bcc_2.00V_-40C $ $Revision: 1.3 $ $Date: 99/03/22 16:11:08 $ } */
+/*  ObjType:  stf header : operating conditions */
+
+   operating_conditions(Worst){
+      process     :   1.2;
+      voltage     :   1.08;
+      temperature :    125;
+      tree_type   : "balanced_tree";
+   }
+/********************************************************************************************************/
+lu_table_template( table_2 ) {
+  variable_1 : input_net_transition ;
+  variable_2 : total_output_net_capacitance ;
+  index_1 (" 0.0088, 0.1608, 0.3128, 0.6248, 1.2408, 1.9 ");
+  index_2 (" 0.004, 0.068, 0.212, 0.52, 1.132, 2.28, 2.56 ");
+}
+lu_table_template( table_4 ) {
+  variable_1 : input_net_transition ;
+  variable_2 : total_output_net_capacitance ;
+  index_1 (" 0.0088, 0.1608, 0.3128, 0.6248, 1.2408, 1.9 ");
+  index_2 (" 0.004, 0.036, 0.104, 0.278, 0.596, 1.28 ");
+}
+lu_table_template( table_6 ) {
+  variable_1 : input_net_transition ;
+  variable_2 : total_output_net_capacitance ;
+  index_1 (" 0.0088, 0.1608, 0.3128, 0.6248, 1.2408, 1.9 ");
+  index_2 (" 0.004, 0.056, 0.112, 0.344, 0.824, 1.784, 3.472, 3.84 ");
+}
+lu_table_template( table_8 ) {
+  variable_1 : input_net_transition ;
+  variable_2 : total_output_net_capacitance ;
+  index_1 (" 0.0088, 0.1608, 0.3128, 0.6248, 1.2408, 1.9 ");
+  index_2 (" 0.004, 0.068, 0.136, 0.424, 1.04, 2.264, 4.56, 5.12 ");
+}
+power_lut_template( power_table_1 ) {
+  variable_1 : input_transition_time ;
+  variable_2 : total_output_net_capacitance ;
+  index_1 (" 0.0056, 0.1016, 0.2616, 0.5336, 1.0696, 1.5 ");
+  index_2 (" 0.004, 2.56 ");
+}
+power_lut_template( power_table_3 ) {
+  variable_1 : input_transition_time ;
+  variable_2 : total_output_net_capacitance ;
+  index_1 (" 0.0056, 0.1016, 0.2616, 0.5336, 1.0696, 1.5 ");
+  index_2 (" 0.004, 1.28 ");
+}
+power_lut_template( power_table_5 ) {
+  variable_1 : input_transition_time ;
+  variable_2 : total_output_net_capacitance ;
+  index_1 (" 0.0056, 0.1016, 0.2616, 0.5336, 1.0696, 1.5 ");
+  index_2 (" 0.004, 3.84 ");
+}
+power_lut_template( power_table_7 ) {
+  variable_1 : input_transition_time ;
+  variable_2 : total_output_net_capacitance ;
+  index_1 (" 0.0056, 0.1016, 0.2616, 0.5336, 1.0696, 1.5 ");
+  index_2 (" 0.004, 5.12 ");
+}
+/*******************************************************/
+/*---------------------------------------------------------
+Internal Non-Inverting Buffer, 16x Drive
+---------------------------------------------------------*/
+cell(BFHSX16_0) {
+  drc_celltype : "combinational" ;
+  drc_blocktype : "primitive" ;
+  drc_blockgroup : "stdcell" ;
+  drc_restriction : "none" ;
+  drc_maxparallel : 1 ;
+  area : 68.5848 ;
+  cell_leakage_power : 18665000.00000 ;
+  leakage_power() { /* A_F_Z_F */
+    value : 19353333.33333 ;
+    when  : "A" ;
+  }
+  leakage_power() { /* A_R_Z_R */
+    value : 17976666.66667 ;
+    when  : "!A" ;
+  }
+  pin(Z) {
+    max_transition : 1.9 ;
+    direction : output ;
+    drc_pinsigtype : "signal" ;
+    drc_pinfunction : "normal" ;
+    drc_pindrive : "always" ;
+    drc_pinkind : "internal" ;
+    drc_pinpolarity : "high" ;
+   function : "A";
+    max_capacitance : 2.00000 ;
+    capacitance : 0.00000 ;
+    internal_power() {
+      related_pin : "A" ;
+      /* A_R_Z_R */
+      rise_power(power_table_1) { 
+        values( "0.13030, 0.14188", \
+                "0.13643, 0.14808", \
+                "0.15543, 0.16798", \
+                "0.19008, 0.20298", \
+                "0.26003, 0.26988", \
+                "0.31710, 0.32658" );
+      }
+      /* A_F_Z_F */
+      fall_power(power_table_1) { 
+        values( "0.14645, 0.14627", \
+                "0.15443, 0.15423", \
+                "0.17344, 0.17330", \
+                "0.20811, 0.20785", \
+                "0.27830, 0.27799", \
+                "0.33524, 0.33461" );
+      }
+    }
+    timing() {
+      related_pin : "A" ;
+      drc_charcond : "1_1  0_0 " ;
+      timing_sense : positive_unate ;
+      /* A_R_Z_R */
+      cell_rise(table_2) { 
+        values( "0.15132, 0.16619, 0.19260, 0.24616, 0.35140, 0.54922, 0.59758", \
+                "0.18500, 0.19987, 0.22624, 0.27962, 0.38545, 0.58269, 0.63114", \
+                "0.20848, 0.22336, 0.24972, 0.30319, 0.40882, 0.60631, 0.65468", \
+                "0.24868, 0.26355, 0.28996, 0.34351, 0.44888, 0.64618, 0.69402", \
+                "0.31660, 0.33149, 0.35787, 0.41145, 0.51696, 0.71455, 0.76247", \
+                "0.38257, 0.39745, 0.42383, 0.47741, 0.58293, 0.78058, 0.82828" );
+      }
+      rise_transition(table_2) { 
+        values( "0.02392, 0.05411, 0.12742, 0.28791, 0.60866, 1.21620, 1.36400", \
+                "0.02402, 0.05412, 0.12743, 0.28792, 0.61087, 1.21621, 1.36550", \
+                "0.02403, 0.05419, 0.12744, 0.28874, 0.61194, 1.21880, 1.36560", \
+                "0.02404, 0.05420, 0.12745, 0.28875, 0.61195, 1.21881, 1.36780", \
+                "0.02405, 0.05421, 0.12746, 0.28876, 0.61196, 1.21882, 1.36820", \
+                "0.02406, 0.05422, 0.12747, 0.28877, 0.61197, 1.21883, 1.36821" );
+      }
+      /* A_F_Z_F */
+      cell_fall(table_2) { 
+        values( "0.14502, 0.15823, 0.17953, 0.21988, 0.29806, 0.44467, 0.47988", \
+                "0.19166, 0.20487, 0.22617, 0.26652, 0.34465, 0.49133, 0.52692", \
+                "0.22964, 0.24284, 0.26415, 0.30446, 0.38272, 0.52901, 0.56470", \
+                "0.30027, 0.31348, 0.33479, 0.37514, 0.45322, 0.59955, 0.63532", \
+                "0.42832, 0.44153, 0.46283, 0.50318, 0.58130, 0.72786, 0.76320", \
+                "0.55851, 0.57172, 0.59302, 0.63333, 0.71164, 0.85811, 0.89339" );
+      }
+      fall_transition(table_2) { 
+        values( "0.02005, 0.04050, 0.08688, 0.18923, 0.39872, 0.79053, 0.88269", \
+                "0.02006, 0.04051, 0.08689, 0.18939, 0.39873, 0.79054, 0.88539", \
+                "0.02009, 0.04052, 0.08690, 0.18967, 0.39874, 0.79055, 0.88540", \
+                "0.02010, 0.04053, 0.08691, 0.18968, 0.39875, 0.79056, 0.88638", \
+                "0.02011, 0.04054, 0.08692, 0.18969, 0.39876, 0.79057, 0.88639", \
+                "0.02012, 0.04055, 0.08693, 0.18970, 0.39877, 0.79058, 0.88640" );
+      }
+      timing_label : "A_Z" ;
+      intrinsic_rise : 0.18407 ;
+      intrinsic_fall : 0.19083 ;
+    }
+  }
+  pin(A) {
+    max_transition : 1.9 ;
+    direction : input ;
+    drc_pinsigtype : "signal" ;
+    drc_pinfunction : "normal" ;
+    drc_pindrive : "none" ;
+    drc_pinkind : "internal" ;
+    drc_pinpolarity : "high" ;
+    capacitance : 0.01193 ;
+  }
+}
+
+
+
+
+
+
+
