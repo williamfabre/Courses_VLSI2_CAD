@@ -1,0 +1,407 @@
+set_attribute library /users/enseig/tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_core_Worst.lib
+
+#set rtl [list \~tuna/ue_vlsi2/rtl/mips_32_1p_mul_div.vhd]
+#set rtl [list /users/enseig/fabre/work/MOCCA/ProjetMOCCA/src/mips_32_1p_mul_div.vhd]
+
+set rtl [list /users/enseig/sekouri/Documents/MOCCA/tp7/mips_32_1p_mul_div.vhd]
+
+read_hdl -vhdl $rtl
+
+elaborate MIPS_32_1P_MUL_DIV
+
+read_sdc /users/enseig/sekouri/Documents/MOCCA/tp7/mips.sdc
+
+#read_sdc /users/enseig/fabre/work/MOCCA/ProjetMOCCA/src/mips.sdc
+
+check_design
+synthesize -to_mapped
+
+##write sdc > tst.sdc
+
+##report area
+##report gates
+##report timing
+##report timing -lint
+##report power
+
+
+##read_sdc mips.sdc
+
+#synthesize -effort high -to_generic 
+#synthesize -effort high -to_mapped
+#synthesize -effort high -to_placed -incremental
+
+
+
+
+
+
+
+--------------------------
+
+
+
+
+RC-flow:
+1) setup environment variables eg. WORKDIR, search paths for RTL,Libraries,scripts etc.
+2) Read RTL/Synthesis Netlist, Libraries, SDC(optional)
+
+	include read_rtl.dft.tcl
+
+	
+3) Elobarate the design if RTL(if netlist then no need for this step)-if dont care logic is present then it adds dont care logic cells to represent dont care logic.
+
+	elaborate dtmf_recvr_core
+
+
+4) check design (lists the flops,gates ,tristate buffers)
+
+	check_design
+
+
+5) Read SDC
+
+	read_sdc dtmf_recvr_core.sdc
+
+
+6) Include cost groups
+
+	include cost_groups.tcl
+
+
+7) report timing
+
+report timing –lint -verbose
+
+ ---------------------------------------------------------------------------------------------------
+8) set attributes like  scan style :muxed style,clocked, lssd.
+    
+	set_attribute dft_scan_style muxed_scan /
+
+
+9) Defining test signals: Scan enable,scan clock, testmode
+
+	define_dft shift_enable -name SHIFT_EN -active high scan_en
+	define_dft test_mode -name TEST_MODE -active high test_mode
+	define_dft test_clock -name TEST_CLOCK scan_clk
+
+	
+10) report dft setup
+    
+    check_dft_rules
+	report dft_setup
+
+
+11) check dft rules
+
+	check_dft_rules > dft_rules_basic.report
+
+	####check_dft_rules -advanced > dft_report_advanced.report
+
+
+12) Fix dft violations
+
+	fix_dft_violations -violations vid_0_clock
+ -test_control TEST_MODE -preview
+
+
+13) synthesize to generic
+
+	synthesize -to_generic
+
+
+14) convert tdrc pass flops to scan flops
+
+	set_attr dft_scan_map_mode tdrc_pass MIPS_32_1P_MUL_DIV
+
+
+15) synthesize to mapped (with scan FF)
+
+	synthesize -to_mapped -effort medium
+
+
+Inserting shadow logic
+16) report gates
+
+	report gates
+
+17) insert shadow logic
+	How to find RAM's and ROM's in design to insert shadow logic around them
+%https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=6&ved=2ahUKEwiEgenUuOjnAhWRohQKHSMZBzgQFjAFegQICBAB&url=http%3A%2F%2Fwk.ixueshu.com%2Ffile%2F59c64e452159a478318947a18e7f9386.html&usg=AOvVaw10e3HRLyUZVl_mXD7cxWp3
+	report instance [find / -instance *RAM*]
+	report instance [find / -instance *ROM*]
+
+
+insert_dft shadow_logic -around [find / -instance RAM_128x16_TEST_INST] -balance -mode share  -test_control TEST_MODE -test_clock_pin TEST_CLOCK
+
+
+18) check dft rules
+
+	check_dft_rules > dft_rules.report2
+
+
+19) synthesize to incremental
+
+	synthesize -incremental -effort high
+
+
+Configuring scan chains
+20) report dft registers
+
+ 	report dft_registers
+
+
+21) setting scan in and out ports
+define_dft scan_chain -name chain1 -create_ports -sdi TDI -sdo TDO
+
+
+22) setting minimum number of scan chains required
+
+	define_dft scan_chain -name chain1 -create_ports -sdi TDI -sdo TDO
+
+
+23) Allow mixing the clock edges
+
+	set_attr dft_mix_clock_edges_in_scan_chains true
+ designs/${DESIGN}
+
+
+	Connecting scan chains:
+           24) connect the scan chains
+
+		connect_scan_chains -auto_create_chains –preview
+
+
+		#########	if there's need of balancing, then do it   ########
+
+		connect_scan_chains -auto_create_chains
+
+
+           25) Report the results
+
+		report qor
+
+		
+		
+ 	Saving the design:
+           26)Save SDC
+
+		write_sdc > dtmf_recvr_core.mapped.sdc
+
+
+           27) Save the mapped netlist
+		
+		write_hdl -m > dtmf_recvr_core.mapped.v
+
+
+           28) Create ATPG files for your design
+
+		write_et_atpg –library atpglib.files –directory fullscan
+
+
+           29) save the scan def file
+		
+		write_scandef > dtmf_chip.scan.def
+
+
+           30) exit the tool
+	
+
+
+
+
+
+echo "Starting the Encounter Test Run Script"
+PLAT=`uname`
+RUNDATE=`date +%m%d\.%H\:%M`
+WORKDIR=./
+CELL=IdmaRd
+####LOGFILE="Full_ET_run.logfile"
+
+## Set netlist and library information
+NETLIST=case5_scan.v
+LIBRARY="TECHLIB/*.v"
+
+## Testmode information
+TESTMODE=FULLSCAN
+ASSIGNFILE=./case5_assignfile
+
+## Processing steps  1=do, 0=don't
+do_build_model=1;
+do_fault_model=1;
+
+do_build_testmode_FULLSCAN=1;
+do_report_test_structures_FULLSCAN=1;
+do_verify_test_structures_FULLSCAN=1;
+
+
+#*************************************************
+#BUILD MODEL
+#*************************************************
+if [ -f "${LOGFILE}" ] ; then
+   echo "The logfile $LOGFILE exists.  Moving to a backup file"
+   mv ./$LOGFILE ./$LOGFILE.bak
+fi
+
+if [ $do_build_model -eq 1 ]; then
+echo "Building Encounter Test Model"
+
+et -e build_model  \
+ cell=$CELL \
+ teiperiod=_d0t_ \
+ workdir=$WORKDIR \
+ designsource=$NETLIST \
+ TECHLIB=$LIBRARY \
+ allowincomplete=yes \
+ > log_build_model
+
+
+fi
+
+#*************************************************
+#BUILD FAULT MODEL
+#*************************************************
+
+if [ $do_fault_model -eq 1 ]; then
+echo "Building Encounter Test Fault Model"
+
+et -e build_faultmodel \
+  includedrvrcvr=no \
+  cellfaults=yes \
+  workdir=$WORKDIR \
+ > log_build_fault_model
+
+fi
+
+
+#*************************************************
+#BUILD TEST MODE FULLSCAN
+#*************************************************
+if [ $do_build_testmode_FULLSCAN -eq 1 ]; then
+echo "Building Test Mode $TESTMODE"
+
+et -e build_testmode \
+   WORKDIR=$WORKDIR \
+   testmode=$TESTMODE \
+   modedef=$TESTMODE \
+   assignfile=$ASSIGNFILE \
+   seqpath=$WORKDIR \
+ > log_build_testmode
+
+fi
+
+#*************************************************
+#Report Test Structures for FULLSCAN MODE
+#*************************************************
+
+if [ $do_report_test_structures_FULLSCAN -eq 1 ]; then
+echo "Report Test Structures $TESTMODE"
+
+et -e report_test_structures \
+    workdir=$WORKDIR \
+    testmode=$TESTMODE \
+ > log_report_test_structures
+fi
+
+#*************************************************
+#Verify Test Structures for FULLSCAN MODE
+#*************************************************
+
+if [ $do_verify_test_structures_FULLSCAN -eq 1 ]; then
+echo "Verify Test Structures $TESTMODE"
+
+et -e verify_test_structures \
+    workdir=$WORKDIR \
+    testmode=$TESTMODE \
+    reruntests=yes \
+    messagecountallmessages=100 \
+    stoponerrorclockusage=no \
+ > log_verify_test_structures
+
+fi
+
+et -e create_scanchain_tests nostdout=yes workdir=$WORKDIR testmode=FULLSCAN experiment=scan > log_create_scanchain_tests_scan
+
+et -e commit_tests inexperiment=scan testmode=FULLSCAN workdir=$WORKDIR > log_commit_tests_scan
+
+et -e create_logic_tests append=yes experiment=LOGIC testmode=FULLSCAN effort=high workdir=$WORKDIR > log_create_logic_tests_logic
+
+et -e report_fault_statistics workdir=$WORKDIR testmode=FULLSCAN experiment=LOGIC reporttype=static coveragecredit=tested inputcommitted=no hierstart=IdmaRd hierend=2 > hier_level2
+
+et -e report_fault_statistics workdir=$WORKDIR testmode=FULLSCAN experiment=LOGIC reporttype=static coveragecredit=tested inputcommitted=no hierstart=IdmaRd hierend=3 > hier_level3
+
+et -e report_faults faultlocation=cellpin workdir=$WORKDIR > log_untested
+
+et -e write_vectors inexperiment=LOGIC exportdir=/proj/dfttraining/ramprasadn/JumpStart_LABS/case5/testresults/verilog testmode=FULLSCAN workdir=$WORKDIR > log_verilog
+
+et -e write_vectors language=wgl inexperiment=LOGIC exportdir=/proj/dfttraining/ramprasadn/JumpStart_LABS/case5/testresults/wgl testmode=FULLSCAN workdir=$WORKDIR > log_wgl
+
+et -e write_vectors language=stil inexperiment=LOGIC xvalue=z exportdir=/proj/dfttraining/ramprasadn/JumpStart_LABS/case5/testresults/STIL/binary testmode=FULLSCAN workdir=$WORKDIR > log_stil_bin
+
+et -e write_vectors language=stil inexperiment=LOGIC xvalue=z exportdir=/proj/dfttraining/ramprasadn/JumpStart_LABS/case5/testresults/STIL/hex testmode=FULLSCAN workdir=$WORKDIR dataformat=hex > log_stil_hex
+
+assign file1
+
+assign pin=ProcClk -ES;
+assign pin=Reset +SC;
+assign pin=FastClk -ES;
+assign pin=scan_en +SE;
+assign pin=scan_in1 SI;
+assign pin=scan_in2 SI;
+assassign pin=DLX_CHIPTOP_TEST_ENABLE test_function= +TI;
+assign pin=DLX_CHIPTOP_TEST_CLOCK test_function= -ES;
+assign pin=DLX_CHIPTOP_TDI test_function= -TI;
+assign pin=DLX_CHIPTOP_TCK test_function= +TI;
+assign pin=DLX_CHIPTOP_TMS test_function= -TI;
+assign pin=DLX_CHIPTOP_TRST test_function= -TI;
+assign pin=DLX_CHIPTOP_SE test_function= +SE;
+assign pin=DLX_CHIPTOP_RESET test_function= +SC;
+assign pin=DLX_CHIPTOP_RESET2 test_function=+SE;
+assign pin=DLX_CHIPTOP_SYS_CLK test_function= -ES;
+assign pin=DLX_CHIPTOP_DATA[0] test_function=  SI;
+assign pin=DLX_CHIPTOP_DATA[1] test_function=  SI;
+assign pin=DLX_CHIPTOP_DATA[2] test_function=  SI;
+assign pin=DLX_CHIPTOP_DATA[3] test_function=  SI;ign pin=CountRd_r[1] SO;
+assign pin=IncCr SO;
+
+assign file 2
+
+assign pin=DLX_CHIPTOP_TEST_ENABLE test_function= +TI;
+assign pin=DLX_CHIPTOP_TEST_CLOCK test_function= -ES;
+assign pin=DLX_CHIPTOP_TDI test_function= -TI;
+assign pin=DLX_CHIPTOP_TCK test_function= +TI;
+assign pin=DLX_CHIPTOP_TMS test_function= -TI;
+assign pin=DLX_CHIPTOP_TRST test_function= -TI;
+assign pin=DLX_CHIPTOP_SE test_function= +SE;
+assign pin=DLX_CHIPTOP_RESET test_function= +SC;
+assign pin=DLX_CHIPTOP_RESET2 test_function=+SE;
+assign pin=DLX_CHIPTOP_SYS_CLK test_function= -ES;
+assign pin=DLX_CHIPTOP_DATA[0] test_function=  SI;
+assign pin=DLX_CHIPTOP_DATA[1] test_function=  SI;
+assign pin=DLX_CHIPTOP_DATA[2] test_function=  SI;
+assign pin=DLX_CHIPTOP_DATA[3] test_function=  SI;
+
+
+-----------------------
+
+read_sdc mips.sdc
+set_attribute dft_scan_style muxed_scan /
+define_dft shift_enable -name SHIFT_EN -active high scan_en
+define_dft test_mode -name TEST_MODE -active high test_mode
+define_dft test_clock -name TEST_CLOCK scan_clk
+check_dft_rules
+report dft_setup
+synthesize -to_generic -effort high
+set_attr dft_scan_map_mode tdrc_pass $DESIGN
+synthesize -to_mapped -effort high
+report gates
+check_dft_rules
+synthesize -incremental -effort high
+report dft_registers
+define_dft scan_chain -name chain1 -create_ports -sdi TDI -sdo TDO
+set_attr dft_mix_clock_edges_in_scan_chains true $DESIGN
+set_attr dft_min_number_of_scan_chains 4 $DESIGN
+connect_scan_chains -dont_exceed_min_number_of_scan_chains -auto_create_chains -preview $DESIGN
+report qor
+
+%define_dft scan_chain -name chain1 -create_ports -sdi TDI -sdo TDO

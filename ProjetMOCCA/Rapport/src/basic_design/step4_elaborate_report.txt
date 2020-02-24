@@ -1,0 +1,22 @@
+Info    : Found unusable library cells. [LBR-415]
+        : Library: '/users/enseig/tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_core_Worst.lib', Total cells: 693, Unusable cells: 25.
+
+Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'MIPS_32_1P_MUL_DIV' from file '/users/enseig/tuna/ue_vlsi2/rtl/mips_32_1p_mul_div.vhd'.
+Info    : Binding to architecture. [ELAB-5]
+        : Elaborating architecture 'BEHAVIOURAL' for entity 'MIPS_32_1P_MUL_DIV'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'MIPS_32_1P_MUL_DIV' with default parameters value.
+Warning : Unreachable statements for case item. [CDFG-472]
+        : Case item 'others' in module 'MIPS_32_1P_MUL_DIV' in file '/users/enseig/tuna/ue_vlsi2/rtl/mips_32_1p_mul_div.vhd' on line 2180.
+Warning : Unreachable statements for case item. [CDFG-472]
+        : Case item 'others' in module 'MIPS_32_1P_MUL_DIV' in file '/users/enseig/tuna/ue_vlsi2/rtl/mips_32_1p_mul_div.vhd' on line 2215.
+Warning : Unreachable statements for case item. [CDFG-472]
+        : Case item 'others' in module 'MIPS_32_1P_MUL_DIV' in file '/users/enseig/tuna/ue_vlsi2/rtl/mips_32_1p_mul_div.vhd' on line 2576.
+Warning : Unreachable statements for case item. [CDFG-472]
+        : Case item 'others' in module 'MIPS_32_1P_MUL_DIV' in file '/users/enseig/tuna/ue_vlsi2/rtl/mips_32_1p_mul_div.vhd' on line 3939.
+Warning : Removing unused register. [CDFG-508]
+        : Removing unused flip-flop register 'I_RM' in module 'MIPS_32_1P_MUL_DIV' in file '/users/enseig/tuna/ue_vlsi2/rtl/mips_32_1p_mul_div.vhd' on line 5459.
+        : A flip-flop or latch that was inferred for an unused signal or variable was removed. Use 'set_attribute hdl_preserve_unused_registers true /' to preserve the flip-flop or latch.
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'MIPS_32_1P_MUL_DIV'.

@@ -1,0 +1,90 @@
+create_clock -name clk_500MHz -period 2 [get_port Clk]
+set_input_delay 0.5 -clock clk_500MHz [get_port In]
+set_output_delay 0.3 -clock clk_500MHz [get_port Out]
+
+##-----------------
+
+create_clock -name clk_500MHz -period 2 [get_port CK]
+set_input_delay 0.5 -clock clk_500MHz [get_port RESET_N]
+set_input_delay 0.5 -clock clk_500MHz [get_port IT_N]
+set_input_delay 0.5 -clock clk_500MHz [get_port CPU_NBR]
+set_input_delay 0.5 -clock clk_500MHz [get_port I_RBERR]
+set_input_delay 0.5 -clock clk_500MHz [get_port I_ACCPT]
+set_input_delay 0.5 -clock clk_500MHz [get_port I_IN]
+set_input_delay 0.5 -clock clk_500MHz [get_port D_RBERR]
+set_input_delay 0.5 -clock clk_500MHz [get_port D_WBERR]
+set_input_delay 0.5 -clock clk_500MHz [get_port D_ACCPT]
+set_input_delay 0.5 -clock clk_500MHz [get_port D_IN]
+set_input_delay 0.5 -clock clk_500MHz [get_port MCHECK_N]
+
+set_output_delay 0.3 -clock clk_500MHz [get_port I_A]
+set_output_delay 0.3 -clock clk_500MHz [get_port I_RQ]
+set_output_delay 0.3 -clock clk_500MHz [get_port MODE]
+set_output_delay 0.3 -clock clk_500MHz [get_port I_ACK]
+set_output_delay 0.3 -clock clk_500MHz [get_port I_BEREN]
+set_output_delay 0.3 -clock clk_500MHz [get_port I_INLINE]
+set_output_delay 0.3 -clock clk_500MHz [get_port D_A]
+set_output_delay 0.3 -clock clk_500MHz [get_port D_BYTSEL]
+set_output_delay 0.3 -clock clk_500MHz [get_port D_RQ]
+set_output_delay 0.3 -clock clk_500MHz [get_port D_RW]
+set_output_delay 0.3 -clock clk_500MHz [get_port D_SYNC]
+set_output_delay 0.3 -clock clk_500MHz [get_port D_REG]
+set_output_delay 0.3 -clock clk_500MHz [get_port D_LINKED]
+set_output_delay 0.3 -clock clk_500MHz [get_port D_RSTLKD]
+set_output_delay 0.3 -clock clk_500MHz [get_port D_CACHE]
+set_output_delay 0.3 -clock clk_500MHz [get_port D_CACHOP]
+set_output_delay 0.3 -clock clk_500MHz [get_port D_OUT]
+set_output_delay 0.3 -clock clk_500MHz [get_port D_ACK]
+set_output_delay 0.3 -clock clk_500MHz [get_port SCOUT]
+
+
+##-----------------
+
+create_clock -name clk_416MHz -period 2.4 [get_port CK]
+set_input_delay 0.05438 -clock clk_416MHz [get_port RESET_N]
+set_input_delay 0.05438 -clock clk_416MHz [get_port IT_N]
+set_input_delay 0.05438 -clock clk_416MHz [get_port CPU_NBR]
+set_input_delay 0.05438 -clock clk_416MHz [get_port I_RBERR]
+set_input_delay 0.05438 -clock clk_416MHz [get_port I_ACCPT]
+set_input_delay 0.05438 -clock clk_416MHz [get_port I_IN]
+set_input_delay 0.05438 -clock clk_416MHz [get_port D_RBERR]
+set_input_delay 0.05438 -clock clk_416MHz [get_port D_WBERR]
+set_input_delay 0.05438 -clock clk_416MHz [get_port D_ACCPT]
+set_input_delay 0.05438 -clock clk_416MHz [get_port D_IN]
+set_input_delay 0.05438 -clock clk_416MHz [get_port MCHECK_N]
+
+set_output_delay 0.05438 -clock clk_416MHz [get_port I_A]
+set_output_delay 0.05438 -clock clk_416MHz [get_port I_RQ]
+set_output_delay 0.05438 -clock clk_416MHz [get_port MODE]
+set_output_delay 0.05438 -clock clk_416MHz [get_port I_ACK]
+set_output_delay 0.05438 -clock clk_416MHz [get_port I_BEREN]
+set_output_delay 0.05438 -clock clk_416MHz [get_port I_INLINE]
+set_output_delay 0.05438 -clock clk_416MHz [get_port D_A]
+set_output_delay 0.05438 -clock clk_416MHz [get_port D_BYTSEL]
+set_output_delay 0.05438 -clock clk_416MHz [get_port D_RQ]
+set_output_delay 0.05438 -clock clk_416MHz [get_port D_RW]
+set_output_delay 0.05438 -clock clk_416MHz [get_port D_SYNC]
+set_output_delay 0.05438 -clock clk_416MHz [get_port D_REG]
+set_output_delay 0.05438 -clock clk_416MHz [get_port D_LINKED]
+set_output_delay 0.05438 -clock clk_416MHz [get_port D_RSTLKD]
+set_output_delay 0.05438 -clock clk_416MHz [get_port D_CACHE]
+set_output_delay 0.05438 -clock clk_416MHz [get_port D_CACHOP]
+set_output_delay 0.05438 -clock clk_416MHz [get_port D_OUT]
+set_output_delay 0.05438 -clock clk_416MHz [get_port D_ACK]
+set_output_delay 0.05438 -clock clk_416MHz [get_port SCOUT]
+
+-----------------------------------DFT
+
+
+
+create_clock -name clk_200MHz -period 5 [get_port CK]
+create_clock -name clk25MHz -period 40 [get_port scan_clk]
+
+set_input_delay 0.05438 -clock clk25MHz [get_port scan_en]
+set_input_delay 0.05438 -clock clk25MHz [get_port test_mode]
+set_input_delay 0.05438 -clock clk25MHz [get_port scan_clk]
+set_input_delay 0.05438 -clock clk25MHz [get_port TDI]
+set_output_delay 0.05438 -clock clk25MHz [get_port TDO]
+
+set_input_delay 0.05438 -clock clk_200MHz [get_port RESET_N]
+...

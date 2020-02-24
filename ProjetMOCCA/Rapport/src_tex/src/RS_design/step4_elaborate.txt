@@ -1,0 +1,70 @@
+rc:/> elaborate MIPS_32_1P_MUL_DIV
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'QN' has the 'rising_edge' value in library cell 'LD1QNHS'.
+        : Rising edge-triggered sequential cells should have rising hold/setup checks and falling edge-triggered sequential cells should have falling hold/setup checks.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'QN' has the 'rising_edge' value in library cell 'LD1QNHSP'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'QN' has the 'rising_edge' value in library cell 'LD1QNHSX4'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'QN' has the 'rising_edge' value in library cell 'LD1QNHSX6'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'QN' has the 'rising_edge' value in library cell 'LD1QNHSX8'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1QHS'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1QHSP'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1QHSX4'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1QHSX6'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1QHSX8'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1TQHS'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1TQHSP'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1TQHSX4'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1TQHSX6'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1TQHSX8'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'GN' and 'D' has the 'setup_rising' value whereas the 'timing_type' for the timing arc between pins 'GN' and 'QN' has the 'falling_edge' value in library cell 'LD2QNHS'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'GN' and 'D' has the 'setup_rising' value whereas the 'timing_type' for the timing arc between pins 'GN' and 'QN' has the 'falling_edge' value in library cell 'LD2QNHSP'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'GN' and 'D' has the 'setup_rising' value whereas the 'timing_type' for the timing arc between pins 'GN' and 'QN' has the 'falling_edge' value in library cell 'LD2QNHSX4'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'GN' and 'D' has the 'setup_rising' value whereas the 'timing_type' for the timing arc between pins 'GN' and 'QN' has the 'falling_edge' value in library cell 'LD2QNHSX6'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'GN' and 'D' has the 'setup_rising' value whereas the 'timing_type' for the timing arc between pins 'GN' and 'QN' has the 'falling_edge' value in library cell 'LD2QNHSX8'.
+Info    : Found unusable library cells. [LBR-415]
+        : Library: '/users/enseig/tuna/ue_vlsi2/techno/cmos_120/cmos_120nm_core_Worst.lib', Total cells: 693, Unusable cells: 25.
+	List of unusable cells: 'BK1HSX05 BK1SHSX05 BTSHS FD9QHS FD9QHSP FD9QHSX4 FD9SQHS FD9SQHSP FD9SQHSX4 ITSHS ... and others.'
+        : For more information, refer to 'Cells Identified as Unusable' in the RC User Guide. The number of unusable cells that is listed depends on the setting of the 'information_level' root attribute. If set to a value less than 6, the list is limited to 10 unusable cells. If set to a value equal to or higher than 6, all unusable cells are listed.
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'MIPS_32_1P_MUL_DIV' from file '/users/enseig/fabre/work/MOCCA/ProjetMOCCA/src/mips_32_1p_mul_div.vhd'.
+Info    : Binding to architecture. [ELAB-5]
+        : Elaborating architecture 'BEHAVIOURAL' for entity 'MIPS_32_1P_MUL_DIV'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'MIPS_32_1P_MUL_DIV' with default parameters value.
+Warning : Unreachable statements for case item. [CDFG-472]
+        : Case item 'others' in module 'MIPS_32_1P_MUL_DIV' in file '/users/enseig/fabre/work/MOCCA/ProjetMOCCA/src/mips_32_1p_mul_div.vhd' on line 2182.
+Warning : Unreachable statements for case item. [CDFG-472]
+        : Case item 'others' in module 'MIPS_32_1P_MUL_DIV' in file '/users/enseig/fabre/work/MOCCA/ProjetMOCCA/src/mips_32_1p_mul_div.vhd' on line 2217.
+Warning : Unreachable statements for case item. [CDFG-472]
+        : Case item 'others' in module 'MIPS_32_1P_MUL_DIV' in file '/users/enseig/fabre/work/MOCCA/ProjetMOCCA/src/mips_32_1p_mul_div.vhd' on line 2578.
+Warning : Unreachable statements for case item. [CDFG-472]
+        : Case item 'others' in module 'MIPS_32_1P_MUL_DIV' in file '/users/enseig/fabre/work/MOCCA/ProjetMOCCA/src/mips_32_1p_mul_div.vhd' on line 3941.
+Warning : Removing unused register. [CDFG-508]
+        : Removing unused flip-flop register 'I_RM' in module 'MIPS_32_1P_MUL_DIV' in file '/users/enseig/fabre/work/MOCCA/ProjetMOCCA/src/mips_32_1p_mul_div.vhd' on line 5461.
+        : A flip-flop or latch that was inferred for an unused signal or variable was removed. Use 'set_attribute hdl_preserve_unused_registers true /' to preserve the flip-flop or latch.
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'MIPS_32_1P_MUL_DIV'.
+Warning : Instance count threshold exceeded.  Switching to manual update mode. [GUI-12]
+        : Current instance count: '20208', threshold: '2000'
+        : To change the threshold set the 'gui_sv_threshold' root attribute.
+  Setting attribute of root '/': 'gui_sv_update' = manual
+/designs/MIPS_32_1P_MUL_DIV
